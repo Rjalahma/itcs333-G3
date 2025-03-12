@@ -15,6 +15,7 @@ header h1 {
     font-size: 2.5rem;
     font-weight: 600;
     color: #ffffff;
+    align-content: center;
 }
 
 /* Navbar Styling */
@@ -58,7 +59,10 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
     transition: box-shadow 0.3s ease-in-out;
-}
+    width: 80%;  
+    /* max-width: 800px;
+    margin: auto; */
+} 
 
 .course-note-card:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -66,6 +70,7 @@ main {
 
 .course-note-card .card-body {
     padding: 20px;
+    align-content: center;
 }
 
 .course-note-card h5 {
@@ -146,9 +151,8 @@ main {
 }
 
 /* Responsive Layout Enhancements */
-.row {
-    margin-bottom: 20px;
-}
+.row { 
+    display: flex; flex-direction: column; align-items: center; }
 
 .col-md-4 {
     margin-bottom: 15px;
@@ -157,6 +161,7 @@ main {
 /* Search Bar and Filter Section Styling */
 .search-filter-container {
     margin-bottom: 30px;
+    width: 200%;
 }
 
 .search-filter-container_input,
@@ -175,4 +180,40 @@ main {
     background-color: #e9ecef;
     color: #FFB433; /* Vibrant yellow */
     border-color: #FFB433; /* Vibrant yellow */
+}
+
+img{
+    width: 90%;
+    height: auto;
+    align-content: center;
+}
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+  /* .left-box {
+   
+    padding: 10px 0;
+    float:left;
+    width:50%;
+    margin-top:20px;
+    height:100px;
+  }
+  
+  .right-box {
+   
+    padding: 10px 0;
+    float:right;
+    margin-top:20px;
+    width:50%;
+    height:100px;
+  } */
+.filtering{
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
 }
