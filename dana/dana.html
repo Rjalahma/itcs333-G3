@@ -260,7 +260,18 @@
                         <option value="languages">Languages</option>
                     </select>
                 </div>
+
+                <div class="mb-3">
+                    <select class="form-select" id="sortBy" name="sortBy">
+                        <option value="all" selected>All Notes</option>
+                        <option value="date_newest">Date Uploaded: Newest First</option>
+                        <option value="date_oldest">Date Uploaded: Oldest First</option>
+                    </select>
+                </div>
             </div>
+
+           
+            
 
             <!-- Course Notes List -->
             <div class="row">
@@ -269,7 +280,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Course Note Title</h5>
                             <p class="card-text">Short description or summary of the course note...</p>
-                            <a href="#" class="btn btn-primary">View Details</a>
+                            <a href="course-note-details.html" class="btn btn-primary">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -278,7 +289,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Course Note Title</h5>
                             <p class="card-text">Short description or summary of the course note...</p>
-                            <a href="#" class="btn btn-primary">View Details</a>
+                            <a href="course-note-details.html" class="btn btn-primary">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -298,8 +309,7 @@
         </section>
 
         <!-- Item Creation Form Modal -->
-        <div class="modal fade" id="createNoteModal" tabindex="-1" aria-labelledby="createNoteModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="createNoteModal" tabindex="-1" aria-labelledby="createNoteModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -307,29 +317,60 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="noteForm">
+                            <!-- Note Title -->
                             <div class="mb-3">
                                 <label for="noteTitle" class="form-label">Note Title</label>
-                                <input type="text" class="form-control" id="noteTitle" required
-                                    placeholder="Enter course note title">
+                                <input type="text" class="form-control" id="noteTitle" required placeholder="Enter course note title">
                             </div>
+        
+                            <!-- File Upload (PDF only) -->
                             <div class="mb-3">
-                                <label for="noteDescription" class="form-label">Description</label>
-                                <textarea class="form-control" id="noteDescription" rows="3" required
-                                    placeholder="Enter description"></textarea>
+                                <label for="noteFile" class="form-label">Upload File (PDF only)</label>
+                                <input type="file" class="form-control mb-2" id="noteFile" accept="application/pdf" required>
+                                <button type="button" class="btn btn-outline-danger btn-sm" >Remove File</button>
                             </div>
+        
+                            <!-- Course -->
                             <div class="mb-3">
                                 <label for="noteCourse" class="form-label">Course</label>
-                                <input type="text" class="form-control" id="noteCourse" required
-                                    placeholder="Enter course name">
+                                <input type="text" class="form-control" id="noteCourse" required placeholder="Enter course name">
                             </div>
+
+                                 <!-- Description -->
+                                 <div class="mb-3">
+                                    <label for="noteDescription" class="form-label">Description</label>
+                                    <input type="text" class="form-control" id="noteDescription" required placeholder="Description...">
+                                </div>
+
+                            
+        
+                            <!-- Department Selection -->
+                            <div class="mb-3">
+                                <label for="department" class="form-label">Department</label>
+                                <select class="form-select" id="department" name="department" required>
+                                    <option value="" disabled selected>Select a department</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Information System">Information System</option>
+                                    <option value="Network Engineering">Network Engineering</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Language">Language</option>
+                                </select>
+                            </div>
+                            <!-- Buttons -->
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- JavaScript to remove file -->
+
+        
+        
+        
 
     </main>
 
