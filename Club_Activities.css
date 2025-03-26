@@ -59,27 +59,39 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
     transition: box-shadow 0.3s ease-in-out;
-    width: 80%;  
+    width: 60%;  
+    /* max-width: 800px;
+    margin: auto; */
+} 
+.course-detailes-card {
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: box-shadow 0.3s ease-in-out;
+    width: 60%;  
+    justify-self: center;
     /* max-width: 800px;
     margin: auto; */
 } 
 
-.course-note-card:hover {
+.course-note-card:hover  .course-detailes-card:hover{
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.course-note-card .card-body {
+.course-note-card .card-body .course-detailes-card{
     padding: 20px;
     align-content: center;
 }
 
-.course-note-card h5 {
+.course-note-card h5 .course-detailes-card h5{
     font-size: 1.25rem;
     color: #80CBC4; 
     font-weight: bold;
 }
 
-.course-note-card p {
+.course-note-card p .course-detailes-card p{
     font-size: 1rem;
     color: #666;
 }
@@ -183,31 +195,36 @@ main {
 }
 
 img{
-    width: 90%;
+    width: 100%;
     height: auto;
     align-content: center;
+    justify-content: right;
 }
 .container {
     display: grid;
     grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto; 
+    justify-content: space-evenly;
   }
-  /* .left-box {
-   
-    padding: 10px 0;
-    float:left;
-    width:50%;
-    margin-top:20px;
-    height:100px;
-  }
-  
-  .right-box {
-   
-    padding: 10px 0;
-    float:right;
-    margin-top:20px;
-    width:50%;
-    height:100px;
-  } */
+.item_1{
+    grid-column: 3;
+    grid-row: 1 ;
+}
+.item-creation-cared{
+    grid-column: 2 ;
+    grid-row: 3;
+    justify-self: center;
+}
+/* .detailes-card{
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto; 
+} */
+.prev-btn{
+    /* grid-column: 3 / 2;
+    grid-row: 5 / 5;
+} */
+grid-column: 1 / span 1;
+}
 .filtering{
     font-family: 'Arial', sans-serif;
     background-color: white;
@@ -239,5 +256,5 @@ img{
     border-radius: 10px;
     padding: 10px;
     margin-right: 10px;
-    width: 60px;
+    width: 80px;
 }
