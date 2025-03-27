@@ -64,18 +64,7 @@ main {
     /* max-width: 800px;
     margin: auto; */
 } 
-.course-detailes-card {
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    transition: box-shadow 0.3s ease-in-out;
-    width: 60%;  
-    justify-self: center;
-    /* max-width: 800px;
-    margin: auto; */
-} 
+/*  */
 
 .course-note-card:hover  .course-detailes-card:hover{
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -106,7 +95,14 @@ main {
 .modal-title {
     font-weight: bold;
 }
-
+.btn_top{
+    align-self: center;
+    justify-self: space-around;
+   
+    margin-left: 2%;
+    margin-right: 2%;
+    /* margin-top: 20px; */
+}
 .btn-primary {
     background-color: #80CBC4; 
     border-color: #80CBC4;
@@ -132,7 +128,11 @@ main {
     border: none;
     color: #fff;
 }
-
+.comment button{
+    align-items: end;
+    justify-self: end;
+    
+}
 /* Form Input Styling */
 .form-select,
 .form-control {
@@ -210,6 +210,54 @@ img{
     align-content: center;
     
   }
+.container_comment{
+  
+    /* display: grid;
+    grid-template-columns: 45% 45% ;
+    grid-template-rows: 45% 45% ; 
+    justify-content: space-evenly;
+    align-items: center !important;
+    align-content: center;
+    border: 1px solid #80CBC4;
+    box-shadow: none;
+    transition: border-color 0.3s ease;     */
+      
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 10px; /* Space between rows */
+    width: min(90%, 600px); /* Adjust width but prevent it from being too wide */
+    padding: 20px;
+    border-radius: 10px;
+    background-color:  #ffffff; /* Light gray */
+
+    align-self: center;
+    justify-self: center;
+    border: 1px solid #80CBC4;
+    box-shadow: none;
+    transition: border-color 0.3s ease;  
+}
+
+ .head_detailes{
+    display: grid;
+    /* grid-template-columns: auto auto  auto; */
+    grid-template-rows: auto auto  auto  ; 
+    justify-content:flex-end;
+    align-items: center;
+    grid-template-columns: 2fr 1fr 2fr;
+     justify-items: center; 
+     align-items: center;
+}
+/* .container_details{
+    display: grid;
+    grid-template-columns: 60%  ;
+    grid-template-rows: 60%  ; 
+    justify-content: left;
+    align-items: start;
+    margin-right: auto;
+    margin-left: auto;
+    /* display: grid; */
+  
+/* }   */
 .container_form {
     display: grid;
     grid-template-columns: auto auto ;
@@ -249,6 +297,11 @@ grid-column: 1 / span 1;
     border-radius: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
+    grid-row: 1 / -1;
+    /* grid-column: 3 / -1; */
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 100%;
 
 }
 .pagination_container{
@@ -282,4 +335,65 @@ grid-column: 1 / span 1;
 }
 .filter{
     justify-self: left;
+}
+
+.container-details {
+    display: grid;
+    place-items: center; 
+    width: 100%;
+    padding: 20px;
+    align-self: center;
+    justify-self: center;
+}
+
+
+.details-card {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 10px; 
+    width: min(90%, 600px); 
+    padding: 20px;
+    border-radius: 10px;
+    background-color:  #ffffff; 
+
+    align-self: center;
+    justify-self: center;
+}
+.comment-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px; 
+    width: min(90%, 600px); 
+    padding: 20px;
+    border-radius: 10px;
+    background-color:  #DAF7F4; 
+
+    align-self: center;
+    justify-self: center;
+}
+
+
+.details-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    font-size: 1.5rem;
+    font-weight: bold;
+    justify-self: right;
+
+}
+
+
+.details-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+
+.details-card p {
+    margin: 5px 0;
+    /* font-size: 1rem; */
+    color: #333;
+    word-wrap: break-word;
 }
