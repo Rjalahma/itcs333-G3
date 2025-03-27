@@ -17,7 +17,7 @@
         <!-- Navbar -->
           <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
+        <div class="container fluid">
             <!-- <a class="navbar-brand" href="#">Campus Hub</a> -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,42 +52,94 @@
   
     </nav>
     <main>
-        <div class="container">
-            
-            <input type="button"  onclick="javascript:window.history.back();" class="previous prev-btn" value="&laquo;"></input>
+        <!-- <div class="head_detailes  row" >
+            <div class="col-1" style="align-self:flex-start;">
+                
+                <input type="button"  onclick="javascript:window.history.back();" class="previous prev-btn" value="&laquo;"></input>
+            </div>
+            <div class="col-4">
+                
+                <button class="btn-primary:hover btn-primary btn_top " >edit</button>
+                
+            </div>
+            <div class="col-6">
+                
+                <button class="btn-primary:hover btn-primary btn_top " >delete</button>
+            </div>
+        </div> -->
+        <div class="head_detailes d-grid" >
+
+            <div>
+                <input type="button" onclick="javascript:window.history.back();" class="previous prev-btn" value="&laquo;">
+            </div>
+        
+            <!-- Empty Space -->
+            <div></div>
+        
+        
+            <div class="d-grid gap-2" style="display: grid; grid-auto-flow: column;">
+                <button class="btn-primary:hover btn-primary">Edit</button>
+                <button class="btn-primary:hover btn-primary">Delete</button>
+            </div>
         </div>
-        <br>
-        <div class=" course-detailes-card   " >
-            <div class="container">
-            <!-- <div class="detailes-card" > -->
-                <b>club name </b>
+        
+        
+        <div class=" details-card " >
+            <div class="container_details">
+                <!-- <div class="detailes-card" > -->
+                <div class="details-card-header ">
+                    <div class="col">
+                        <h2>club name </h2>
+                    </div>
+                    <div class="col">
+                        <img src="C:\Users\almal\OneDrive\Desktop\Itcs333\itcs333-G3\Club_Activities\photos\piano.jpg" class="details-card img" alt="...">
+                    </div>
+                   
+                
+
+                </div>
+
+                    <div class="details-card p">
+                    
+                    <p>description</p>
+                    </div>
+
+                <div class="details-card p" >
+                    <p>club Type</p>
+                </div>
+                 <div class="details-card p" >
+                    <p>club location</p>
+                </div>
+                <div class="details-card p" >
+                    <p>club time</p>
+                </div>
+                <div class="details-card p">
+                    <p>club day </p>
+                </div>
+                <div class="details-card p">
+                    <p>club contact</p>
+                </div>
+                <div class="details-card p">
+                    <p>club email</p>
+                </div>
+            </div>
+            <div class="container_comment col ">
+                <div calass="row">
+                <strong  >comment section</strong>
+                <button class="btn-primary:hover btn-primary comment button" >add comment </button>
+                <button class="btn-primary:hover btn-primary comment button" >view all comment </button>
+                </div>
+                
                 <br>
-                <img src="C:\Users\almal\OneDrive\Desktop\Itcs333\itcs333-G3\Club_Activities\photos\piano.jpg" class="img" alt="...">
-                <p>description</p>
-                <p>club Type</p>
-                <p>club location</p>
-                <p>club time</p>
-                <p>club day </p>
-                <p>club contact</p>
-                <p>club email</p>
+                <div class="comment-card row ">
+                    <strong >username : najat </strong>
+                    <p>comment</p>
+                    <p>rate</p>
             </div>
             <!-- </div> -->
             
-
+        </div>
 
           
-        </div>
-        <div class="container">
-            <div class="row">
-              <div class="col">
-                One of three columns
-              </div>
-              <div class="col">
-                One of three columns
-              </div>
-              <div class="col">
-                One of three columns
-              </div>
-            </div>
-          </div>
+        
     </main>
