@@ -50,16 +50,17 @@
         </div>
   
     </nav>
-    
-<section class="from-section"></section>
+
+<section class="form-section">
+    <form> 
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">product Name</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter product Name">
       </div>
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">product price</label>
-        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="enter product price">
       </div>
 
 
@@ -72,7 +73,18 @@
         <label for="exampleFormControlTextarea1" class="form-label">detailed description</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
+
+      <div class="upload-file">
+        <label for="formFileDisabled" class="form-label">upload your file</label>
+        <input class="form-control" type="file" id="formFileDisabled" disabled>
+      </div>
+
+      <div class="col-12">
+        <button class="btn btn-primary"  type="submit">Submit form</button>
+      </div>
     
+    </form>
+    </section>
         
         
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

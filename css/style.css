@@ -260,6 +260,11 @@ grid-column: 1 / span 1;
   font-size: 20px;
 
 }
+.mb-3 {
+  margin: auto;
+  margin-top: 20px;
+  width: 100%;
+}
 .form-control{
   border-radius: 10px;
   border: 1px solid #80CBC4;
@@ -269,7 +274,29 @@ grid-column: 1 / span 1;
   grid-template-columns: auto auto;
   align-self: center;
   justify-content: space-evenly;
+  margin: auto;
 }
+
+  .form-label{
+    margin: auto;
+    width: 80%;
+    margin-left: 10%;
+    
+  }
+
+   form .col-12 .btn-primary{
+    margin: auto;
+    width :10%;
+    margin-left: 45%;
+    margin-top: 20px;
+  }
+
+  
+
+  form .col-12 .btn-primary:hover{
+    background-color: rgb(237, 152, 180);
+  }
+
 .previous{
   background-color: #80CBC4;
   color: white;
@@ -285,14 +312,14 @@ grid-column: 1 / span 1;
   justify-self: left;
 }
 
-  .from-section, .mb-3{
+  .form-section{
     margin: auto;
-    margin-top: 10px;
+    margin-top: 80px;
     width: 100%;
+
   }
   
-
-
+  
 
 footer{
   margin: auto ;
