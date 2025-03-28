@@ -53,14 +53,15 @@ main {
 
 /* Card Styling for Course Notes */
 .course-note-card {
-  margin-bottom: 20px;
+  margin-top: 20px;
   border: none;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   transition: box-shadow 0.3s ease-in-out;
-  width: 60%;  
+  width: 50%;  
   align-self: center;
+  display: flex;
   /* max-width: 800px;
   margin: auto; */
 } 
