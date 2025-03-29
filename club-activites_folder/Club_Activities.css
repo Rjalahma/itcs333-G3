@@ -54,7 +54,7 @@ main {
 /* Card Styling for Course Notes */
 .course-note-card {
     margin-bottom: 20px !important;
-    margin: auto;
+    margin: 20%;
     border: none;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -109,6 +109,12 @@ main {
 .btn-primary {
     background-color: #80CBC4; 
     border-color: #80CBC4;
+ 
+}
+.btn-primary-cards {
+    background-color: #80CBC4; 
+    border-color: #80CBC4;
+    width: 100%;
 }
 .btn-
 
@@ -195,15 +201,16 @@ main {
 
 .btn-back:hover {
     background-color: #e9ecef;
-    color: #FFB433; /* Vibrant yellow */
-    border-color: #FFB433; /* Vibrant yellow */
+    color: #FFB433; 
+    border-color: #FFB433; 
 }
 
 img{
     width: 100%;
-    height: auto;
+    height:30%;
     align-content: center;
-    justify-content: right;
+    justify-content: center;
+    align-self:center;
 }
 .container {
     display: grid;
