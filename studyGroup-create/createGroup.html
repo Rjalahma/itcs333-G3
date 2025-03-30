@@ -1,0 +1,91 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="createGroup.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Campus Hub</h1>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- <a class="navbar-brand" href="#">Campus Hub</a> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Study Group Finder <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Course Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Course Notes </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Campus News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Club Activities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Student Marketplace</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+      
+    <h5 class="card-title">Create a study Group</h5>
+    <input type="button" class="btn btn-secondary previous" onclick="location.href='../studyGroup-finder/pro.html';" value="&laquo; Previous"/>
+   
+    </div>
+
+    <div class="container-create">
+        <label class="form-card-title" for="GroupName">Enter your study group name</label>
+        <input type="text" id="Gname" name="groupname" placeholder="group name..">
+
+        <label class="form-card-title" for="subject">subject code</label>
+        <input type="text" id="sub" name="subject" placeholder="subject code..">
+
+        <label class="form-card-title" for="year">year</label>
+        <select id="year" name="year">
+        <option value="2020-2021">2020-2021</option>
+        <option value="2021-2022">2021-2022</option>
+        <option value="2022-2023">2022-2023</option>
+        <option value="2023-2024">2023-2024</option>
+        </select>
+
+        <label class="form-card-title" for="location">location</label>
+        <select id="loc" name="location">
+        <option value="TBA">TBA</option>
+        <option value="Campus">campus</option>
+        <option value="Capital Governorate">Capital Governorate</option>
+        <option value=" Muharraq Governorate"> Muharraq Governorate</option>
+        <option value=" Northern Governorate">Northern Governorate</option>
+        <option value=" Southern Governorate">  Southern Governorate</option>
+        </select>
+
+        <label class="form-card-title" for="MCount">number of members in the group</label>
+        <div>
+            <input type="number" id="sub" name="mumber" placeholder="max num of mumbers..">
+        </div>
+        
+        <div>
+            <label class="form-card-title" for="description">description</label>
+            <textarea id="desc" name="description" placeholder="about your study group.." style="height:200px"></textarea>
+        </div>
+        <button class=" submit-btn  ">Submit</button>
+       
+    </form>
+    </div>
+
+
