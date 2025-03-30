@@ -1,0 +1,338 @@
+/* General Body Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #FBF8EF; /* Soft off-white */
+  color: #333;
+}
+
+/* Header Styling */
+header {
+  background-color: #80CBC4; /* Soft cyan */
+  padding: 20px 0;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  align-content: center;
+}
+
+/* Navbar Styling */
+.navbar {
+  margin-bottom: 20px;
+  background-color: #B4EBE6; /* Soft cyan */
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  font-size: 1rem; /* Smaller font size */
+  color: #333;
+}
+
+.nav-link:hover {
+  background-color: #80CBC4; /* Vibrant yellow */
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.navbar-dark .navbar-nav .nav-item.active .nav-link {
+  background-color: #80CBC4;
+  border-radius: 5px;
+  color: white;
+}
+
+/* Main Section */
+main {
+  padding-top: 40px;
+}
+
+/* Card Styling for Course Notes */
+.course-note-card {
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease-in-out;
+  width: 50%;  
+  align-self: center;
+  display: flex;
+  /* max-width: 800px;
+  margin: auto; */
+} 
+.course-detailes-card {
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease-in-out;
+  width: 60%;  
+  justify-self: center;
+  /* max-width: 800px;
+  margin: auto; */
+} 
+
+.course-note-card:hover  .course-detailes-card:hover{
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.course-note-card .card-body .course-detailes-card{
+  padding: 20px;
+  align-content: center;
+}
+
+.course-note-card h5 .course-detailes-card h5{
+  font-size: 1.25rem;
+  color: #80CBC4; 
+  font-weight: bold;
+}
+
+.course-note-card p .course-detailes-card p{
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Modal Styling */
+.modal-header {
+  background-color: #80CBC4; 
+  color: white;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #80CBC4; 
+  border-color: #80CBC4;
+}
+.btn-
+
+.btn-primary:hover {
+  background-color: #B4EBE6; 
+  border-color: #B4EBE6;
+}
+
+<!-- .btn-secondary {
+  background-color: #80CBC4; 
+  border-color: #80CBC4;
+} -->
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-close {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}
+
+/* Form Input Styling */
+.form-select,
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-shadow: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-select:focus,
+.form-control:focus {
+  border-color: #80CBC4; /* Soft cyan */
+  box-shadow: 0 0 0 0.2rem rgba(128, 203, 196, 0.25);
+}
+
+.pagination .page-link {
+  border-radius: 50%;
+  background-color: #FBF8EF; /* Soft off-white */
+  color: #80CBC4; /* Soft cyan */
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #80CBC4;
+  color: white;
+}
+
+.pagination .page-item:hover .page-link {
+  background-color: #e0e0e0;
+}
+
+/* Responsive Layout Enhancements */
+/* .row { 
+  display: flex; flex-direction: column; align-items: center; } */
+
+.col-md-4 {
+  margin-bottom: 15px;
+}
+
+/* Search Bar and Filter Section Styling */
+.search-filter-container {
+  margin-bottom: 30px;
+  width: 200%;
+}
+
+.search-filter-container_input,
+.search-filter-container select {
+  margin-bottom: 10px;
+}
+
+/* Back to Listing Button */
+.btn-back {
+  background-color: #FBF8EF; /* Soft off-white */
+  color: #80CBC4; /* Soft cyan */
+  border: 1px solid #80CBC4; /* Soft cyan */
+}
+
+.btn-back:hover {
+  background-color: #e9ecef;
+  color: #FFB433; /* Vibrant yellow */
+  border-color: #FFB433; /* Vibrant yellow */
+}
+
+img{
+  width: 100%;
+  height: auto;
+  align-content: center;
+  justify-content: right;
+}
+.container {
+  display: grid;
+  grid-template-columns: 45% 45% ;
+  grid-template-rows: 45% 45% ; 
+  justify-content: space-evenly;
+  align-items: center !important;
+  align-content: center;
+  margin-top: 20px;
+  
+}
+.container_form {
+  display: grid;
+  grid-template-columns: auto auto ;
+  grid-template-rows: auto auto ; 
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  margin-right: auto;
+  margin-left: auto;
+  
+}
+.item_1{
+  grid-column: 3;
+  grid-row: 1 ;
+}
+.item-creation-cared{
+  grid-column: 1;
+  grid-row: 3\ span 3;
+  justify-self: center;
+  justify-content: space-evenly;
+  white-space: nowrap;
+}
+/* .detailes-card{
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto; 
+} */
+.prev-btn{
+  /* grid-column: 3 / 2;
+  grid-row: 5 / 5;
+} */
+grid-column: 1 / span 1;
+}
+.filtering{
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+.pagination_container{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+
+}
+.mb-3 {
+  margin: auto;
+  margin-top: 20px;
+  width: 100%;
+}
+.form-control{
+  border-radius: 10px;
+  border: 1px solid #80CBC4;
+  box-shadow: none;
+  transition: border-color 0.3s ease;
+  width: 80%;
+  grid-template-columns: auto auto;
+  align-self: center;
+  justify-content: space-evenly;
+  margin: auto;
+}
+
+  .form-label{
+    margin: auto;
+    width: 80%;
+    margin-left: 10%;
+    
+  }
+
+   form .col-12 .btn-primary{
+    margin: auto;
+    width :10%;
+    margin-left: 45%;
+    margin-top: 20px;
+  }
+
+  
+
+  form .col-12 .btn-primary:hover{
+    background-color: rgb(237, 152, 180);
+  }
+
+.previous{
+  background-color: #80CBC4;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 10px;
+  width: 80px;
+}
+.club-cards{
+  justify-self: center;
+}
+.filter{
+  justify-self: left;
+}
+
+  .form-section{
+    margin: auto;
+    margin-top: 80px;
+    width: 100%;
+
+  }
+  
+  
+
+footer{
+  margin: auto ;
+  margin-top: 50px;
+  width : 100% ;
+  height: 100px ;
+  background-color: #B4EBE6;
+}
+
+
+
+footer p {
+  text-align: centers;
+  margin: auto ;
+}
