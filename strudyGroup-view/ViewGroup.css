@@ -125,10 +125,20 @@
     <!-- .btn-secondary {
         background-color: #80CBC4; 
         border-color: #80CBC4;
+        margin-right: 5%;
         margin: auto;
-        margin-left: 2%;
+        
 
     } -->
+
+    .previous {
+        margin-bottom: 1%;
+        background-color: #f1f1f1;
+        color: black;
+        text-decoration: none;
+        margin-left: 25px;
+        padding: 8px 16px;
+    }
 
     .btn-secondary:hover {
         background-color: #e0e0e0;
@@ -250,23 +260,6 @@
         clear: both;
         display: table;
       }
-    
-      
-
-    .button {
-        background-color: navy; 
-        border: none;
-        color: white;
-        padding: 5px 15px;
-        text-align: center;
-        text-decoration:none;
-        display: inline-block;
-        font-size: 15px;
-      }
-
-
-
-
 
         /* The Modal (background) */
     .modal {
@@ -325,11 +318,21 @@
         margin-right: 10px ;
         margin-left: 10px; }
 
+    .view-page-container{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        align-content: center;
+        margin-right: 10px ;
+        margin-left: 10px; 
+    }
+
     .filter-container{
         justify-self: right;
         margin-right: 10%;
        
     }
+
 
 
 
@@ -375,76 +378,7 @@
       }
 
 
-
-      /* Customize the label (the container) */
-    .container-checkb {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        font-size: 22px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-  
-
-    /* Hide the browser's default checkbox */
-    .container-checkb input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
     
-    /* Create a custom checkbox */
-    .checkmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: #eee;
-    }
-    
-
-    /* On mouse-over, add a grey background color */
-    .container-checkb:hover input ~ .checkmark {
-        background-color: #ccc;
-    }
-    
-    /* When the checkbox is checked, add a blue background */
-    .container-checkb input:checked ~ .checkmark {
-        background-color: #2196F3;
-    }
-    
-    /* Create the checkmark/indicator (hidden when not checked) */
-    .checkmark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-      /* Show the checkmark when checked */
-    .container-checkb input:checked ~ .checkmark:after {
-        display: block;
-    }
-    
-    /* Style the checkmark/indicator */
-    .container-checkb .checkmark:after {
-        left: 9px;
-        top: 5px;
-        width: 5px;
-        height: 10px;
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }
-
     .form-card-title{
         margin-bottom: 5px;
         background-color:  #80CBC4; 
@@ -456,47 +390,74 @@
     }
 
 
-    /* .btn-d{
-        background-color: #2196F3;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        outline: none;
-      } */
-      
-      /* The container <div> - needed to position the dropdown content */
-      .dropdown {
-        position: absolute;
-        display: inline-block;
-      }
-      
-      /* Dropdown Content (Hidden by Default) */
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        z-index: 1;
-      }
+    .comment-card p {
+        font-size: 1rem;
+        color: #666;
+       background-color:#ffffff;
+        margin-bottom: 13;
+    
+   
+    }
 
-        /* Links inside the dropdown */
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
+    .details-card-header {
+        color: #80CBC4;
+        /* font-weight:; */
+        margin-bottom: 7%;
+        background-color: #B4EBE6; /* Light cyan */
+        padding: 5px;
+        border-radius: 8px;
+    }
+
+
+    .details-card {
+        background-color: #DAF7F4; /* Light Cyan */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
     }
     
-    /* Change color of dropdown links on hover */
-    .dropdown-content a:hover {background-color: #ddd}
+    .details-card p {
+        margin: 5px 0;
+        color: #666;
+        background-color:#ffffff;
+        margin-bottom: 13;
+        height: 1%;
+      
     
-    /* Show the dropdown menu on hover */
-    .dropdown:hover .dropdown-content {
-        display: block;
     }
     
-    /* Change the background color of the dropdown button when the dropdown content is shown */
-    .btn:hover, .dropdown:hover .btn  {
-        background-color: #0b7dda;
+    .details-card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #80CBC4;
+        margin-top: 20px;
+    }
+    
+    .comment-card {
+        background-color: #DAF7F4; /* Light Cyan */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    
+    .comment-card-header {
+        color: #80CBC4;
+        font-weight: bold;
+        margin-bottom: 7%;
+        background-color: #B4EBE6; /* Light cyan */
+        padding: 5px;
+        border-radius: 8px;
+       
+    }
+
+    @media (max-width: 768px) {
+        .view-page-container {
+            flex-direction: column;
+        }
+        
+        .details-card, .comment-card {
+            margin-bottom: 20px;
+        }
     }
