@@ -1,0 +1,103 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="ViewGroup.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Campus Hub</h1>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- <a class="navbar-brand" href="#">Campus Hub</a> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Study Group Finder <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Course Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Course Notes </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Campus News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Club Activities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Student Marketplace</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<main class="container py-5">
+    <input type="button" class="btn btn-secondary previous" onclick="location.href='../studyGroup-finder/pro.html';" value="&laquo; Previous"/>
+    <div class="view-page-container row">
+        
+        <!-- Group Details Card -->
+        <div class="col-md-6">
+            <div class="details-card p-4 shadow-sm rounded">
+                <h2 class="details-card-header">Group Details</h2>
+            
+                <!-- Description Section -->
+                <div class="details-card-title">Description</div>
+                <p class="details-card p">we welcome all students regisred in itcs333 in any section, <br> we meet every sunday at the libraray<br>  we encourage active participation, as it helps everyone achieve their academic goals</p>
+    
+                <!-- Subject Code -->
+                <div class="details-card-title">Subject Code</div>
+                <p class="details-card p">ITCS33</p>
+    
+                <!-- Academic Year -->
+                <div class="details-card-title">Academic Year</div>
+                <p class="details-card p">2022-2023</p>
+    
+                <!-- Location of Study Session -->
+                <div class="details-card-title">Location of Study Session</div>
+                <p class="details-card p">Campus</p>
+    
+                <!-- Group Members -->
+                <div class="details-card-title">Group Members</div>
+                <p class="details-card p">2/5</p>
+    
+                <!-- Creator of the Group -->
+                <div class="details-card-title">Creator of the Group</div>
+                <p class="details-card p">202206512@stu.uob.edu.bh</p>
+    
+                <!-- Join Button -->
+                <button class="btn btn-secondary w-100 mt-2">Join Group</button>
+            </div>
+        </div>
+
+        <!-- Comment Section Card -->
+        <div class="col-md-6">
+            <div class="comment-card p-4 shadow-sm rounded">
+                <div class="comment-card-header">
+                    <h3>Comment Section</h3>
+                </div>
+    
+                <!-- Existing Comments -->
+                <p class="comment-card p">User1: Great study group!</p>
+                <p class="comment-card p">User2: I love the group atmospher!</p>
+                <p class="comment-card p">User3: "It's been really helpful for my understanding of the course. Highly recommend joining if you're struggling with the material!"</p>
+                <p class="comment-card p">User4: "Can we do a study session for the upcoming midterms? It would be helpful to review everything in one go."</p>
+
+                <!-- Comment Posting -->
+                <textarea class="form-control mt-4" rows="3" placeholder="Leave a comment..."></textarea>
+                <button class="btn btn-secondary w-100 mt-2">Post Comment</button>
+            </div>
+        </div>
+    </div>
+</main>
+    
