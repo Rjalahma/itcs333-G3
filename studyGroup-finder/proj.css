@@ -169,6 +169,14 @@
     .pagination .page-item:hover .page-link {
         background-color: #e0e0e0;
     }
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+      }
+      
 
     /* Responsive Layout Enhancements */
     .row {
@@ -278,9 +286,10 @@
         margin-right: 10%;
         padding: 5px;
         font-weight: bold;
-        color: #80CBC4;
+        border-radius: 3px;
+        color: #80CBC4 ;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background-color: #ffffff;
+        background-color: #B4EBE6;
         transition: box-shadow 0.3s ease-in-out;
        
        
