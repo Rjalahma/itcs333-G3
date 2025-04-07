@@ -1,0 +1,176 @@
+<!--The Main Page For Course Reviews-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Reviews - Campus Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="CourseReviews" href="CourseReviews.html"/><!---Main Page-->
+  <link rel="stylesheet" href="reviews.css"/>
+  <style> </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Campus Hub</h1>
+    </div>
+  </header>
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#">Study Group Finder</a></li>
+          <li class="nav-item active"><a class="nav-link" href="#">Course Reviews<span class="sr-only"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href=".\course_note_folder\course-note-main.html">Course Notes</a></li>
+          <li class="nav-item"><a class="nav-link" href=".\marwa project/campusNews.html">Campus News</a></li>
+          <li class="nav-item"><a class="nav-link" href=".\club-activites_folder\Club_Activities\Club_Activities.html">Club Activities</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Student Marketplace</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mt-4">
+    <div class="d-flex justify-content-between mb-3">
+      <h2>Course Reviews</h2>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createReviewModal">Add Review</button>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Search by course name or instructor">
+      </div>
+
+      <div class="col-md-6">
+    
+        <select class="form-select">
+          <option selected>Filter by Department or College</option>
+          <option value="IT">College of Information Systems</option>
+          <option value="CS">Computer Science</option>
+          <option value="SE">Computer Engineering</option>
+          <option value="Law">College of Law</option>
+          <option value="Eng">College of Engineering</option>
+          <option value="Arts">College of Arts</option>
+          <option value="Business">College of Business Administration</option>
+          <option value="Languages">College of Languages Institue</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Review Cards Win-->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card review-card h-100">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">ITSE302 - Software Design & Architecture</h5>
+            <p class="card-text">The course contains a lot of memorization and little understanding. It is different from the previous course, SE220, which was much easier.</p>
+            <small class="text-muted">By Khalid Alqassab · Rated: ★★★★☆</small>
+            <a href="reviews.html#review1" class="btn btn-primary mt-auto mt-3">Read Full</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card review-card h-100">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">ITCS214 - Data structure</h5>
+            <p class="card-text"> Data structure course is one of the best courses i ever took.The material is very interesting and fun.Especially that........</p>
+            <small class="text-muted">By Fatin Yousif · Rated: ★★★★★</small>
+            <a href="reviews.html#review2" class="btn btn-primary mt-auto mt-3">Read Full</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card review-card h-100">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">ITCS222 - Computer Orginazition</h5>
+            <p class="card-text"> Computer organization course is very heavy but easy at the same time. It’s including various types of number system and teach........</p>
+            <small class="text-muted">By Salman Mohamed · Rated: ★★★☆☆</small>
+            <a href="reviews.html#review3" class="btn btn-primary mt-auto mt-3">Read Full</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="row align-items-center mt-4">
+      <div class="col-4 text-start">
+        <a href="#" class="btn btn-outline-secondary" tabindex="-1" aria-disabled="true">Previous</a>
+      </div>
+      <div class="col-4 text-center">
+        <ul class="pagination justify-content-center mb-0">
+          <li class="page-item active"><span class="page-link">1</span></li>
+          <li class="page-item"><a class="page-link" href="CourseReviews2.html">2</a></li>
+        </ul>
+      </div>
+      <div class="col-4 text-end">
+        <a href="CourseReviews2.html" class="btn btn-primary">Next</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal fade" id="createReviewModal" tabindex="-1" aria-labelledby="createReviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="createReviewModalLabel">Submit Course Review</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <div class="mb-3">
+              <label for="courseName" class="form-label">Course Name</label>
+              <input type="text" class="form-control" id="courseName" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="reviewText" class="form-label">Your Review</label>
+              <textarea class="form-control" id="reviewText" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="rating" class="form-label">Rating</label>
+              <select class="form-select" id="rating" required>
+                <option value="" disabled selected>Select rating</option>
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="reviewerName" class="form-label">Your Name</label>
+              <input type="text" class="form-control" id="reviewerName" required>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
