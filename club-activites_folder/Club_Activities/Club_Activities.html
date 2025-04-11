@@ -52,23 +52,49 @@
 
         <!-- Main Content -->
         <main>
-            <div >
-                <div class="row" style="margin: 70px;">
-                    <h2 class="header h1 " style="text-align:center;">Club Activities</h2>
-                    <!-- this is the search bar  -->
-                    <search>
-                        
-                        <div class="container">
-                            <form class="d-flex search-filter-container" >
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn-primary:hover btn-primary" type="submit">Search</button>
-                                
-                                <input type="button" class="btn-primary:hover btn-primary" onclick="location.href='../item-creation/Club-Activities_itemCreation.html';" value="add"/>
-                            
-                                </form>
-                        </div>
-                        </search>
+            <div class="container_top mt-4">
+
+                <!-- Title -->
+                <div class="row mb-4">
+                  <div class=" d-flex ">
+                    <h2 >Club Activities</h2>
+                    
+                  </div>
                 </div>
+              
+                <!-- Sort -->
+                <div class="row mb-3">
+                  <div class=" w-50  d-flex ">
+                    <select class="form-select ">
+                      <option value="" hidden>Sort by club type</option>
+                      <option value="Science">Science</option>
+                      <option value="Volunteer">Volunteer</option>
+                      <option value="Political">Political</option>
+                      <option value="Technology">Technology</option>
+                      <option value="Art">Art</option>
+                      <option value="Sports">Sports</option>
+                      <option value="Music">Music</option>
+                    </select>
+                    <input type="button" class="btn btn-primary ms-3" value="Add club"
+                           onclick="location.href='../item-creation/Club-Activities_itemCreation.html';">
+                  </div>
+                  
+                </div>
+              
+                <!-- Search Bar -->
+                <div class="row mb-4">
+                  <div class="col-12 d-flex justify-content-start">
+                    <form class="d-flex w-100 justify-content-start">
+                    <span class="col-12 d-flex justify-content-start">
+                      <input class="form-control me-2" type="search" placeholder="Search">
+                    </span>
+                      <button class=" col btn btn-secondary" type="submit">Search</button>
+                    </form>
+                  </div>
+                </div>
+              
+              </div>
+              
                 <!-- this is the club activities section -->
                 <div class="row ">
                 <div class="container col " style="align-content: start !important;">
@@ -116,7 +142,7 @@
                     
                 </div>
                 <!-- this is the filtering section -->
-                <div class="container col-3" style="align-content: start !important;" >
+                <!-- <div class="container col-3" style="align-content: start !important;" >
                     <div class="filtering" >
                         <h2 style="    background-color: #B4EBE6;    border-radius: 5px; align-content :center;">Filter by catogry</h2>
                         <div>
@@ -149,8 +175,8 @@
                         </div>
                         <button class="btn-primary:hover btn-primary" type="submit">filter</button>      
                     </div>
-                </div>
-                </div>
+                </div> -->
+                <!-- </div> -->
             </div>
         
         
