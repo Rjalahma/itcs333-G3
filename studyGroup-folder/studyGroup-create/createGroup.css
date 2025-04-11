@@ -68,4 +68,11 @@ input[type=submit]:hover {
     font-weight: bold;
 }
 
-
+.previous {
+    margin-bottom: 1%;
+    background-color: #f1f1f1;
+    color: black;
+    text-decoration: none;
+    margin-left: 15%;
+    padding: 8px 16px;
+}
