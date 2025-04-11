@@ -47,138 +47,122 @@
         </div>
     </nav>
 
-    <h5 class="page-title">Study Group Finder</h5>
-    <search>
-        <div class="container">
-            <form class="d-flex search-filter-container">
-                <div class="col">
-                    <input class="form-control me-2" type="search" placeholder="search a group name.." aria-label="search">
-                </div>
-                <div class="col-1">
-                    <button class=" btn btn-secondary:hover btn-secondary" type="submit">search</button>
+    <main class= "container mt-4">
+            <div class="d-flex justify-content-between mb-3">
+                <h2>Study Group Finder</h2>
+                <input type="button" class="btn btn-primary" onclick="location.href='../studyGroup-create/createGroup.html';" value="Create Group "/>
+            </div>
 
+                <!-- sort & filter -->
+            <div class="search-filter-container row">
+                <div class="col-md-6">
+                    <select class="form-select" id="sortBy" aria-label="sortBy">
+                        <option value="" hidden>Sort by..</option>
+                        <option value="all">All study Groups</option>
+                        <option value="newest">Newest to oldest date</option>
+                        <option value="oldest">Oldest to first date</option>
+                        <option value="alphabetical">Alphabetical order (A to Z)</option>
+                    </select>
                 </div>
-            </form>
-        </div>
-    </search>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="Filter by department">
+                        <option value="" hidden>Filter by department</option>
+                        <option value="All">All departments</option>
+                        <option value="IT">IT</option>
+                        <option value="Law">Law</option>
+                        <option value="Science">Science</option>
+                        <option value="Business">Business</option>
+                    </select>
+                </div>
 
-    <div class= "row" >
-        <div= container col>
-            <div class=" container_header">
-                    <input type="button" class="btn btn-primary" onclick="location.href='../studyGroup-create/createGroup.html';" value="create a group "/>
-                    <button class=" btn btn-primary"  > view joined groups </button>
-                    <div class="col-12">
-                        <h5 class=" filter-container ">Filter the Study Groups</h5>
+           <!-- Search Bar + Button Row -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <input class="form-control me-2" type="search" placeholder="search a group name.." aria-label="search">
+                </div>
+                    <div class="col-auto">
+                        <button class="btn btn-secondary" type="submit">Search</button>
                     </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-8">
-            <div class="group-finder-card">
-                <h5 class="card-title ">Group Name 1</h5>
-                <p class=" group-finder-card p">Subject Code: ITCS333</p>
-                <p class=" group-finder-card p  ">Members: 2/6</p>
-              
-                <button class="btn btn-secondary btn-secondary:hover">Add</button>
-                <input type="button" class="btn btn-secondary btn-secondary:hover" onclick="location.href='../strudyGroup-view/ViewGroup.html';" value="View Details"/>
-
-            </div>
-    
-            <div class="group-finder-card">
-                <h5 class="card-title ">Group Name 2</h5>
-                <p class=" group-finder-card p">Subject Code: ITCS333</p>
-                <p class=" group-finder-card p  ">Members: 1/6</p>
-              
-                <button class="btn btn-secondary btn-secondary:hover">Add</button>
-                <input type="button" class="btn btn-secondary btn-secondary:hover" onclick="location.href='../strudyGroup-view/ViewGroup.html';" value="View Details"/>
-            </div>
-
-            <div class="group-finder-card">
-                <h5 class="card-title ">Group Name 3</h5>
-                <p class=" group-finder-card p">Subject Code: ITCS333</p>
-                <p class=" group-finder-card p  ">Members: 5/6</p>
-              
-                <button class="btn btn-secondary btn-secondary:hover">Add</button>
-                <input type="button" class="btn btn-secondary btn-secondary:hover" onclick="location.href='../strudyGroup-view/ViewGroup.html';" value="View Details"/>
-            </div>
+        
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="group-finder-card">
+                        <h5 class="card-title ">Group Name 1</h5>
+                        <p class=" group-finder-card p">Subject Code: ITCS333</p>
+                        <p class=" group-finder-card p  ">Members: 2/6</p>
+                      
+                        <button class="btn btn-secondary btn-secondary:hover">Add</button>
+                        <input type="button" class="btn btn-secondary btn-secondary:hover" onclick="location.href='../strudyGroup-view/ViewGroup.html';" value="View Details"/>
+        
+                    </div>
             
-            <div class="group-finder-card">
-                <h5 class="card-title ">Group Name 3</h5>
-                <p class=" group-finder-card p">Subject Code: ITCS333</p>
-                <p class=" group-finder-card p  ">Members: 5/6</p>
-              
-                <button class="btn btn-secondary btn-secondary:hover">Add</button>
-                <input type="button" class="btn btn-secondary btn-secondary:hover" onclick="location.href='../strudyGroup-view/ViewGroup.html';" value="View Details"/>
+                    <div class="group-finder-card">
+                        <h5 class="card-title ">Group Name 2</h5>
+                        <p class=" group-finder-card p">Subject Code: ITCS333</p>
+                        <p class=" group-finder-card p  ">Members: 1/6</p>
+                      
+                        <button class="btn btn-secondary btn-secondary:hover">Add</button>
+                        <input type="button" class="btn btn-secondary btn-secondary:hover" onclick="location.href='../strudyGroup-view/ViewGroup.html';" value="View Details"/>
+                    </div>
+        
+                    <div class="group-finder-card">
+                        <h5 class="card-title ">Group Name 3</h5>
+                        <p class=" group-finder-card p">Subject Code: ITCS333</p>
+                        <p class=" group-finder-card p  ">Members: 5/6</p>
+                      
+                        <button class="btn btn-secondary btn-secondary:hover">Add</button>
+                        <input type="button" class="btn btn-secondary btn-secondary:hover" onclick="location.href='../strudyGroup-view/ViewGroup.html';" value="View Details"/>
+                    </div>
+                    
+                    <div class="group-finder-card">
+                        <h5 class="card-title ">Group Name 3</h5>
+                        <p class=" group-finder-card p">Subject Code: ITCS333</p>
+                        <p class=" group-finder-card p  ">Members: 5/6</p>
+                      
+                        <button class="btn btn-secondary btn-secondary:hover">Add</button>
+                        <input type="button" class="btn btn-secondary btn-secondary:hover" onclick="location.href='../strudyGroup-view/ViewGroup.html';" value="View Details"/>
+                    </div>
+        
+                    <div class="group-finder-card">
+                        <h5 class="card-title ">Group Name 3</h5>
+                        <p class=" group-finder-card p">Subject Code: ITCS333</p>
+                        <p class=" group-finder-card p  ">Members: 5/6</p>
+                      
+                        <button class="btn btn-secondary btn-secondary:hover">Add</button>
+                        <input type="button" class="btn btn-secondary btn-secondary:hover" onclick="location.href='../strudyGroup-view/ViewGroup.html';" value="View Details"/>
+                    </div>
+        
+                </div>
+
+
             </div>
-
-            <div class="group-finder-card">
-                <h5 class="card-title ">Group Name 3</h5>
-                <p class=" group-finder-card p">Subject Code: ITCS333</p>
-                <p class=" group-finder-card p  ">Members: 5/6</p>
-              
-                <button class="btn btn-secondary btn-secondary:hover">Add</button>
-                <input type="button" class="btn btn-secondary btn-secondary:hover" onclick="location.href='../strudyGroup-view/ViewGroup.html';" value="View Details"/>
+        </body>
+        <div class="row align-items-center">
+            <!-- Previous -->
+            <div class="col-4 text-start">
+                <a href="#" class="btn btn-outline-secondary" tabindex="-1" aria-disabled="true">Previous</a>
             </div>
-
+            <!-- Page Numbers  -->
+            <div class="col-4 text-center">
+                <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">1</span>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">3</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Next  -->
+            <div class="col-4 text-end">
+                <a class="btn btn-primary">Next</a>
+            </div>
         </div>
-
-        <div class="col">       
-            <form class="form-control ">
-
-                <label class="form-card-title" for="dep">Department</label><br>
-
-                <input type="checkbox" id="dep1" name="dep1" value="IT">
-                <label for="dep1"> IT</label><br>
-                <input type="checkbox" id="dep2" name="dep2" value="Bussines">
-                <label for="dep2"> Bussines </label><br>
-                <input type="checkbox" id="dep3" name="dep3" value="law">
-                <label for="dep3">law</label><br>
-
-                <label class="form-card-title" for="loc">location</label><br>
-
-                <input type="checkbox" id="loc1" name="loc1" value="campus">
-                <label for="loc1"> campus</label><br>
-                <input type="checkbox" id="loc2" name="loc2" value="Capital Governorate">
-                <label for="loc2"> Capital Governorate </label><br>
-                <input type="checkbox" id="loc3" name="loc3" value="Muharraq Governorate">
-                <label for="loc3">Muharraq Governorate</label><br>
-                <input type="checkbox" id="loc4" name="loc4" value="Northern Governorate">
-                <label for="loc4">Northern Governorate</label><br>
-                <input type="checkbox" id="loc5" name="loc5" value="Southern Governorate">
-                <label for="loc5">Southern Governorate</label><br>
-
-              
-                <label class="form-card-title" for="year"> Academic year</label><br>
-
-                <input type="checkbox" id="year1" name="year1" value="2020-2021">
-                <label for="year1"> 2020-2021</label><br>
-                <input type="checkbox" id="year2" name="year2" value="2021-2022">
-                <label for="year1"> 2021-2022</label><br>
-                <input type="checkbox" id="year3" name="year3" value="2022-2023">
-                <label for="year1"> 2022-2023</label><br>
-                <input type="checkbox" id="year4" name="year4" value="2023-2024">
-                <label for="year1"> 2023-2024</label><br>
-
-                <button class="submit-btn btn-secondary:hover">Submit</button>
-              </form>
-
-        </div>
-
-
-
-    </div>
-</body>
-        <div class="pagination a">
-        <a href="#">&laquo;</a>
-        <a class="page-item.active page-item:hover " href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
-        </div>
+        
 
 </main>
