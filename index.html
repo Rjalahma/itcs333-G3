@@ -40,13 +40,18 @@
       } 
 
 /* Welcome Section Styling */
+
 .welcome {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center horizontally and vertically */
-    text-align: center; /* Center the text inside the div */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+    min-height: calc(100vh - 140px); /* Adjust depending on your nav+header height */
+    padding: 20px;
+   
 }
+
 
 .welcome h1 {
     font-size: 3rem;
@@ -157,95 +162,7 @@
             font-weight: bold;
         }
     </style>
-        <!--
-        .btn-primary {
-            background-color: #80CBC4; 
-            border-color: #80CBC4;
-        }
-        .btn-
-
-        .btn-primary:hover {
-            background-color: #B4EBE6; 
-            border-color: #B4EBE6;
-        } -->
-
-        <!-- .btn-secondary {
-            background-color: #80CBC4; 
-            border-color: #80CBC4;
-        } 
-
-        .btn-secondary:hover {
-            background-color: #e0e0e0;
-        }
-
-        .btn-close {
-            background-color: transparent;
-            border: none;
-            color: #fff;
-        } */
-
-        /* Form Input Styling 
-        .form-select,
-        .form-control {
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            box-shadow: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-select:focus,
-        .form-control:focus {
-            border-color: #80CBC4; /* Soft cyan 
-            box-shadow: 0 0 0 0.2rem rgba(128, 203, 196, 0.25);
-        }
-
-        .pagination .page-link {
-            border-radius: 50%;
-            background-color: #FBF8EF; /* Soft off-white 
-            color: #80CBC4; /* Soft cyan 
-        }
-
-        .pagination .page-item.active .page-link {
-            background-color: #80CBC4;
-            color: white;
-        }
-
-        .pagination .page-item:hover .page-link {
-            background-color: #e0e0e0;
-        }
-
-        /* Responsive Layout Enhancements 
-        .row {
-            margin-bottom: 20px;
-        }
-
-        .col-md-4 {
-            margin-bottom: 15px;
-        }
-
-        /* Search Bar and Filter Section Styling 
-        .search-filter-container {
-            margin-bottom: 30px;
-        }
-
-        .search-filter-container input,
-        .search-filter-container select {
-            margin-bottom: 10px;
-        }
-
-        /* Back to Listing Button 
-        .btn-back {
-            background-color: #FBF8EF; /* Soft off-white 
-            color: #80CBC4;  Soft cyan 
-            border: 1px solid #80CBC4;  Soft cyan 
-        }
-
-        .btn-back:hover {
-            background-color: #e9ecef;
-            color: #FFB433; /* Vibrant yellow 
-            border-color: #FFB433;  Vibrant yellow 
-        } -->
-
+       
     
 </head>
 
@@ -276,7 +193,7 @@
                         <a class="nav-link" href=".\studyGroup-folder\studyGroup-finder\pro.html">Study Group Finder</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=".\Shahad-Reviews\CourseReviews.html">Course Reviews</a>
+                        <a class="nav-link" href="..\Shahad-Reviews\CourseReviews.html">Course Reviews</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href=".\course_note_folder\course-note-main.html">Course Notes</a>
@@ -301,7 +218,14 @@
         <spline-viewer url="https://prod.spline.design/od2hhA7FwVkUZiet/scene.splinecode"></spline-viewer>
      </div>-->
      
-
+    <!-- Welcome Section -->
+    <main>
+        <div class="welcome">
+            <h1>HELLO AND WELCOME</h1>
+            <p>Your university platform for everything you need</p>
+            <a href="#" class="btn">REGISTRY</a>
+        </div>
+    </main>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -313,12 +237,6 @@
 
     
 
-    <!-- Welcome Section -->
-    <div class="welcome">
-        <h1>HELLO AND WELCOME</h1>
-        <p>Your university platform for everything you need</p>
-        <a href="#" class="btn"> REGISTRY</a>
-    </div>
-</body>
-</html> 
+
+
 
