@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="reviews.css"/>
   <link rel="CourseReviews" href="CourseReviews.html"/><!---Main Page-->
 
-  <style> </style>
 </head>
 
 <body>
@@ -48,29 +47,55 @@
       <h2>Course Reviews</h2>
       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createReviewModal">Add Review</button>
     </div>
-
     <div class="row mb-3">
-      <div class="col-md-6">
-        <input type="text" class="form-control" placeholder="Search by course name or instructor">
+      <div class="col">
+          <input class="form-control me-2" type="search" placeholder="Search by course name or instructor" aria-label="search">
+  </div>
+      <div class="col-auto">
+          <button class="btn btn-secondary" type="submit">Search</button>
       </div>
+  </div>
+ 
 
+  <div class="search-filter-container row">
       <div class="col-md-6">
     
         <select class="form-select">
-            <option selected>Filter by Department or College</option>
-            <option value="IT">College of Information Systems</option>
-            <option value="CS">Computer Science</option>
-            <option value="SE">Computer Engineering</option>
-            <option value="Law">College of Law</option>
-            <option value="Eng">College of Engineering</option>
-            <option value="Arts">College of Arts</option>
-            <option value="Business">College of Business Administration</option>
-            <option value="Languages">College of Languages Institue</option>
-          </select>
+          <option selected>Filter by Department or College</option>
+          <option value="IT">All Departments</option>
+          <option value="IT">College of Information Systems</option>
+          <option value="CS">Computer Science</option>
+          <option value="SE">Computer Engineering</option>
+          <option value="Law">College of Law</option>
+          <option value="Eng">College of Engineering</option>
+          <option value="Arts">College of Arts</option>
+          <option value="Business">College of Business Administration</option>
+          <option value="Languages">College of Languages Institue</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <select class="form-select" id="sortBy" name="sortBy">
+            <option value="all" selected>Sort by Defaults </option>
+            <option value="date_newest">Latest Reviews</option>
+            <option value="date_oldest">Oldest Reviews</option>
+        </select>
+    </div>
+ 
+    <!-- Review Cards Win-->
+    <div class="row mt-5">  
+    <div class="col-md-4">
+      <div class="card review-card h-100">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">ITCS453 - Multimedia & Hypermedia Systems </h5>
+          <p class="card-text"> I took 453 with Dr. Hadeel. It's very easy, you just need to have a good understanding. I think the project is 20, and I think Hadeel do........</p>
+          <small class="text-muted">By Wafa Adnan · Rated: ★★★★★</small>
+          <a href="reviews.html#review4" class="btn btn-primary mt-auto mt-3">Read Full</a>
+        </div>
       </div>
     </div>
-  
-  <div></div>  
+  </div>
+  </div>
 
     <!-- Pagination -->
     <div class="row justify-content-between mt-4">
@@ -86,6 +111,8 @@
           <li class="page-item active" aria-current="page">
             <span class="page-link">2</span>
           </li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item"><a class="page-link">4</a></li>
         </ul>
       </div>
     

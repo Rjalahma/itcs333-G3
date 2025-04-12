@@ -289,3 +289,40 @@ body {
       margin-top: 40px;
     }
    
+    .btn-primary {
+      background-color: #80CBC4; 
+      border-color: #80CBC4;
+
+  }   
+
+  .btn-primary:hover {
+      background-color: #B4EBE6; 
+      border-color: #B4EBE6;
+  }
+
+   .btn-secondary {
+      background-color: #80CBC4; 
+      border-color: #80CBC4;
+      margin: auto;
+      margin-left: 2%;
+   }
+      .comment-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .comment-box h6 {
+            font-weight: bold;
+        }
+        .comment-box {
+          background-color: #f9f9f9;
+          padding: 15px;
+          border-radius: 8px;
+          margin-bottom: 15px;
+      }
+
+      .comment-box h6 {
+          font-weight: bold;
+      }        
