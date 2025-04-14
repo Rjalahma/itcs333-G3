@@ -487,6 +487,7 @@ form label{
     background-color: #B4EBE6;
     border-radius: 5px;
     margin-top: 7px;
+    padding: 5px;
 }
 .form_clubName{
     color:  #80CBC4;
@@ -497,3 +498,11 @@ form label{
     margin-top: 7px;
     width: 63%;
 }
+.form-control  label {
+    background-color:  #B4EBE6 ;
+   
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+ }
