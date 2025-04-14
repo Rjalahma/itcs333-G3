@@ -66,8 +66,8 @@
             
             
                 <div class="d-grid gap-2" style="display: grid; grid-auto-flow: column;">
-                    <button class="btn-primary:hover btn-primary">Edit</button>
-                    <button class="btn-primary:hover btn-primary">Delete</button>
+                    <button class=" col btn btn-secondary">Edit</button>
+                    <button class=" col btn btn-secondary">Delete</button>
                 </div>
             </div>
             
@@ -120,11 +120,25 @@
                 <div class="container_comment col ">
                     <div calass="row">
                         <strong  >comment section</strong>
-                        <button class="btn-primary:hover btn-primary comment button" >add comment </button>
-                    
-                        <input type="button" onclick="location.href='#popup' ;" class="btn-primary:hover btn-primary comment button" value="view all comment">
-                        <!-- these are comment will show with view all comment button  -->
+                        <button class=" col btn btn-secondary comment button "onclick="location.href='#popup' ;" >add comment </button>
                         <div id="popup" class="popup">
+                            <meta name="viewport" content="width=device-width, initial-scale=1">
+                            <div class="popup-content container_comment">
+                                
+                            
+                                <div class="comment-card  ">
+                                    <textarea rows="4" cols="50" placeholder="Add your comment here..."></textarea>
+                                    <button class=" col btn btn-secondary comment button" >submit</button>
+                                </div>
+
+                                
+                            
+                                <input class="Close_button  col btn btn-secondary" onclick="location.href='../item-detiles/item-detiles.html'" type="button" value="Close">
+                            </div>
+                        </div>
+                        <input type="button" onclick="location.href='#popupCOMENT' ;" class=" col btn btn-secondary comment button" value="view all comment">
+                        <!-- these are comment will show with view all comment button  -->
+                        <div id="popupCOMENT" class="popup">
                             <meta name="viewport" content="width=device-width, initial-scale=1">
                             <div class="popup-content container_comment">
                                 
@@ -159,7 +173,7 @@
                                     <p>⭐⭐⭐⭐⭐</p>
                                 </div>
                             
-                                <input class="Close_button" onclick="location.href='../item-detiles/item-detiles.html'" type="button" value="Close">
+                                <input class="Close_button  col btn btn-secondary" onclick="location.href='../item-detiles/item-detiles.html'" type="button" value="Close">
                             </div>
                         </div>
                     
