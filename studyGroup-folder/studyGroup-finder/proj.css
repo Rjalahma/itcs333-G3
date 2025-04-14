@@ -4,12 +4,14 @@
         margin-bottom: 10px;
         margin-left: 10px;
         border: none ;
-        border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         background-color: #ffffff;
         transition: box-shadow 0.3s ease-in-out;
-        width: 820px ;
+        width: 100% ;
         height: 190px;
+        border-radius: 10px;
+       
+        
 
         
     }
@@ -36,7 +38,8 @@
         color: #666;
         height: 15%;
         margin-bottom: 13;
-        width:800px ;
+        width: 90% ;
+        padding: 5px;
    
     }
 
@@ -44,7 +47,8 @@
         margin-bottom: 10px;
         background-color: #B4EBE6; 
         border-color: #B4EBE6;
-        /* text-align: center; */
+        text-align: center;
+        border-radius: 5px;
     }
 
     /* Modal Styling */
@@ -169,11 +173,10 @@
 
     .container_group {
         display: grid;
-        grid-template-columns: 45% 45% ;
-        grid-template-rows: 45% 45% ; 
-        justify-content: space-evenly;
+        grid-template-columns: 100% 100% 100% ;
+        justify-content:space-around;
         align-items: center !important;
-        align-content: center;
+        align-content: space-around;
         margin-right: 10px ;
         margin-left: 10px; }
 
@@ -228,4 +231,6 @@
         color:  #666;
         padding: 5px;
     }
+
+
 
