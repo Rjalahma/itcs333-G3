@@ -1,0 +1,75 @@
+[
+    {
+      "id": 1,
+      "title": "Cloud Computing",
+      "description": "Explains cloud service models (IaaS, PaaS, SaaS), deployment strategies, and virtualization basics.",
+      "department": "Computer Science",
+      "course": "CC101",
+      "publishedDate": "2025-03-26",
+      "url": "course-note-details.html?id=1"
+    },
+    {
+      "id": 2,
+      "title": "Java 1",
+      "description": "Covers Java basics including syntax, variables, control structures, and object-oriented programming principles.",
+      "department": "Computer Science",
+      "course": "CS102",
+      "publishedDate": "2025-03-26",
+      "url": "course-note-details.html?id=2"
+    },
+    {
+      "id": 3,
+      "title": "Introduction to Algorithms",
+      "description": "This note provides a deep overview of basic algorithms used in sorting, searching, and graph traversal.",
+      "department": "Computer Science",
+      "course": "CS101",
+      "publishedDate": "2025-03-25",
+      "url": "course-note-details.html?id=3"
+    },
+    {
+      "id": 4,
+      "title": "Database Systems",
+      "description": "Relational models, queries, and normalization techniques covered thoroughly.",
+      "department": "Information Systems",
+      "course": "IS201",
+      "publishedDate": "2025-03-22",
+      "url": "course-note-details.html?id=4"
+    },
+    {
+      "id": 5,
+      "title": "Operating Systems",
+      "description": "Concepts of process management, memory allocation, and scheduling.",
+      "department": "Computer Science",
+      "course": "CS203",
+      "publishedDate": "2025-03-21",
+      "url": "course-note-details.html?id=5"
+    },
+    {
+      "id": 6,
+      "title": "Computer Networks",
+      "description": "An overview of networking layers, protocols, and architectures.",
+      "department": "Network Engineering",
+      "course": "NE101",
+      "publishedDate": "2025-03-20",
+      "url": "course-note-details.html?id=6"
+    },
+    {
+      "id": 7,
+      "title": "Web Development Basics",
+      "description": "HTML, CSS, and JavaScript foundations for frontend design.",
+      "department": "Computer Science",
+      "course": "WD101",
+      "publishedDate": "2025-03-19",
+      "url": "course-note-details.html?id=7"
+    },
+    {
+      "id": 8,
+      "title": "Information Security",
+      "description": "Covers encryption basics, vulnerabilities, and secure practices.",
+      "department": "Information Systems",
+      "course": "IS301",
+      "publishedDate": "2025-03-18",
+      "url": "course-note-details.html?id=8"
+    }
+  ]
+  

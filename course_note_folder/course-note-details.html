@@ -87,64 +87,32 @@
 </head>
 
 <body>
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <h1>Campus Hub</h1>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container mt-4">
-
-        <!-- Back to Listing -->
-        <div class="mb-3">
-            <a href="course-note-main.html" class="btn back-btn">&larr; Back to Listing</a>
-        </div>
-
-        <!-- Note Details -->
-        <div class="note-details mb-4">
-            <h2>Introduction to Algorithms</h2>
-            <p class="note-meta"><strong>Course:</strong> CS101</p>
-            <p class="note-meta"><strong>Department:</strong> Computer Science</p>
-            <p class="note-meta"><strong>Uploaded on:</strong> March 25, 2025</p>
-            <p><strong>Description:</strong> This note provides a deep overview of basic algorithms used in sorting, searching, and graph traversal.</p>
-            <p><strong>Attached File:</strong> <a href="#" class="btn btn-outline-primary btn-sm">Download PDF</a></p>
-
-            <!-- Action Buttons -->
-            <div class="mt-4">
-                <button class="btn btn-primary">Edit Note</button>
-                <button class="btn btn-danger">Delete Note</button>
-            </div>
-        </div>
-
-        <!-- Comments Section -->
-        <div class="comments-section mb-5">
-            <h4>Comments</h4>
-
-            <!-- Comment Form -->
-            <form class="mb-4">
-                <div class="mb-3">
-                    <textarea class="form-control" rows="3" placeholder="Add your comment..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Post Comment</button>
-            </form>
-
-            <!-- Sample Comments -->
-            <div class="comment-box">
-                <h6>Aya Ahmed <small class="text-muted">on March 24</small></h6>
-                <p>Very helpful notes, thank you!</p>
-            </div>
-            <div class="comment-box">
-                <h6>Mohammed Salman <small class="text-muted">on March 25</small></h6>
-                <p>Can you upload similar notes for Chapter 5?</p>
-            </div>
-        </div>
-    </main>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <header><div class="container"><h1>Campus Hub</h1></div></header>
+  <main class="container mt-4">
+    <a href="course-note-main.html" class="btn btn-outline-secondary mb-4">← Back to Listing</a>
+    <div class="note-details mb-5">
+      <h2 id="detailTitle"></h2>
+      <p class="note-meta"><strong>Course:</strong> <span id="detailCourse"></span></p>
+      <p class="note-meta"><strong>Department:</strong> <span id="detailDept"></span></p>
+      <p class="note-meta"><strong>Published on:</strong> <span id="detailDate"></span></p>
+      <p id="detailDesc"></p>
+      <a id="detailDownload" class="btn btn-outline-primary btn-sm" href="#" download>Download PDF</a>
+      <div class="mt-4">
+        <button class="btn btn-primary">Edit Note</button>
+        <button class="btn btn-danger">Delete Note</button>
+      </div>
+    </div>
+    <div class="comments-section mb-5">
+      <h4>Comments</h4>
+      <form id="commentForm" class="mb-4">
+        <input id="commentName" type="text" class="form-control mb-2" placeholder="Your name" required />
+        <textarea id="commentInput" class="form-control mb-2" rows="3" placeholder="Add your comment..." required></textarea>
+        <button type="submit" class="btn btn-primary">Post Comment</button>
+      </form>
+      <div id="commentsContainer"></div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="course-note-details.js" defer></script>
 </body>
-
 </html>
