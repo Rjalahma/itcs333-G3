@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campus News Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="newsDesign.css"/>
+</head>
+<body>
+
+  <header style="background-color: #80CBC4; padding: 20px 0;">
+    <h1 style="margin-left: 10px;">Campus Hub</h1>
+  </header>
+
+                    <!-- Navbar -->
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <div class="container-fluid">
+                            <!-- <a class="navbar-brand" href="#">Campus Hub</a> -->
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="..\..\index.html">Home</a>
+                                    </li>
+                                
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="..\..\studyGroup-folder\studyGroup-finder\pro.html">Study Group Finder</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="..\..\Shahad-Reviews\CourseReviews.html">Course Reviews</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="..\..\course_note_folder\course-note-main.html">Course Notes</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="campusNews.html">Campus News <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="..\club-activites_folder\Club_Activities\Club_Activities.html">Club Activities</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="..\..\StudentMarketplace-folder\product\index.html">Student Marketplace</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+
+  <div class="container">
+    <section class="news-details">
+      <h2 class="news-title">Loading...</h2>
+      <img class="news-image" src="" alt="News Image">
+      <h3></h3>
+      <div class="news-text">Please wait while we load the article...</div>
+    </section>
+
+    <section class="action-buttons">
+      <a href="campusNews.html">
+        <button class="back-btn">Back to Listing</button>
+      </a>
+    </section>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const newsId = params.get("id");
+
+    fetch("news.json")
+      .then(res => res.json())
+      .then(data => {
+        const item = data.find(n => n.id == newsId);
+        if (item) {
+          document.querySelector(".news-title").textContent = item.category;
+          document.querySelector(".news-image").src = item.image;
+          document.querySelector("h3").textContent = item.title;
+          document.querySelector(".news-text").innerHTML = `<p>${item.content}</p>`;
+        } else {
+          document.querySelector(".news-text").textContent = "News not found.";
+        }
+      });
+  </script>
+
+</body>
+</html>

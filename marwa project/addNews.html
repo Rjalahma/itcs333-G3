@@ -72,4 +72,18 @@
         </form>
     </div>
 </body>
+<script>
+    document.querySelector(".item-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value.trim();
+      const description = document.getElementById("description").value.trim();
+  
+      if (title === "" || description === "") {
+        alert("Please fill out all required fields.");
+      } else {
+        alert("Article submitted successfully (not really submitted - just validated).");
+      }
+    });
+  </script>
+  
 </html>
