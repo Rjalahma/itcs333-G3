@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const apiUrl = 'https://6809f2951f1a52874cde75c1.mockapi.io/cludData';
     let allActivities = [];
     let currentPage = 1;
-    const itemsPerPage = 4;
+    const itemsPerPage = 6;
     const moreInfoButton = document.getElementById('more-info-button');
    
     async function loadData() {
