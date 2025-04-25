@@ -73,16 +73,16 @@
             
             
             <!-- item details container -->
-            <div class=" details-card " >
+            <div class=" details-card " id ="details-card" >
                 <!-- <div class="detailes-card" > -->
                 <div class="container_details">
                     <!-- the club name and photo -->
                     <div class="details-card-header ">
                         <div class="col">
-                            <h2 class="form_clubName">The Piano Enthusiasts Club</h2>
+                            <h2 class="form_clubName" id="form_clubName"></h2>
                         </div>
                         <div class="col">
-                            <img src="..\Club_Activities\photos\piano.jpg" class="details-card img" alt="...">
+                            <img src="" class="details-card img" alt="..." id="img">
                         </div>
                     
                     
@@ -91,28 +91,28 @@
 
                     <!-- the club details  -->
 
-                    <div class="details-card p">
+                    <div class="details-card p" id="form_clubdescription">
                     
-                        <h5>The Piano Enthusiasts Club is a place for students passionate about playing, learning, and appreciating piano music. Whether you're a beginner or an experienced pianist, you can join our weekly sessions to practice, collaborate, and explore different music genres.</h5>
+                        <h5></h5>
                     </div>
 
-                    <div class="details-card p" >
-                        <h6>Type : Music</h6>
+                    <div class="details-card p" id="form_clubtype" >
+                        <h6></h6>
                     </div>
-                    <div class="details-card p" >
-                        <h6> Location :Room 1002, Arts Building</h6>
+                    <div class="details-card p" id="form_clublocation">
+                        <h6></h6>
                     </div>
-                    <div class="details-card p" >
-                        <h6> time : 5:00 PM - 7:00 PM</h6>
+                    <div class="details-card p" id="form_clubtime" >
+                        <h6></h6>
                     </div>
-                    <div class="details-card p">
-                        <h6> club day :Every Wednesday </h6>
+                    <div class="details-card p" id="form_clubday">
+                        <h6> </h6>
                     </div>
-                    <div class="details-card p">
-                        <h6> contact :+973 369258741</h6>
+                    <div class="details-card p" id="form_clubcontact">
+                        <h6></h6>
                     </div>
-                    <div class="details-card p">
-                        <h6> email :piano.club@campushub.uob.edu</h6>
+                    <div class="details-card p"id=form_clubNemail>
+                        <h6></h6>
                     </div>
                 <!-- end of the club detailes -->
                 </div>
@@ -127,7 +127,7 @@
                                 
                             
                                 <div class="comment-card  ">
-                                    <textarea rows="4" cols="50" placeholder="Add your comment here..."></textarea>
+                                    <textarea rows="4" cols="50" placeholder="Add your comment here..." name="comment-area"></textarea>
                                     <button class=" col btn btn-secondary comment button" >submit</button>
                                 </div>
 
@@ -140,40 +140,11 @@
                         <!-- these are comment will show with view all comment button  -->
                         <div id="popupCOMENT" class="popup">
                             <meta name="viewport" content="width=device-width, initial-scale=1">
-                            <div class="popup-content container_comment">
+                            <div class="popup-content container_comment" id="popup-content">
                                 
                             
-                                <div class="comment-card  ">
-                                    <strong >username : Najat </strong>
-                                    <p>best culb ever</p>
-                                    <p>⭐⭐⭐⭐⭐</p>
-                                </div>
-
-                                <div class="comment-card  ">
-                                    <strong >username : Reem </strong>
-                                    <p>people are very nice and freindley </p>
-                                    <p>⭐⭐⭐⭐⭐</p>
-                                </div>
-
-                                <div class="comment-card  ">
-                                    <strong >username : Abdulla </strong>
-                                    <p> if you are looking for a nice clude i recmooend you to join ours you will not regret it </p>
-                                    <p>⭐⭐⭐⭐⭐ </p>
-                                </div>
-
-                                <div class="comment-card  ">
-                                    <strong >username : Suad </strong>
-                                    <p>Great place to appreciate classical music but we need more pianos for practice</p>
-                                    <p>⭐⭐⭐⭐</p>
-                                </div>
-
-                                <div class="comment-card  ">
-                                    <strong >username : Noor </strong>
-                                    <p>I never knew learning piano could be this fun</p>
-                                    <p>⭐⭐⭐⭐⭐</p>
-                                </div>
                             
-                                <input class="Close_button  col btn btn-secondary" onclick="location.href='../item-detiles/item-detiles.html'" type="button" value="Close">
+                                
                             </div>
                         </div>
                     
@@ -192,6 +163,7 @@
             
         </main>
     </body>
+    <script  src="java-details.js" defer></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </html>
