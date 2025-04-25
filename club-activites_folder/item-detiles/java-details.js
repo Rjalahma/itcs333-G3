@@ -14,7 +14,7 @@ async function itemDetailes() {
     console.log("THIS IS THE ID ",activityId);
     const response =await fetch(apiUrl);
     const data = await response.json();
-    const activity = data[0].activities.find(a => a.id === activityId);
+    const activity = data.find(a => a.id === activityId);
     if(!activityId)  {
         console.error('Activity id is not  in the  URL');
         return;
@@ -32,14 +32,16 @@ async function itemDetailes() {
     const clubLocation = document.getElementById('form_clublocation').textContent= activity.location;
     const clubriefdescription = document.getElementById('form_clubdescription').textContent= activity.briefdescription;
     const commentsection=document.getElementById('popup-content');
-    const pagecomment = activity.comment;
+    const pagecomment = activity.comments;
     console.log("pagecomment",pagecomment);
+    console.log("fist name ",pagecomment[0][0]);
     for (let i = 0; i < pagecomment.length; i++) {
+        
     commentsection.innerHTML+=`
                                     <div class="comment-card  ">
-                                        <strong >username : Najat </strong>
-                                        <p>${pagecomment[i]}</p>
-                                        <p>⭐⭐⭐⭐⭐</p>
+                                        <strong >${pagecomment[i].username}</strong>
+                                        <p>${pagecomment[i].comment}</p>
+                                        <p>${pagecomment[i].rating}</p>
                                     </div> `   
 
                                             }   
