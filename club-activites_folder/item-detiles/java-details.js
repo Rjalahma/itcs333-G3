@@ -33,9 +33,10 @@ async function itemDetailes() {
     const clubriefdescription = document.getElementById('form_clubdescription').textContent= activity.briefdescription;
     const commentsection=document.getElementById('popup-content');
     const pagecomment = activity.comments;
+    const first=pagecomment[0];
     console.log("pagecomment",pagecomment);
     console.log("fist name ",pagecomment[0][0]);
-    for (let i = 0; i < pagecomment.length; i++) {
+    for (let i = 1; i < pagecomment.length; i++) {
         
     commentsection.innerHTML+=`
                                     <div class="comment-card  ">
@@ -45,11 +46,19 @@ async function itemDetailes() {
                                     </div> `   
 
                                             }   
-    commentsection.innerHTML+=`<input class="Close_button  col btn btn-secondary" onclick="location.href='../item-detiles/item-detiles.html'" type="button" value="Close">`;
-    const closeComment= document.getElementById('input[value="Close"]');
-    closeComment.addEventListener('click', function(e) {
-        commentsection.style.display = 'none';
-        e.preventDefault();
-        e.stopPropagation();
-    });
+    commentsection.innerHTML+=`<input class="Close_button  col btn btn-secondary" onclick="location.href='javascript:window.history.back();'" type="button" value="Close">`;
+    
+
+    const firstcom= document.getElementById("first-comment");
+    if (first) {
+        firstcom.innerHTML=`
+                                        <strong >${first.username}</strong>
+                                        <p>${first.comment}</p>
+                                        <p>${first.rating}</p>
+                                   `;
+    }
+    console.log("this is the first comment",first.name);
+   
+
+ 
 }
