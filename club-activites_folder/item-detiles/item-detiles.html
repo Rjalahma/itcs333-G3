@@ -128,12 +128,11 @@
                             
                                 <div class="comment-card  ">
                                     <textarea rows="4" cols="50" placeholder="Add your comment here..." name="comment-area"></textarea>
-                                    <button class=" col btn btn-secondary comment button" >submit</button>
                                 </div>
 
                                 
                             
-                                <input class="Close_button  col btn btn-secondary" onclick="location.href='../item-detiles/item-detiles.html'" type="button" value="Close">
+                                <input class="Close_button  col btn btn-secondary" onclick="location.href='javascript:window.history.back();'" type="button" value="Close">
                             </div>
                         </div>
                         <input type="button" onclick="location.href='#popupCOMENT' ;" class=" col btn btn-secondary comment button" value="view all comment">
@@ -152,10 +151,8 @@
                     
                     <br>
                     <!-- the fist comment will apear beffore view all comment button -->
-                    <div class="comment-card row ">
-                        <strong >username : Khalid </strong>
-                        <p>The club is fun, but I wish we had more time for practice sessions</p>
-                        <p>⭐⭐⭐</p>
+                    <div class="comment-card row " id="first-comment">
+                       
                     </div>
         
                 
