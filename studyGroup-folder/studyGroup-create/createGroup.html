@@ -1,8 +1,14 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="createGroup.css" rel="stylesheet">
-<link href="../StudyGroup.css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Study Group</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="createGroup.css" rel="stylesheet">
+    <link href="../StudyGroup.css" rel="stylesheet">
+</head>
 <body>
-
     <!-- Header -->
     <header>
         <div class="container">
@@ -48,50 +54,80 @@
     </nav>
     
     
-    <h5 class="card-title">Create a study Group</h5>
-    <input type="button" class="btn btn-secondary previous" onclick="location.href='../studyGroup-finder/pro.html';" value="&laquo; Previous"/>
-   
-    <div class="container-create">
-        
-        <label class="form-card-title" for="GroupName">Enter your study group name</label>
-        <input type="text" id="Gname" name="groupname" placeholder="group name..">
-
-        <label class="form-card-title" for="subject">subject code</label>
-        <input type="text" id="sub" name="subject" placeholder="subject code..">
-
-        <label class="form-card-title" for="year">year</label>
-        <select id="year" name="year">
-        <option value="2020-2021">2020-2021</option>
-        <option value="2021-2022">2021-2022</option>
-        <option value="2022-2023">2022-2023</option>
-        <option value="2023-2024">2023-2024</option>
-        </select>
-
-        <label class="form-card-title" for="location">location</label>
-        <select id="loc" name="location">
-        <option value="TBA">TBA</option>
-        <option value="Campus">campus</option>
-        <option value="Capital Governorate">Capital Governorate</option>
-        <option value=" Muharraq Governorate"> Muharraq Governorate</option>
-        <option value=" Northern Governorate">Northern Governorate</option>
-        <option value=" Southern Governorate">  Southern Governorate</option>
-        </select>
-
-        <label class="form-card-title" for="MCount">number of members in the group</label>
-        <div>
-            <input type="number" id="sub" name="mumber" placeholder="max num of mumbers..">
-        </div>
-        
-        <div>
-            <label class="form-card-title" for="description">description</label>
-            <textarea id="desc" name="description" placeholder="about your study group.." style="height:200px"></textarea>
-        </div>
-        <button class=" submit-btn  ">Submit</button>
+    <main class="container py-4">
+        <h5 class="card-title">Create a Study Group</h5>
+        <a href="../studyGroup-finder/pro.html" class="btn btn-secondary previous">&laquo; Previous</a>
        
-    </form>
-    </div>
+        <!-- Error Message -->
+        <div id="errorMessage" class="alert alert-danger mt-3" style="display: none;" role="alert"></div>
+
+        <!-- Success Message -->
+        <div id="successMessage" class="alert alert-success mt-3" style="display: none;" role="alert">
+            Study group created successfully!
+        </div>
+
+        <div class="container-create">
+            <form id="createGroupForm" novalidate>
+                <div class="mb-3">
+                    <label class="form-card-title" for="groupname">Study Group Name</label>
+                    <input type="text" class="form-control" id="groupname" name="groupname" required
+                        placeholder="Enter group name...">
+                    <div class="invalid-feedback">Please enter a group name (minimum 3 characters)</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-card-title" for="subject">Subject Code</label>
+                    <input type="text" class="form-control" id="subject" name="subject" required
+                        placeholder="e.g., ITCS333" pattern="[A-Z]{4}\d{3}">
+                    <div class="invalid-feedback">Please enter a valid subject code (e.g., ITCS333)</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-card-title" for="year">Academic Year</label>
+                    <select class="form-control" id="year" name="year" required>
+                        <option value="">Select academic year...</option>
+                        <option value="2023-2024">2023-2024</option>
+                        <option value="2022-2023">2022-2023</option>
+                        <option value="2021-2022">2021-2022</option>
+                        <option value="2020-2021">2020-2021</option>
+                    </select>
+                    <div class="invalid-feedback">Please select an academic year</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-card-title" for="location">Location</label>
+                    <select class="form-control" id="location" name="location" required>
+                        <option value="">Select location...</option>
+                        <option value="Campus">Campus</option>
+                        <option value="Library">Library</option>
+                        <option value="Online">Online</option>
+                        <option value="TBA">TBA</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a location</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-card-title" for="maxMembers">Maximum Number of Members</label>
+                    <input type="number" class="form-control" id="maxMembers" name="maxMembers" required
+                        min="2" max="20" placeholder="Enter maximum number of members...">
+                    <div class="invalid-feedback">Please enter a number between 2 and 20</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-card-title" for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" required
+                        rows="4" placeholder="Describe your study group..."></textarea>
+                    <div class="invalid-feedback">Please provide a description</div>
+                </div>
+
+                <button type="submit" class="submit-btn">Create Group</button>
+            </form>
+        </div>
+    </main>
 </body>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="../studyGroup-finder/pro.js"></script>
 
 
