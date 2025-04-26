@@ -65,39 +65,55 @@
             <section class="container_form">    
                 <!-- form to add new club -->
                 <form  class="form-control container_form item-creation-cared  " >
-                    
-                    <label name="fistname" for="fistname" >First name </label>
-                    <input type="text" id="fistname" placeholder="First Name" >
-
-                    <label name="LastName" for="LastName">Last Name </label>
-                    <input type="text" id="LastName" placeholder="Last Name">
-
-                    <label name="Email" for="userEmail">Email</label>
-                    <input type="email" id="userEmail" placeholder="@exmaple.com">
-
-                    <label name="Phone Number" for="Phone_Number">Phone Number</label>
-                    <input type="text" id="Phone_Number" placeholder="+973 12345678">
 
                     <label name="Club Name" for="Club_Name">Club Name</label>
-                    <input type="text" id="Club_Name" placeholder="Club Name">
+                    <input type="text" id="Club_Name" placeholder="Chemistry Wizards">
 
                     <label name="Club Description"for="Club_Description">Club Description</label>
-                    <input type="text" id="Club_Description" placeholder="Club simple Description">
+                    <input type="text" id="Club_Description" placeholder="Explosive experiments and research">
+                    
 
-            
+                    <label name="Email" for="userEmail">Email</label>
+                    <input type="email" id="userEmail" placeholder="chem@uni.edu">
+
+                    <label name="Phone Number" for="Phone_Number">Phone Number</label>
+                    <input type="text" id="Phone_Number" placeholder="Prof. Ali - 0509988776">
 
                     <label name="Club Meeting Time " for="time">Club Meeting Time</label>
-                    <input type="time" id="time" placeholder="Club Meeting Time">
+                    <input type="time" id="time" placeholder="2:00-4:00 PM">
 
-                    <label name="Club Meeting Day " for="day">Club Meeting Day</label>
-                    <input type="text" id="day"placeholder="Club Meeting Day">
+                    <label name="Club Meeting Location " for="location">Club Meeting Location</label>
+                    <input type="text" id="location" placeholder="Chem Lab B">
+
+                    <label name="cblubphoto" for="clubphoto">Club Photo</label>
+                    <input type="file" id="clubphoto" placeholder="Club Photo" accept="image/*">
+
+                    <label name="Club Meeting Day " for="club-day" id="day">Club Meeting Day</label>
+                    <select name="clubDay" id="day_club" >
+                        <option value="" hidden>Choose a day</option>
+                        <option value="Sunday" >Sunday</option>
+                        
+                    
+                        <option  value="Monday">Monday</option>
+                        <option  value="Tuesday">Tuesday</option>
+                        <option  value="Wednesday">Wednesday</option>
+                        <option  value="Thursday">Thursday</option>
+                       
+                        <option value="Saturday" >Saturday</option>
+
+
+                        
+                    
+                        
+                    
+                    </select>
             
                     
                  
             
-                    <label name="clubType" for="clubtype">Choose a club type :</label>
+                    <label name="clubType" for="clubtype">Choose a club type </label>
                     <select name="clubType" id="clubtype" >
-                        
+                        <option value="" hidden>Choose a club type</option>
                         <option  >Academic</option>
                         
                     
@@ -119,7 +135,7 @@
                     
                     </select>
              
-                    <button class=" col btn btn-secondary  " type="submit">Add</button>
+                    <button class=" col btn btn-secondary  " type="submit" id="add">Add</button>
 
                     
                 </form>
@@ -128,6 +144,7 @@
             </section>
         </main>
     </body>
+    <script  src="java-itemCreation.js" defer></script>
     <footer>
         <div class="container_form">
             <p>&copy; 2025 Campus Hub</p>
