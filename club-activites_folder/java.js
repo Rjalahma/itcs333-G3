@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const moreInfoButton = document.getElementById('more-info-button');
    
     async function loadData() {
+        // Fetch data from the API
         try {
             const response = await fetch(apiUrl);
             const data = await response.json();
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const start = (currentPage - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         const pageItems = allActivities.slice(start, end);
-
+        // crat the cards of club activty from the data fetched from api 
         container.innerHTML = pageItems.map(activity => `
             <div class="course-note-card card">
                 <div class="card-body">
@@ -69,15 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
         prevBtn.classList.toggle('disabled', currentPage === 1);
         nextBtn.classList.toggle('disabled', currentPage === totalPages);
     }
-    // if (moreInfoButton) {
-    // moreInfoButton.addEventListener('click', function(e) {
-    //     console.log("more-info-button=",moreInfoButton); 
-    //     const v=itemDetailes();
-    //     console.log("v=",v);
-    //     console.log("after more-info-call");
-            
-    // });}
-  
     // Event listeners for prev/next buttons
     document.getElementById('prev-btn').addEventListener('click', () => {
         if (currentPage > 1) {
@@ -92,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateDisplay();
         }
     });
+    // search input event listener so user can search for any activity
     const searchInput = document.getElementById('search');
     searchInput.addEventListener('input', function() {
         
@@ -104,15 +97,25 @@ document.addEventListener('DOMContentLoaded', function() {
         currentPage = 1; 
         updateDisplay();
     });
+    //  sorting event listener so user can sort the club based on his required club typ
     const filterSelect = document.querySelector('.form-select');
 
     filterSelect.addEventListener("change", function() {
         let selectedType = filterSelect.value;
         console.log("filterSelect=",filterSelect.value);
-        if (selectedType) {
+        // chack if theree is selected vlaue or not and chack if the value is not "all"
+        if (selectedType && selectedType !== "All") {
+            // filter the clubs based on the type
             allActivities= copyallActivities.filter(activity => activity.type === selectedType);
-            console.log("inside the if filterSelect=",filterSelect.value);
-        } else {
+            console.log("inside the if filterSelect IF =",filterSelect.value);
+
+        }   
+        // if user then select all the allactivities will be equal to the copyallActivities whic is the original club activitiey 
+        else if (selectedType === "All") {
+            allActivities = copyallActivities;
+            console.log("inside the else if filterSelect ALL =",filterSelect.value);
+        }
+         else {
             allActivities = copyallActivities;  
             console.log("inside the else filterSelect=",filterSelect.value);
             loadData(); 
