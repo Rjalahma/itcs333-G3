@@ -87,12 +87,12 @@ function handleSort(event) {
     
     filteredGroups.sort((a, b) => {
         switch(sortBy) {
-            case 'name':
+            case 'newest':
+                return new Date(b.createdAt) - new Date(a.createdAt);
+            case 'oldest':
+                return new Date(a.createdAt) - new Date(b.createdAt);
+            case 'alphabetical':
                 return a.groupName.localeCompare(b.groupName);
-            case 'subject':
-                return a.subjectCode.localeCompare(b.subjectCode);
-            case 'members':
-                return a.members.length - b.members.length;
             default:
                 return 0;
         }
@@ -118,6 +118,16 @@ function renderPagination() {
     const pageCount = calculatePageCount();
     let paginationHTML = '';
 
+    // Previous button
+    paginationHTML += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="#" onclick="changePage(${currentPage - 1}); return false;" ${currentPage === 1 ? 'tabindex="-1" aria-disabled="true"' : ''}>
+                Previous
+            </a>
+        </li>
+    `;
+
+    // Page numbers
     for (let i = 1; i <= pageCount; i++) {
         paginationHTML += `
             <li class="page-item ${i === currentPage ? 'active' : ''}">
@@ -126,10 +136,26 @@ function renderPagination() {
         `;
     }
 
+    // Next button
+    paginationHTML += `
+        <li class="page-item ${currentPage === pageCount ? 'disabled' : ''}">
+            <a class="page-link" href="#" onclick="changePage(${currentPage + 1}); return false;" ${currentPage === pageCount ? 'tabindex="-1" aria-disabled="true"' : ''}>
+                Next
+            </a>
+        </li>
+    `;
+
     paginationElement.innerHTML = paginationHTML;
 }
 
 function changePage(page) {
+    const pageCount = calculatePageCount();
+    
+    // Validate page number
+    if (page < 1 || page > pageCount) {
+        return;
+    }
+    
     currentPage = page;
     renderStudyGroups();
 }
@@ -141,22 +167,132 @@ function renderStudyGroups() {
 
     const pageItems = getPageItems();
     
-    container.innerHTML = pageItems.map(group => `
-        <div class="col-md-4 mb-4">
-            <div class="group-finder-card">
-                <div class="card-body">
-                    <h5>${group.groupName}</h5>
-                    <p>Subject: ${group.subjectCode}</p>
-                    <p>Location: ${group.location}</p>
-                    <p>Members: ${group.members.length}/${group.maxMembers}</p>
-                    <p>Year: ${group.year}</p>
-                    <button class="btn btn-secondary" onclick="viewGroupDetails('${group.createdAt}')">View Details</button>
+    if (filteredGroups.length === 0) {
+        // Show no results message
+        container.innerHTML = `
+            <div class="col-12 text-center">
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">No Study Groups Found</h4>
+                    <p>No study groups match your search criteria. Try adjusting your filters or search terms.</p>
+                    <hr>
+                    <p class="mb-0">
+                        <button class="btn btn-secondary" onclick="resetFilters()">Reset Filters</button>
+                    </p>
                 </div>
             </div>
+        `;
+        
+        // Hide pagination when no results
+        const paginationElement = document.getElementById('pagination');
+        if (paginationElement) {
+            paginationElement.style.display = 'none';
+        }
+        return;
+    }
+
+    // Show pagination when there are results
+    const paginationElement = document.getElementById('pagination');
+    if (paginationElement) {
+        paginationElement.style.display = 'flex';
+    }
+    
+    container.innerHTML = `
+        <div class="container_group mt-4">
+            <div class="row">
+                ${pageItems.map(group => `
+                    <div class="col-md-4 mb-4">
+                        <div class="group-finder-card h-100">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${group.groupName}</h5>
+                                <p class="group-finder-card p">Subject Code: ${group.subjectCode}</p>
+                                <p class="group-finder-card p">Location: ${group.location}</p>
+                                <p class="group-finder-card p">Members: ${group.members.length}/${group.maxMembers}</p>
+                                <p class="group-finder-card p">Status: ${group.members.length >= group.maxMembers ? 'FULL' : 'Open'}</p>
+                                <div class="d-flex flex-column mt-auto">
+                                    ${group.members.length >= group.maxMembers ? 
+                                        `<button class="btn btn-secondary mb-2" disabled>Full</button>` :
+                                        `<button class="btn btn-secondary mb-2" onclick="joinGroup('${group.createdAt}')">Join</button>`
+                                    }
+                                    <button class="btn btn-secondary" onclick="viewGroupDetails('${group.createdAt}')">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
         </div>
-    `).join('');
+    `;
 
     renderPagination();
+}
+
+// Reset Filters Function
+function resetFilters() {
+    // Reset search input
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+
+    // Reset year filter
+    const yearFilter = document.getElementById('yearFilter');
+    if (yearFilter) {
+        yearFilter.value = '';
+    }
+
+    // Reset location filter
+    const locationFilter = document.getElementById('locationFilter');
+    if (locationFilter) {
+        locationFilter.value = '';
+    }
+
+    // Reset sort
+    const sortSelect = document.getElementById('sortSelect');
+    if (sortSelect) {
+        sortSelect.value = '';
+    }
+
+    // Reset the filtered groups to show all groups
+    filteredGroups = [...studyGroups];
+    currentPage = 1;
+    renderStudyGroups();
+}
+
+// Join Group Function
+async function joinGroup(groupId) {
+    try {
+        const group = studyGroups.find(g => g.createdAt === groupId);
+        if (!group) return;
+
+        if (group.members.length >= group.maxMembers) {
+            showError('This group is full');
+            return;
+        }
+
+        const newMember = {
+            userEmail: 'current.user@example.com', // In a real app, this would come from user session
+            joinedAt: new Date().toISOString()
+        };
+
+        const response = await fetch(`${API_URL}/${group.id}/members`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newMember)
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to join group');
+        }
+
+        // Refresh the groups data
+        fetchStudyGroups();
+
+    } catch (error) {
+        showError('Failed to join group');
+        console.error('Error:', error);
+    }
 }
 
 // Form Validation
