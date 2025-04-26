@@ -5,9 +5,7 @@ let currentPage = 1
 document.addEventListener('DOMContentLoaded', itemDetailes);
 async function itemDetailes() {
     console.log("itemDetailes");
-    if (!window.location.pathname.includes('item-detiles.html')) {
-       return;
-    }
+  
     const urlParams = new URLSearchParams(window.location.search);
     console.log("urlParams=",urlParams);
     const activityId = urlParams.get('id');
