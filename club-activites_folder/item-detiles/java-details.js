@@ -31,38 +31,79 @@ async function itemDetailes() {
     const clubriefdescription = document.getElementById('form_clubdescription').textContent= activity.briefdescription;
     const commentsection=document.getElementById('popup-content');
     const pagecomment = activity.comments;
-    const first=pagecomment[0];
-    console.log("pagecomment",pagecomment);
-    console.log("fist name ",pagecomment[0][0]);
-    for (let i = 1; i < pagecomment.length; i++) {
-        
-    commentsection.innerHTML+=`
-                                    <div class="comment-card  ">
-                                        <strong >${pagecomment[i].username}</strong>
-                                        <p>${pagecomment[i].comment}</p>
-                                        <p>${pagecomment[i].rating}</p>
-                                    </div> `   
-
-                                            }   
-    commentsection.innerHTML+=`<input class="Close_button  col btn btn-secondary" onclick="location.href='javascript:window.history.back();'" type="button" value="Close">`;
-    
-
-    const firstcom= document.getElementById("first-comment");
-    if (first) {
-        firstcom.innerHTML=`
-                                        <strong >${first.username}</strong>
-                                        <p>${first.comment}</p>
-                                        <p>${first.rating}</p>
-                                   `;
+    if ( !photo || !alt || !clubName || !clubtype || !clubday || !clubContact || !clubTime || !clubemali || !clubLocation || !clubriefdescription) {
+        console.error('One of the elements is not accessible');
+        return;
     }
-    console.log("this is the first comment",first.name);
-   
-    const deleteButton = document.getElementById('Delete-btn');
-    console.log("deleteButton",deleteButton);
-    deleteButton.addEventListener('click', function() {
-        console.log("delete button clicked");
-        alert('Are you sure you want to delete this item?');
+    if ( !commentsection || !pagecomment ||pagecomment.length === 0) {
+        console.error('Comment section or comments are not accessible or empty');
+        return;
+    }
+    else {
+        const first=pagecomment[0];
+        console.log("pagecomment",pagecomment);
+        console.log("fist name ",pagecomment[0][0]);
+        for (let i = 0; i < pagecomment.length; i++) {
+            
+        commentsection.innerHTML+=`
+                                        <div class="comment-card  ">
+                                            <strong >${pagecomment[i].username}</strong>
+                                            <p>${pagecomment[i].comment}</p>
+                                            <p>${pagecomment[i].rating}</p>
+                                        </div> `   
 
-    });
+                                                }   
+        commentsection.innerHTML+=`<input class="Close_button  col btn btn-secondary" onclick="location.href='javascript:window.history.back();'" type="button" value="Close">`;
+        
+
+        const firstcom= document.getElementById("first-comment");
+        if (first) {
+            firstcom.innerHTML=`
+                                            <strong >${first.username}</strong>
+                                            <p>${first.comment}</p>
+                                            <p>${first.rating}</p>
+                                    `;
+        }
+        console.log("this is the first comment",first.name);
+    }
+    const deleteButton = document.getElementById('Delete-btn');
+    if (!deleteButton) {
+        console.error('Delete button is not accessible');
+        return;
+    }
+    else{
+        console.log("deleteButton",deleteButton);
+        deleteButton.addEventListener('click', function() {
+            console.log("delete button clicked");
+            alert('Are you sure you want to delete this item?');
+
+        });
+    }
+    const addComment=document.querySelector("input[value='add comment']");
+    
+    if (!addComment) {
+        console.error('Add comment button is not accessible');
+        return;
+    }
  
+    else {
+        console.log("addComment",addComment);
+        addComment.addEventListener('click', function() {
+            const commentText = document.getElementsByTagName('textarea')[0].value;
+            if (!commentText) {
+                alert('Please enter a comment');
+                return;
+            }
+            
+            if (!commentText.match(/^[a-zA-Z\s]+$/)) {
+                alert('Comment can only contain letters and spaces.');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to add this comment?')) {
+            }
+        });
+    }
+
+   
 }
