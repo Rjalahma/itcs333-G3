@@ -322,6 +322,13 @@ function handleFormSubmit(event) {
         isValid = false;
     }
 
+    // Description validation
+    const description = formData.get('description');
+    if (!description || description.trim().length === 0) {
+        errors.description = 'Description cannot be empty';
+        isValid = false;
+    }
+
     // Member count validation
     const maxMembers = parseInt(formData.get('maxMembers'));
     if (isNaN(maxMembers) || maxMembers < 2 || maxMembers > 20) {
