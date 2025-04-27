@@ -311,14 +311,35 @@ function handleFormSubmit(event) {
     // Group name validation
     const groupName = formData.get('groupname');
     if (!groupName || groupName.length < 3) {
-        errors.groupName = 'Group name must be at least 3 characters long';
+        errors.groupname = 'Group name must be at least 3 characters long';
         isValid = false;
     }
 
     // Subject code validation
     const subjectCode = formData.get('subject');
-    if (!subjectCode || !/^[A-Z]{4}\d{3}$/.test(subjectCode)) {
-        errors.subjectCode = 'Invalid subject code format (e.g., ITCS333)';
+    if (!subjectCode || subjectCode.trim() === '') {
+        errors.subject = 'Subject code cannot be empty';
+        isValid = false;
+    } 
+
+    // Year validation
+    const year = formData.get('year');
+    if (!year || year.trim() === '') {
+        errors.year = 'Please select an academic year';
+        isValid = false;
+    }
+
+    // Location validation
+    const location = formData.get('location');
+    if (!location || location.trim() === '') {
+        errors.location = 'Please select a location';
+        isValid = false;
+    }
+
+    // Description validation
+    const description = formData.get('description');
+    if (!description || description.trim().length === 0) {
+        errors.description = 'Description cannot be empty';
         isValid = false;
     }
 
@@ -411,21 +432,38 @@ function showError(message) {
     }
 }
 
-function clearFormErrors() {
-    const errorElements = document.querySelectorAll('.error-message');
-    errorElements.forEach(element => element.remove());
-}
-
 function displayFormErrors(errors) {
     Object.entries(errors).forEach(([field, message]) => {
         const input = document.querySelector(`[name="${field}"]`);
         if (input) {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message';
-            errorDiv.style.color = 'red';
-            errorDiv.textContent = message;
-            input.parentNode.insertBefore(errorDiv, input.nextSibling);
+            // Add the is-invalid class to show the Bootstrap validation styling
+            input.classList.add('is-invalid');
+            
+            // Find the existing invalid-feedback div or create a new one
+            let feedbackDiv = input.nextElementSibling;
+            if (!feedbackDiv || !feedbackDiv.classList.contains('invalid-feedback')) {
+                feedbackDiv = document.createElement('div');
+                feedbackDiv.className = 'invalid-feedback';
+                input.parentNode.insertBefore(feedbackDiv, input.nextSibling);
+            }
+            
+            // Set the error message
+            feedbackDiv.textContent = message;
         }
+    });
+}
+
+function clearFormErrors() {
+    // Remove is-invalid classes
+    const invalidInputs = document.querySelectorAll('.is-invalid');
+    invalidInputs.forEach(input => {
+        input.classList.remove('is-invalid');
+    });
+    
+    // Clear error messages
+    const errorElements = document.querySelectorAll('.invalid-feedback');
+    errorElements.forEach(element => {
+        element.textContent = '';
     });
 }
 
