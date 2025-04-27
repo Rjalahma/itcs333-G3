@@ -317,8 +317,22 @@ function handleFormSubmit(event) {
 
     // Subject code validation
     const subjectCode = formData.get('subject');
-    if (!subjectCode || !/^[A-Z]{4}\d{3}$/.test(subjectCode)) {
-        errors.subjectCode = 'Invalid subject code format (e.g., ITCS333)';
+    if (!subjectCode || subjectCode.trim() === '') {
+        errors.subject = 'Subject code cannot be empty';
+        isValid = false;
+    } 
+
+    // Year validation
+    const year = formData.get('year');
+    if (!year || year.trim() === '') {
+        errors.year = 'Please select an academic year';
+        isValid = false;
+    }
+
+    // Location validation
+    const location = formData.get('location');
+    if (!location || location.trim() === '') {
+        errors.location = 'Please select a location';
         isValid = false;
     }
 
