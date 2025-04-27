@@ -57,6 +57,12 @@ async function itemDetailes() {
     }
     console.log("this is the first comment",first.name);
    
+    const deleteButton = document.getElementById('Delete-btn');
+    console.log("deleteButton",deleteButton);
+    deleteButton.addEventListener('click', function() {
+        console.log("delete button clicked");
+        alert('Are you sure you want to delete this item?');
 
+    });
  
 }
