@@ -325,4 +325,83 @@ body {
 
       .comment-box h6 {
           font-weight: bold;
-      }        
+      }   
+      body {
+        background-color: #FBF8EF;
+        font-family: 'Arial', sans-serif;
+    }
+
+    header {
+        background-color: #80CBC4;
+        padding: 20px;
+        color: white;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+    
+    .btn-primary {
+        background-color: #80CBC4; 
+        border-color: #80CBC4;
+       
+
+    }
+
+    .btn-primary,
+    .btn-danger {
+        margin-right: 10px;
+    }
+
+    .note-details {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .note-details h2 {
+        color: #80CBC4;
+        font-weight: bold;
+    }
+
+    .note-meta {
+        color: #666;
+    }
+
+    .comment-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    .comment-box h6 {
+        font-weight: bold;
+    }
+
+    .back-btn {
+        background-color: #FBF8EF;
+        color: #80CBC4;
+        border: 1px solid #80CBC4;
+    }
+
+    .back-btn:hover {
+        background-color: #80CBC4;
+        color: #ffffff;
+        border-color: #80CBC4;
+    }
+
+    .btn-outline-primary{
+        border-color: #80CBC4;
+        color:#80CBC4;
+    }
+    .btn-outline-primary:hover {
+        background-color: #80CBC4;
+        color: white;
+        border-color: #80CBC4;
+
+    }        

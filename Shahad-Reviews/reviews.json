@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "courseName": "ITSE302 - Software Design & Architecture",
+    "reviewText": "The course contains a lot of memorization and little understanding. It is different from the previous course, SE220, which was much easier.",
+    "reviewerName": "Khalid Alqassab",
+    "rating": 4,
+    "department": "SE",
+    "date": "2024-02-20"
+  },
+  {
+    "id": 2,
+    "courseName": "ITCS214 - Data Structure",
+    "reviewText": "Data structure course is one of the best courses I ever took. The material is very interesting and fun.",
+    "reviewerName": "Fatin Yousif",
+    "rating": 5,
+    "department": "CS",
+    "date": "2024-03-18"
+  },
+  {
+    "id": 3,
+    "courseName": "ITCS222 - Computer Organization",
+    "reviewText": "Computer organization course is very heavy but easy at the same time. Covers number systems and assembly basics.",
+    "reviewerName": "Salman Mohamed",
+    "rating": 3,
+    "department": "CS",
+    "date": "2024-02-15"
+  },
+  {
+    "id": 4,
+    "courseName": "ITCS453 - Multimedia & Hypermedia Systems",
+    "reviewText": "I took 453 with Dr. Hadeel. It's very easy, you just need to have a good understanding. I consider it an A+ subject. For me, I find it same as 316 course",
+    "reviewerName": "Wafa Adnan",
+    "rating": 5,
+    "department": "CS",
+    "date": "2025-03-10"
+  },
+  {
+    "id": 5,
+    "courseName": "TL101 - Basic Turkey Language",
+    "reviewText": "Very easy course if you like watching Turkish saries you won't find it difficult at all ",
+    "reviewerName": "Rabab Mohamed ",
+    "rating": 5,
+    "department": "Languages",
+    "date": "2025-04-27"
+  },
+  {
+    "id": 6,
+    "courseName": "CHL101 - Introduction to Chinese Language",
+    "reviewText": "Very easy course, and the instructor is kind & helpful",
+    "reviewerName": "Wafa Adnan",
+    "rating": 5,
+    "department": "Languages",
+    "date": "2023-04-26"
+  },
+  {
+    "id": 7,
+    "courseName": "ISLM101 - Islamic Culture",
+    "reviewText": "Very easy course, and the instructor is kind & helpful",
+    "reviewerName": "Wafa Adnan",
+    "rating": 5,
+    "department": "Arts",
+    "date": "2025-04-29"
+  },
+  {
+    "id": 8,
+    "courseName": "ITSE201 - Introduction to Software Engineering",
+    "reviewText": "This course is very important for the next software courses. Dr.Taher makes it very easy and simpler than it already is.",
+    "reviewerName": "Wafa Adnan",
+    "rating": 5,
+    "department": "SE",
+    "date": "2025-04-26"
+  }
+]
