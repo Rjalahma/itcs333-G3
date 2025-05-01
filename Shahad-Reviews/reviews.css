@@ -1,407 +1,141 @@
+/* General Layout */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #FBF8EF;
-    color: #333;
-  }
-  header {
-    background-color: #80CBC4;
-    padding: 20px 0;
-  }
-  header h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: #ffffff;
-  }
-  .navbar {
-    margin-bottom: 20px;
-    background-color: #B4EBE6;
-  }
-  .nav-link {
-    font-size: 1rem;
-    color: #333;
-  }
-  .nav-link:hover {
-    background-color: #80CBC4;
-    border-radius: 5px;
-    color: #ffffff;
-  }
-  .navbar-dark .navbar-nav .nav-item.active .nav-link {
-    background-color: #80CBC4;
-    border-radius: 5px;
-    color: white;
-  }
-  .review-card {
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease-in-out;
-  }
-  .review-card:hover {
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  }
-  .review-card .card-body {
-    padding: 20px;
-  }
-  .review-card h5 {
-    font-size: 1.25rem;
-    color: #80CBC4;
-    font-weight: bold;
-  }
-  .review-card p {
-    color: #555;
-  }
-  .btn-primary {
-    background-color: #80CBC4;
-    border-color: #80CBC4;
-  }
-  .btn-primary:hover {
-    background-color: #B4EBE6;
-    border-color: #B4EBE6;
-  }
-  .pagination .page-link {
-    border-radius: 50%;
-    background-color: #FBF8EF;
-    color: #80CBC4;
-  }
-  .pagination .page-item.active .page-link {
-    background-color: #80CBC4;
-    color: white;
-  }
-  .pagination .page-item:hover .page-link {
-    background-color: #e0e0e0;
-  }
-   body {
-      font-family: 'Arial', sans-serif;
-      background-color: #FBF8EF;
-      color: #333;
-    }
-    header {
-      background-color: #80CBC4;
-      padding: 20px 0;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-    .navbar {
-      margin-bottom: 20px;
-      background-color: #B4EBE6;
-    }
-    .nav-link {
-      font-size: 1rem;
-      color: #333;
-    }
-    .nav-link:hover {
-      background-color: #80CBC4;
-      border-radius: 5px;
-      color: #ffffff;
-    }
-    .navbar-dark .navbar-nav .nav-item.active .nav-link {
-      background-color: #80CBC4;
-      border-radius: 5px;
-      color: white;
-    }
-    .review-card {
-      margin-bottom: 20px;
-      border: none;
-      border-radius: 8px;
-      background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: box-shadow 0.3s ease-in-out;
-    }
-    .review-card:hover {
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-    .review-card .card-body {
-      padding: 20px;
-    }
-    .review-card h5 {
-      font-size: 1.25rem;
-      color: #80CBC4;
-      font-weight: bold;
-    }
-    .review-card p {
-      color: #555;
-    }
-    .btn-primary {
-      background-color: #80CBC4;
-      border-color: #80CBC4;
-    }
-    .btn-primary:hover {
-      background-color: #B4EBE6;
-      border-color: #B4EBE6;
-    }
-    .pagination .page-link {
-      border-radius: 50%;
-      background-color: #FBF8EF;
-      color: #80CBC4;
-    }
-    .pagination .page-item.active .page-link {
-      background-color: #80CBC4;
-      color: white;
-    }
-    .pagination .page-item:hover .page-link {
-      background-color: #e0e0e0;
-    }
+  font-family: 'Arial', sans-serif;
+  background-color: #FBF8EF;
+  color: #333;
+}
 
-    /* Reviews.html */
-    .review-detail {
-      display: none;
-      padding: 30px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-top: 30px;
-    }
+header {
+  background-color: #80CBC4;
+  padding: 20px 0;
+}
 
-    .review-detail:target {
-      display: block;
-    }
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
 
-    .review-detail h2 {
-      color: #80CBC4;
-      font-weight: bold;
-    }
+.navbar {
+  background-color: #B4EBE6;
+}
 
-    .back-btn {
-      margin-top: 20px;
-    }
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #FBF8EF;
-      color: #333;
-    }
-    header {
-      background-color: #80CBC4;
-      padding: 20px 0;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-    .navbar {
-      margin-bottom: 20px;
-      background-color: #B4EBE6;
-    }
-    .nav-link {
-      font-size: 1rem;
-      color: #333;
-    }
-    .nav-link:hover {
-      background-color: #80CBC4;
-      border-radius: 5px;
-      color: #ffffff;
-    }
-    .navbar-dark .navbar-nav .nav-item.active .nav-link {
-      background-color: #80CBC4;
-      border-radius: 5px;
-      color: white;
-    }
-    .review-card {
-      margin-bottom: 20px;
-      border: none;
-      border-radius: 8px;
-      background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: box-shadow 0.3s ease-in-out;
-    }
-    .review-card:hover {
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-    .review-card .card-body {
-      padding: 20px;
-    }
-    .review-card h5 {
-      font-size: 1.25rem;
-      color: #80CBC4;
-      font-weight: bold;
-    }
-    .review-card p {
-      color: #555;
-    }
-    .btn-primary {
-      background-color: #80CBC4;
-      border-color: #80CBC4;
-    }
-    .btn-primary:hover {
-      background-color: #B4EBE6;
-      border-color: #B4EBE6;
-    }
-    .pagination .page-link {
-      border-radius: 50%;
-      background-color: #FBF8EF;
-      color: #80CBC4;
-    }
-    .pagination .page-item.active .page-link {
-      background-color: #80CBC4;
-      color: white;
-    }
-    .pagination .page-item:hover .page-link {
-      background-color: #e0e0e0;
-    }
+.nav-link {
+  color: #333;
+}
 
-    /* Full Review Styles */
-    .review-detail {
-      display: none;
-      padding: 30px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-top: 30px;
-    }
+.nav-link:hover,
+.navbar-dark .navbar-nav .nav-item.active .nav-link {
+  background-color: #80CBC4;
+  border-radius: 5px;
+  color: white;
+}
+.navbar-nav .nav-link.active {
+  background-color: #80CBC4; /* Match the theme */
+  color: white;
+  border-radius: 5px;
+}
 
-    .review-detail:target {
-      display: block;
-    }
 
-    .review-detail h2 {
-      color: #80CBC4;
-      font-weight: bold;
-    }
+/* Review Cards */
+.review-card {
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
 
-    .back-btn {
-      margin-top: 20px;
-    }
+.review-card:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
 
-    .pagination-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: auto;
-      margin-bottom: 40px; 
-      gap: 10px; 
-    }
-    
-    main.container {
-      min-height: 80vh; /* or 85vh */
-      display: flex;
-      flex-direction: column;
-    }
-    .pagination {
-      margin-top: 20px;
-    }
-    
-    .row.justify-content-between {
-      margin-top: 40px;
-    }
-   
-    .btn-primary {
-      background-color: #80CBC4; 
-      border-color: #80CBC4;
+.review-card .card-body {
+  padding: 20px;
+}
 
-  }   
+.review-card h5 {
+  color: #80CBC4;
+  font-weight: bold;
+}
 
-  .btn-primary:hover {
-      background-color: #B4EBE6; 
-      border-color: #B4EBE6;
-  }
+/* Buttons */
+.btn-primary {
+  background-color: #80CBC4;
+  border-color: #80CBC4;
+}
 
-   .btn-secondary {
-      background-color: #80CBC4; 
-      border-color: #80CBC4;
-      margin: auto;
-      margin-left: 2%;
-   }
-      .comment-box {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
+.btn-primary:hover {
+  background-color: #B4EBE6;
+  border-color: #B4EBE6;
+}
 
-        .comment-box h6 {
-            font-weight: bold;
-        }
-        .comment-box {
-          background-color: #f9f9f9;
-          padding: 15px;
-          border-radius: 8px;
-          margin-bottom: 15px;
-      }
+.btn-secondary {
+  background-color: #80CBC4;
+  border-color: #80CBC4;
+}
 
-      .comment-box h6 {
-          font-weight: bold;
-      }   
-      body {
-        background-color: #FBF8EF;
-        font-family: 'Arial', sans-serif;
-    }
+/* Pagination */
+.pagination .page-link {
+  border-radius: 50%;
+  background-color: #FBF8EF;
+  color: #80CBC4;
+}
 
-    header {
-        background-color: #80CBC4;
-        padding: 20px;
-        color: white;
-    }
+.pagination .page-item.active .page-link {
+  background-color: #80CBC4;
+  color: white;
+}
 
-    header h1 {
-        font-size: 2.5rem;
-        font-weight: 600;
-        color: #ffffff;
-    }
+.pagination .page-item:hover .page-link {
+  background-color: #e0e0e0;
+}
 
-    
-    .btn-primary {
-        background-color: #80CBC4; 
-        border-color: #80CBC4;
-       
+/* Detail Page */
+.reviews-details {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
-    }
+.review-meta {
+  color: #555;
+}
 
-    .btn-primary,
-    .btn-danger {
-        margin-right: 10px;
-    }
+.back-btn {
+  background-color: #FBF8EF;
+  color: #80CBC4;
+  border: 1px solid #80CBC4;
+}
 
-    .note-details {
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+.back-btn:hover {
+  background-color: #80CBC4;
+  color: #ffffff;
+}
 
-    .note-details h2 {
-        color: #80CBC4;
-        font-weight: bold;
-    }
+/* Comments */
+.comment-box {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
 
-    .note-meta {
-        color: #666;
-    }
+.comment-box h6 {
+  font-weight: bold;
+}
 
-    .comment-box {
-        background-color: #f9f9f9;
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 15px;
-    }
+/* Edit form visibility */
+.review-edit-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
-    .comment-box h6 {
-        font-weight: bold;
-    }
-
-    .back-btn {
-        background-color: #FBF8EF;
-        color: #80CBC4;
-        border: 1px solid #80CBC4;
-    }
-
-    .back-btn:hover {
-        background-color: #80CBC4;
-        color: #ffffff;
-        border-color: #80CBC4;
-    }
-
-    .btn-outline-primary{
-        border-color: #80CBC4;
-        color:#80CBC4;
-    }
-    .btn-outline-primary:hover {
-        background-color: #80CBC4;
-        color: white;
-        border-color: #80CBC4;
-
-    }        
+/* Modal improvements */
+.modal-content {
+  border-radius: 10px;
+}
