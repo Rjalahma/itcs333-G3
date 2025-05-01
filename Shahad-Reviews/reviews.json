@@ -22,7 +22,7 @@
     "courseName": "ITCS222 - Computer Organization",
     "reviewText": "Computer organization course is very heavy but easy at the same time. Covers number systems and assembly basics.",
     "reviewerName": "Salman Mohamed",
-    "rating": 3,
+    "rating": 2,
     "department": "CS",
     "date": "2024-02-15"
   },
@@ -48,8 +48,8 @@
     "id": 6,
     "courseName": "CHL101 - Introduction to Chinese Language",
     "reviewText": "Very easy course, and the instructor is kind & helpful",
-    "reviewerName": "Wafa Adnan",
-    "rating": 5,
+    "reviewerName": "Noha Idris",
+    "rating": 3,
     "department": "Languages",
     "date": "2023-04-26"
   },
@@ -57,7 +57,7 @@
     "id": 7,
     "courseName": "ISLM101 - Islamic Culture",
     "reviewText": "Very easy course, and the instructor is kind & helpful",
-    "reviewerName": "Wafa Adnan",
+    "reviewerName": "Zain Assad",
     "rating": 5,
     "department": "Arts",
     "date": "2025-04-29"
@@ -66,7 +66,7 @@
     "id": 8,
     "courseName": "ITSE201 - Introduction to Software Engineering",
     "reviewText": "This course is very important for the next software courses. Dr.Taher makes it very easy and simpler than it already is.",
-    "reviewerName": "Wafa Adnan",
+    "reviewerName": "Adnan Mustafa",
     "rating": 5,
     "department": "SE",
     "date": "2025-04-26"
