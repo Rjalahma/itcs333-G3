@@ -1,0 +1,144 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #FBF8EF;
+  color: #333;
+}
+
+header {
+  background-color: #80CBC4;
+  padding: 20px 0;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.navbar {
+  background-color: #B4EBE6;
+}
+
+.nav-link {
+  color: #333;
+}
+
+.nav-link:hover,
+.navbar-dark .navbar-nav .nav-item.active .nav-link {
+  background-color: #80CBC4;
+  border-radius: 5px;
+  color: white;
+}
+.navbar-nav .nav-link.active {
+  background-color: #80CBC4; 
+  color: white;
+  border-radius: 5px;
+}
+
+
+/* Review Cards */
+.review-card {
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.review-card:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.review-card .card-body {
+  padding: 20px;
+}
+
+.review-card h5 {
+  color: #80CBC4;
+  font-weight: bold;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #80CBC4;
+  border-color: #80CBC4;
+}
+
+.btn-primary:hover {
+  background-color: #B4EBE6;
+  border-color: #B4EBE6;
+}
+
+.btn-secondary {
+  background-color: #80CBC4;
+  border-color: #80CBC4;
+}
+
+/* Pagination */
+.pagination .page-link {
+  border-radius: 50%;
+  background-color: #FBF8EF;
+  color: #80CBC4;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #80CBC4;
+  color: white;
+}
+
+.pagination .page-item:hover .page-link {
+  background-color: #e0e0e0;
+}
+
+/* Detail Page */
+.reviews-details {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.review-meta {
+  color: #555;
+}
+
+.back-btn {
+  background-color: #FBF8EF;
+  color: #80CBC4;
+  border: 1px solid #80CBC4;
+}
+
+.back-btn:hover {
+  background-color: #80CBC4;
+  color: #ffffff;
+}
+
+/* Comments */
+.comment-box {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.comment-box h6 {
+  font-weight: bold;
+}
+
+/* Edit form visibility */
+.review-edit-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Modal  */
+.modal-content {
+  border-radius: 10px;
+}
+.is-invalid {
+  border: 2px solid red;
+  background-color: #ffe6e6;
+}
