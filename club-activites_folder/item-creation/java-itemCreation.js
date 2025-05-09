@@ -1,4 +1,4 @@
-const apiUrl = 'https://6809f2951f1a52874cde75c1.mockapi.io/cludData';
+const apiUrl = 'https://85a9004b-6f70-4270-987e-d532d17c45e5-00-jmf0e13pp2ab.pike.replit.dev/';
 let allActivities = [];
 
 
@@ -19,18 +19,24 @@ const contact = document.getElementById('Phone_Number').value;
 console.log("contact", contact);
 const email = document.getElementById('userEmail').value;
 
-const p = document.getElementById('clubphoto').value;
-console.log("photo", p);
+const photo_url = document.getElementById('Club Photo alt').value;
+const photo_alt = document.getElementById('Club Photo alt').value;
+console.log("photo", photo_url);
 console.log("email", email);
 const briefdescription = document.getElementById('Club_Description').value;
 console.log("briefdescription", briefdescription);
-
+ 
 
 const day = document.getElementById('day_club').value;
 console.log("day", day);
     async function validateForm() {
+        // Check if the photo URL is valid
+        function isValidImageUrl(url) {
+            const pattern = /^https?:\/\/.+\.(jpg|jpeg|png|gif|bmp|webp)$/i;
+            return pattern.test(url);
+        }
         // chack if any field is empty
-    if (!name || !type || !day || !time || !locationn || !contact || !email || !briefdescription ) {
+    if (!name || !type || !day || !time || !locationn || !contact || !email || !briefdescription  || !photo_url || !photo_alt) {
         alert('Please fill in all the  fields.');
         return false;
     }
@@ -62,16 +68,59 @@ console.log("day", day);
         return false;
     }
     // chack if the photo is uploaded or not
-    if (!p){
-        alert('Please upload a photo.');
+    if (!photo_url || !isValidImageUrl(photo_url)) {
+        alert('Please enter a valid image URL.');
+        return false;
+    }
+    if (!photo_alt.match(/^[a-zA-Z\s]+$/)) {
+        alert('Photo alt can only contain letters and spaces.');
         return false;
     }
     //  otherwise the form is valid
     else {
-        alert('Form is valid!');
+        
+        console.log('Form is valid!');
+        try{
+        fetch("https://85a9004b-6f70-4270-987e-d532d17c45e5-00-jmf0e13pp2ab.pike.replit.dev/add-club.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              name: name,
+                type: type,
+                briefdescription :briefdescription,
+                day: day,
+                time: time,
+                location: locationn,
+                contact : contact,
+                email: email,
+                photo: {
+                    url: photo_url,
+                    alt: photo_alt
+                },
+               
+                briefdescription: briefdescription
+                
+        
+            
+        
+            })
+          })
+          .then(res => res.json())
+          .then(data => alert( "Club added successfully!"))
+          .catch(err => console.error("Error adding comment:", err));}
+            catch (error) {
+                console.error('Error:', error);
+            }
     }
 }
 // Call the validateForm function 
 const isValid = validateForm();
+
+
+
+
+
 
 });
