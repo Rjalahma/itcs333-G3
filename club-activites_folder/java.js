@@ -1,6 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-    const apiUrl = 'https://6809f2951f1a52874cde75c1.mockapi.io/cludData';
+  
+    const apiUrl = 'https://85a9004b-6f70-4270-987e-d532d17c45e5-00-jmf0e13pp2ab.pike.replit.dev/club-cars.php';
     let allActivities = [];
     let currentPage = 1;
     const itemsPerPage = 6;
@@ -16,6 +17,14 @@ document.addEventListener('DOMContentLoaded', function() {
             updateDisplay();
         } catch (error) {
             console.error('Error:', error);
+
+        
+            const containerr = document.getElementById('card-container');
+            containerr.innerHTML = `<div style=" margin-left: 70% !important;"  class="alert alert-danger w-100" role="alert">there is no data please check your internet conaction </div>`;
+            alert(' please check your internet connection and try again');
+            return;
+        
+            
         }
     }
 
@@ -24,12 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
       
             
                 
- 
+        //    calculate the start and end index for the current page
         const container = document.getElementById('card-container');
         const start = (currentPage - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         const pageItems = allActivities.slice(start, end);
         // crat the cards of club activty from the data fetched from api 
+        
         container.innerHTML = pageItems.map(activity => `
             <div class="course-note-card card">
                 <div class="card-body">
@@ -91,8 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchTerm = searchInput.value.toLowerCase();
         allActivities = allActivities.filter(activity => 
             activity.name.toLowerCase().includes(searchTerm) ||
-            activity.briefdescription.toLowerCase().includes(searchTerm)||
-            activity.type.toLowerCase().includes(searchTerm) 
+            activity.briefdescription.toLowerCase().includes(searchTerm)
+           
         );
         currentPage = 1; 
         updateDisplay();
