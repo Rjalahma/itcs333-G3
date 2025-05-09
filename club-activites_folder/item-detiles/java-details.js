@@ -1,22 +1,34 @@
-const apiUrl = 'https://6809f2951f1a52874cde75c1.mockapi.io/cludData';
+const apiUrl = 'https://85a9004b-6f70-4270-987e-d532d17c45e5-00-jmf0e13pp2ab.pike.replit.dev/main-clubs.php';
 let allActivities = [];
 let currentPage = 1
 
 document.addEventListener('DOMContentLoaded', itemDetailes);
 async function itemDetailes() {
     console.log("itemDetailes");
-  
+    
+    // this is where the url is fetched and the id is extracted from it
     const urlParams = new URLSearchParams(window.location.search);
     console.log("urlParams=",urlParams);
     const activityId = urlParams.get('id');
     console.log("THIS IS THE ID ",activityId);
     const response =await fetch(apiUrl);
-    const data = await response.json();
-    const activity = data.find(a => a.id === activityId);
-    if(!activityId)  {
-        console.error('Activity id is not  in the  URL');
+    if (!response.ok) {
+        alert('please check your internet connection');
+        console.error('Error fetching data:', response.statusText);
         return;
     }
+    else{
+    const data = await response.json();
+    console.log("data",data);
+    const activity = data.find(a => a.id == activityId);
+
+    console.log("activity",activity);
+    if(!activityId)  {
+        alert ("something went wrong please refresh the page or chack your internet connection");
+        
+        return;
+    }
+    
     
     const photo=document.getElementById('img').src= activity.photo.url;
     const alt=document.getElementById('img').alt= activity.photo.alt;
@@ -36,74 +48,155 @@ async function itemDetailes() {
         return;
     }
     if ( !commentsection || !pagecomment ||pagecomment.length === 0) {
-        console.error('Comment section or comments are not accessible or empty');
-        return;
+        // Handle the case where the comment section or comments are not accessible or empty
+        console.error('Comment section or comments are not accessible or empty');   
+        commentsection.innerHTML+=`
+                                        <div class="comment-card  ">
+                                            <strong >"still there is no comment "</strong>
+                                            
+                                        </div> `   
+
+                                               
+        commentsection.innerHTML+=`<input class="Close_button  col btn btn-secondary" onclick="location.href='javascript:window.history.back();'" type="button" value="Close">`;
+        //  Display a message indicating no comments available
+        const firstcom= document.getElementById("first-comment");
+       
+            firstcom.innerHTML=`
+                                          <div class="comment-card  ">
+                                            <strong >"still there is no comment "</strong>
+                                            
+                                        </div> 
+                                    `;
     }
     else {
+        // Handle the case where comments are available
         const first=pagecomment[0];
         console.log("pagecomment",pagecomment);
         console.log("fist name ",pagecomment[0][0]);
         for (let i = 0; i < pagecomment.length; i++) {
-            
+            // this is where all the comments are displayed
         commentsection.innerHTML+=`
                                         <div class="comment-card  ">
-                                            <strong >${pagecomment[i].username}</strong>
-                                            <p>${pagecomment[i].comment}</p>
-                                            <p>${pagecomment[i].rating}</p>
+
+                                            <strong " >${pagecomment[i].comment}</strong>
+                                            <p class="fw-bold">
+                                                Rating out of 5: <span class="text-warning">${pagecomment[i].rating}</span>
+                                            </p>
+
                                         </div> `   
 
                                                 }   
         commentsection.innerHTML+=`<input class="Close_button  col btn btn-secondary" onclick="location.href='javascript:window.history.back();'" type="button" value="Close">`;
         
-
+        // Display the first comment separately
         const firstcom= document.getElementById("first-comment");
         if (first) {
             firstcom.innerHTML=`
-                                            <strong >${first.username}</strong>
-                                            <p>${first.comment}</p>
-                                            <p>${first.rating}</p>
+                                            <strong " >${first.comment}</strong>
+                                            <p class="fw-bold">
+                                                Rating out of 5: <span class="text-warning">${first.rating}</span>
+                                            </p>
+                                          
+
                                     `;
         }
-        console.log("this is the first comment",first.name);
+      
     }
+
+    // this is where the delete button action is done
     const deleteButton = document.getElementById('Delete-btn');
     if (!deleteButton) {
-        console.error('Delete button is not accessible');
+        alert('something went wrong please refresh the page or chack your internet connection and try again');
         return;
     }
     else{
-        console.log("deleteButton",deleteButton);
+       
         deleteButton.addEventListener('click', function() {
-            console.log("delete button clicked");
-            alert('Are you sure you want to delete this item?');
+            // confirmation before deletion
+            if (confirm('Are you sure you want to delete this item?')) {
+                // fetch api to delete the item
+                fetch('https://85a9004b-6f70-4270-987e-d532d17c45e5-00-jmf0e13pp2ab.pike.replit.dev/delete-club.php', {
+                    method: 'DELETE',
+                    headers: {
+                        // 'Content-Type': 'application/json'
+                    },
+                    // send the id of the item to be deleted
+                    body: JSON.stringify({ id: activityId })
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error("Network response was not ok");
+                    if (response.status === 400){
+                        alert(" There is an issue in the system please try again later")
+                        return false;
+                    }
+                    return response.json();
+                })
+                .then(data => console.log("Delete successful:", data))
+                .catch(error => console.error("Delete failed:", error));
+            }
 
         });
     }
+    // this is where the add comment button action is done
     const addComment=document.querySelector("input[value='add comment']");
     
     if (!addComment) {
-        console.error('Add comment button is not accessible');
+        alert('something went wrong please refresh the page or chack your internet connection and try again');
         return;
     }
  
     else {
+        // add event listener to the add comment button
         console.log("addComment",addComment);
         addComment.addEventListener('click', function() {
+
             const commentText = document.getElementsByTagName('textarea')[0].value;
-            if (!commentText) {
-                alert('Please enter a comment');
-                return;
-            }
-            
-            if (!commentText.match(/^[a-zA-Z\s]+$/)) {
+            const rating = document.getElementById('com-rating').value;
+            // cheack if comment is not empty and if it contains only letters and spaces
+            if (!commentText.match(/^[a-zA-Z\s]+$/) || commentText.length==0) {
                 alert('Comment can only contain letters and spaces.');
                 return;
             }
-            
-            if (confirm('Are you sure you want to add this comment?')) {
+            // cheack if rating is not empty 
+            if (!rating) {
+                alert('Please enter a rating out of 5.');
+                return;
             }
+            
+            // fetch api to add the comment by sending the comment and rating along with the id of the item to the server
+            fetch('https://85a9004b-6f70-4270-987e-d532d17c45e5-00-jmf0e13pp2ab.pike.replit.dev/add-com.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    // values to be sent to the server
+                    club_id: activityId ,
+                    comment: commentText,
+                    rating: rating
+                
+                })
+            })
+            .then(response => {
+                // check if the response is ok or not
+                if (!response.ok) throw new Error("Network response was not ok");
+                if (response.status === 400){
+                    alert(" There is an issue in the system please try again later")
+                    return false;
+                
+                }
+                return response.json();
+                
+            })
+            
+            .then(data => console.log("Delete successful:", data))
+            .catch(error => console.error("Delete failed:", error));
+            
+            
+           
+           
         });
     }
 
    
-}
+}}
