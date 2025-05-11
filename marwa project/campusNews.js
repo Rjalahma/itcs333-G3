@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let allNews = [];
   
     // Fetch news data
-    fetch("https://marwaalzubari.marwadata.repl.co/news_api.php")
+    fetch("https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/news_api.php")
+
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch news");
         return res.json();

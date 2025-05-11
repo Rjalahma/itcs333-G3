@@ -69,7 +69,7 @@
     const params = new URLSearchParams(window.location.search);
     const newsId = params.get("id");
 
-    fetch("news.json")
+    fetch("https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/news_api.php")
       .then(res => res.json())
       .then(data => {
         const item = data.find(n => n.id == newsId);
