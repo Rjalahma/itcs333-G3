@@ -66,22 +66,24 @@
   </div>
 
   <script>
+    
+    fetch("https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/news_api.php")
+  .then(res => res.json())
+  .then(data => {
     const params = new URLSearchParams(window.location.search);
     const newsId = params.get("id");
+    const item = data.find(n => n.id == newsId);
 
-    fetch("https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/news_api.php")
-      .then(res => res.json())
-      .then(data => {
-        const item = data.find(n => n.id == newsId);
-        if (item) {
-          document.querySelector(".news-title").textContent = item.category;
-          document.querySelector(".news-image").src = item.image;
-          document.querySelector("h3").textContent = item.title;
-          document.querySelector(".news-text").innerHTML = `<p>${item.content}</p>`;
-        } else {
-          document.querySelector(".news-text").textContent = "News not found.";
-        }
-      });
+    if (item) {
+      document.querySelector(".news-title").textContent = item.title;
+      document.querySelector(".news-image").src = item.image;
+      document.querySelector(".news-text").innerHTML = `<p>${item.content}</p>`;
+    } else {
+      document.querySelector(".news-text").textContent = "News not found.";
+    }
+  })
+  .catch(err => console.error("Error:", err));
+
   </script>
 
 </body>
