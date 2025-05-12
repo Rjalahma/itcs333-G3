@@ -1,28 +1,47 @@
 (async function() {
+  // Replace this with your Replit URL
+  const API_BASE_URL = 'https://86192ebf-d466-4541-a066-8b98fc7e6e91-00-2h3krvsw2dynb.pike.replit.dev';
+  
+  // Helper functions
   function getId() {
     return new URLSearchParams(location.search).get('id');
   }
+  
   function formatDate(d) {
     return new Date(d).toLocaleDateString();
   }
-
-  const id = getId();
-  if (!id) return;
-  let note;
-  try {
-    const res = await fetch('notes.json');
-    if (!res.ok) throw new Error(res.statusText);
-    const notes = await res.json();
-    note = notes.find(n => String(n.id) === id);
-    if (!note) throw new Error('Note not found');
-  } catch (e) {
-    console.error(e);
+  
+  function formatDateTime(d) {
+    return new Date(d).toLocaleString();
+  }
+  
+  function showLoader() {
+    // You could add a loading indicator here
+    console.log('Loading...');
+  }
+  
+  function hideLoader() {
+    // Hide loading indicator
+    console.log('Loading complete');
+  }
+  
+  function showError(message) {
+    alert(message || 'An error occurred');
+  }
+  
+  // Get note ID from URL
+  const noteId = getId();
+  if (!noteId) {
+    showError('Note ID not provided');
+    window.location.href = 'course-note-main.html';
     return;
   }
-
+  
+  let note;
+  
   // Elements
-  const viewMode   = document.getElementById('viewMode');
-  const editForm   = document.getElementById('editMode');
+  const viewMode = document.getElementById('viewMode');
+  const editForm = document.getElementById('editMode');
   const fieldsView = {
     title:  document.getElementById('detailTitle'),
     course: document.getElementById('detailCourse'),
@@ -38,70 +57,254 @@
     date:   document.getElementById('editDate'),
     desc:   document.getElementById('editDesc'),
   };
-
-  // Populate view
+  const commentsContainer = document.getElementById('commentsContainer');
+  const commentForm = document.getElementById('commentForm');
+  
+  // Fetch the note details
+  async function fetchNote() {
+    showLoader();
+    try {
+      const response = await fetch(`${API_BASE_URL}/get_note.php?id=${noteId}`);
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to load note');
+      }
+      note = await response.json();
+      populateView();
+      hideLoader();
+    } catch (error) {
+      hideLoader();
+      showError(error.message);
+      console.error(error);
+    }
+  }
+  
+  // Fetch comments for the note
+  async function fetchComments() {
+    showLoader();
+    try {
+      const response = await fetch(`${API_BASE_URL}/get_comments.php?note_id=${noteId}`);
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to load comments');
+      }
+      const comments = await response.json();
+      
+      // Clear comments container
+      commentsContainer.innerHTML = '';
+      
+      if (comments.length === 0) {
+        commentsContainer.innerHTML = '<p>No comments yet. Be the first to comment!</p>';
+        return;
+      }
+      
+      // Add comments to the container
+      comments.forEach(comment => {
+        const commentBox = document.createElement('div');
+        commentBox.className = 'comment-box';
+        commentBox.dataset.id = comment.id;
+        commentBox.innerHTML = `
+          <div class="d-flex justify-content-between">
+            <h6>${comment.name} <small class="text-muted">on ${formatDateTime(comment.created_at)}</small></h6>
+            <button class="btn btn-sm btn-outline-danger delete-comment">×</button>
+          </div>
+          <p>${comment.comment}</p>
+        `;
+        commentsContainer.appendChild(commentBox);
+      });
+      
+      // Add event listeners to delete buttons
+      document.querySelectorAll('.delete-comment').forEach(button => {
+        button.addEventListener('click', deleteComment);
+      });
+      
+      hideLoader();
+    } catch (error) {
+      hideLoader();
+      console.error(error);
+    }
+  }
+  
+  // Populate view with note data
   function populateView() {
-    fieldsView.title.textContent  = note.title;
+    fieldsView.title.textContent = note.title;
     fieldsView.course.textContent = note.course;
-    fieldsView.dept.textContent   = note.department;
-    fieldsView.date.textContent   = formatDate(note.publishedDate);
-    fieldsView.desc.textContent   = note.description;
-    fieldsView.dl.href            = note.url;
+    fieldsView.dept.textContent = note.department;
+    fieldsView.date.textContent = formatDate(note.publishedDate);
+    fieldsView.desc.textContent = note.description;
+    fieldsView.dl.href = note.url;
   }
-  // Populate form
+  
+  
+  // Populate form with note data
   function populateForm() {
-    fieldsEdit.title.value  = note.title;
+    fieldsEdit.title.value = note.title;
     fieldsEdit.course.value = note.course;
-    fieldsEdit.dept.value   = note.department;
-    fieldsEdit.date.value   = note.publishedDate;
-    fieldsEdit.desc.value   = note.description;
+    fieldsEdit.dept.value = note.department;
+    fieldsEdit.date.value = note.publishedDate;
+    fieldsEdit.desc.value = note.description;
   }
-
-  populateView();
-
-  // Edit button
+  
+  // Update note in the database
+  async function updateNote(updatedNote) {
+    showLoader();
+    try {
+      const response = await fetch(`${API_BASE_URL}/update_note.php`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedNote)
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to update note');
+      }
+      
+      note = await response.json();
+      populateView();
+      hideLoader();
+      alert('Note updated successfully!');
+    } catch (error) {
+      hideLoader();
+      showError(error.message);
+      console.error(error);
+    }
+  }
+  
+  // Delete note from the database
+  async function deleteNoteFromDB() {
+    showLoader();
+    try {
+      const response = await fetch(`${API_BASE_URL}/delete_note.php`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: noteId })
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to delete note');
+      }
+      
+      hideLoader();
+      alert('Note deleted successfully!');
+      window.location.href = 'course-note-main.html';
+    } catch (error) {
+      hideLoader();
+      showError(error.message);
+      console.error(error);
+    }
+  }
+  
+  // Add a comment
+  async function addComment(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('commentName').value.trim();
+    const comment = document.getElementById('commentInput').value.trim();
+    
+    if (!name || !comment) {
+      showError('Please enter your name and comment');
+      return;
+    }
+    
+    showLoader();
+    try {
+      const response = await fetch(`${API_BASE_URL}/create_comment.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          note_id: noteId,
+          name: name,
+          comment: comment
+        })
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to add comment');
+      }
+      
+      // Clear form
+      e.target.reset();
+      
+      // Refresh comments
+      fetchComments();
+      hideLoader();
+    } catch (error) {
+      hideLoader();
+      showError(error.message);
+      console.error(error);
+    }
+  }
+  
+  // Delete a comment
+  async function deleteComment(e) {
+    if (!confirm('Are you sure you want to delete this comment?')) return;
+    
+    const commentBox = e.target.closest('.comment-box');
+    const commentId = commentBox.dataset.id;
+    
+    showLoader();
+    try {
+      const response = await fetch(`${API_BASE_URL}/delete_comment.php`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: commentId })
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to delete comment');
+      }
+      
+      commentBox.remove();
+      hideLoader();
+    } catch (error) {
+      hideLoader();
+      showError(error.message);
+      console.error(error);
+    }
+  }
+  
+  // Initialize
+  fetchNote();
+  fetchComments();
+  
+  // Event Listeners
   document.getElementById('editBtn').addEventListener('click', () => {
     viewMode.style.display = 'none';
     editForm.style.display = 'block';
     populateForm();
   });
-
-  // Cancel
+  
   document.getElementById('cancelBtn').addEventListener('click', () => {
     editForm.style.display = 'none';
     viewMode.style.display = 'block';
   });
-
-  // Save
+  
   editForm.addEventListener('submit', e => {
     e.preventDefault();
-    note.title          = fieldsEdit.title.value.trim();
-    note.course         = fieldsEdit.course.value.trim();
-    note.department     = fieldsEdit.dept.value;
-    note.publishedDate  = fieldsEdit.date.value;
-    note.description    = fieldsEdit.desc.value.trim();
-    populateView();
+    
+    const updatedNote = {
+      id: noteId,
+      title: fieldsEdit.title.value.trim(),
+      description: fieldsEdit.desc.value.trim(),
+      department: fieldsEdit.dept.value,
+      course: fieldsEdit.course.value.trim(),
+      publishedDate: fieldsEdit.date.value
+    };
+    
+    updateNote(updatedNote);
     editForm.style.display = 'none';
     viewMode.style.display = 'block';
-    alert('Note updated!');
   });
-
-  // Delete
+  
   document.getElementById('deleteBtn').addEventListener('click', () => {
-    if (confirm('Delete this note?')) {
-      alert('Note deleted.');
-      window.location.href = 'course-note-main.html';
+    if (confirm('Are you sure you want to delete this note? This action cannot be undone.')) {
+      deleteNoteFromDB();
     }
   });
-
-  document.getElementById('commentForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const name = document.getElementById('commentName').value;
-    const text = document.getElementById('commentInput').value;
-    const box  = document.createElement('div');
-    box.className = 'comment-box';
-    box.innerHTML = `<h6>${name} <small class="text-muted">on ${formatDate(Date.now())}</small></h6><p>${text}</p>`;
-    document.getElementById('commentsContainer').prepend(box);
-    e.target.reset();
-  });
+  
+  commentForm.addEventListener('submit', addComment);
 })();

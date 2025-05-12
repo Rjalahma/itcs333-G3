@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Course Notes - Campus Hub</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="course-note.css" rel="stylesheet">
+  <link href="course-note.css" rel="stylesheet" >
 </head>
 <body>
   <header><div class="container"><h1>Campus Hub</h1></div></header>
@@ -69,30 +69,30 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="noteForm">
+                    <form id="noteForm" enctype="multipart/form-data">
                         <!-- Note Title -->
                         <div class="mb-3">
                             <label for="noteTitle" class="form-label">Note Title</label>
-                            <input type="text" class="form-control" id="noteTitle" required placeholder="Enter course note title">
+                            <input type="text" class="form-control" id="noteTitle" name="noteTitle" required placeholder="Enter course note title">
                         </div>
     
                         <!-- File Upload (PDF only) -->
                         <div class="mb-3">
                             <label for="noteFile" class="form-label">Upload File (PDF only)</label>
-                            <input type="file" class="form-control mb-2" id="noteFile" accept="application/pdf" required>
-                            <button type="button" class="btn btn-outline-danger btn-sm" >Remove File</button>
+                            <input type="file" class="form-control mb-2" id="noteFile" name="noteFile" accept="application/pdf" required>
+                            <button type="button" class="btn btn-outline-danger btn-sm">Remove File</button>
                         </div>
     
                         <!-- Course -->
                         <div class="mb-3">
                             <label for="noteCourse" class="form-label">Course</label>
-                            <input type="text" class="form-control" id="noteCourse" required placeholder="Enter course name">
+                            <input type="text" class="form-control" id="noteCourse" name="noteCourse" required placeholder="Enter course name">
                         </div>
 
                              <!-- Description -->
                              <div class="mb-3">
                                 <label for="noteDescription" class="form-label">Description</label>
-                                <input type="text" class="form-control" id="noteDescription" required placeholder="Description...">
+                                <input type="text" class="form-control" id="noteDescription" name="noteDescription" required placeholder="Description...">
                             </div>
 
                         
@@ -121,6 +121,6 @@
    
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="course-notes.js"></script>
+  <script src="course-notes.js" defer></script>
 </body>
 </html>
