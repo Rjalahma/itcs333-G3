@@ -1,4 +1,7 @@
 let allGroups = [];
+let filteredGroups = [];
+let currentPage = 1;
+const itemsPerPage = 6;
 
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("studyGroupsContainer");
@@ -19,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             allGroups = groups;
-            renderGroups(allGroups);
+            applyFilters();
         })
         .catch(error => {
             loader.style.display = "none";
@@ -28,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Fetch error:", error);
         });
 
-    // Event listeners for search, filter, and sort
     document.getElementById("searchInput").addEventListener("input", applyFilters);
     document.getElementById("yearFilter").addEventListener("change", applyFilters);
     document.getElementById("locationFilter").addEventListener("change", applyFilters);
@@ -41,7 +43,7 @@ function applyFilters() {
     const locationFilter = document.getElementById("locationFilter").value;
     const sortOption = document.getElementById("sortSelect").value;
 
-    let filteredGroups = allGroups.filter(group => {
+    filteredGroups = allGroups.filter(group => {
         const matchesSearch = group.group_name.toLowerCase().includes(searchInput) ||
                               group.subject_code.toLowerCase().includes(searchInput);
         const matchesYear = !yearFilter || group.year === yearFilter;
@@ -58,18 +60,23 @@ function applyFilters() {
         filteredGroups.sort((a, b) => a.group_name.localeCompare(b.group_name));
     }
 
-    renderGroups(filteredGroups);
+    currentPage = 1;
+    renderGroups();
+    renderPagination();
 }
 
-function renderGroups(groups) {
+function renderGroups() {
     const container = document.getElementById("studyGroupsContainer");
-
-    if (groups.length === 0) {
+    if (filteredGroups.length === 0) {
         container.innerHTML = "<p>No study groups match your criteria.</p>";
         return;
     }
 
-    container.innerHTML = groups.map(group => `
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const paginatedGroups = filteredGroups.slice(start, end);
+
+    container.innerHTML = paginatedGroups.map(group => `
         <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
@@ -83,6 +90,26 @@ function renderGroups(groups) {
             </div>
         </div>
     `).join('');
+}
+
+function renderPagination() {
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = "";
+
+    const totalPages = Math.ceil(filteredGroups.length / itemsPerPage);
+    if (totalPages <= 1) return;
+
+    for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement("li");
+        li.className = "page-item" + (i === currentPage ? " active" : "");
+        li.innerHTML = `<button class="page-link">${i}</button>`;
+        li.addEventListener("click", () => {
+            currentPage = i;
+            renderGroups();
+            renderPagination();
+        });
+        pagination.appendChild(li);
+    }
 }
 
 function resetFilters() {
