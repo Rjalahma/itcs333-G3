@@ -336,12 +336,11 @@ search-container{
 
 }
 .form-control{
-    border-radius: 10px;
+     border-radius: 10px;
     border: 1px solid #80CBC4;
     box-shadow: none;
     transition: border-color 0.3s ease;
-    width: 100%;
-    max-width: 100%;
+    width: 240%;
     grid-template-columns: auto auto;
     align-self: center;
     justify-content: space-evenly;
