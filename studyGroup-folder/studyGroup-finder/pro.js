@@ -84,7 +84,8 @@ function renderGroups() {
                     <p class="card-text"><strong>Subject:</strong> ${group.subject_code}</p>
                     <p class="card-text"><strong>Year:</strong> ${group.year}</p>
                     <p class="card-text"><strong>Location:</strong> ${group.location}</p>
-                    <p class="card-text"><strong>Members:</strong> ${group.memberCount}/${group.max_members}</p>
+                    <p class="card-text"><strong>Members:</strong> ${group.members.length}/${group.max_members}</p>
+                    <p class="card-text"><strong>Comments:</strong> ${group.comments.length}</p>
                     <a href="viewgroup.html?id=${group.id}" class="btn btn-primary">View Details</a>
                 </div>
             </div>
