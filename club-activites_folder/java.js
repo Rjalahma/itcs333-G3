@@ -41,17 +41,24 @@ document.addEventListener('DOMContentLoaded', function() {
         // crat the cards of club activty from the data fetched from api 
         
         container.innerHTML = pageItems.map(activity => `
-            <div class="course-note-card card">
-                <div class="card-body">
-                    <img src="${activity.photo.url}" alt="${activity.photo.alt}" class="img">
+           <div class="course-note-card card">
+                <div class="card-body card-grid">
+                    <img src="${activity.photo.url}" alt="${activity.photo.alt}" class="img mb-3">
                     <h5 class="card-title">${activity.name}</h5>
                     <p class="card-text">${activity.briefdescription}</p>
                     <p><strong>Day:</strong> ${activity.day}</p>
                     <p><strong>Time:</strong> ${activity.time}</p>
                     <p><strong>Location:</strong> ${activity.location}</p>
-                    <input type="button" id ="more-info-button" class="btn btn-primary-cards" onclick="location.href='../item-detiles/item-detiles.html?id=${activity.id}'" value="More info"/>
+                    
+                    
                 </div>
+                <input type="button"
+                        class="btn btn-primary more-info-button w-100 align-bottom"
+                        onclick="location.href='../item-detiles/item-detiles.html?id=${activity.id}'"
+                        value="More info"/>
             </div>
+
+
         `).join('');
 
         // Update pagination
