@@ -221,11 +221,12 @@ main {
 img{
     width: 300px;
     height: 120px;
-    margin-left: 25px;
- 
-    align-content: center;
-    justify-content: center;
-    align-self:center;
+    /* margin-left: 22px; */
+    display: grid;
+    /* align-content: center!important;
+    justify-content: center; */
+    /* align-self:center !important; */
+    justify-self: center !important;
 }
 .container {
     display: grid;
