@@ -379,7 +379,7 @@ search-container{
     padding: 20px;
     border-radius: 10px;
     background-color:  #ffffff; 
-
+    justify-self:center !important;
     align-self: center;
     
 }
