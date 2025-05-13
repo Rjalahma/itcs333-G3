@@ -286,10 +286,7 @@ textarea {
     border-radius: 5px;
 }
 
-.action-buttons {
-    margin-top: 40px;
-    text-align: center;
-}
+
 
 button {
     background-color: #80CBC4;
@@ -323,13 +320,8 @@ button:hover {
     background-color: #80CBC4;
 }
 
-.back-btn {
-    background-color: #80CBC4;
-}
 
-.back-btn:hover {
-    background-color: #80CBC4;
-}
+
 
 /*news-comment*/
 .comments-section {
@@ -380,18 +372,47 @@ button:hover {
   margin-top: 20px;
 }
 
+
+
+
+
+/* تنسيق زر الرجوع وزر الحذف */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.back-btn,
+.delete-button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* زر Back */
+.back-btn {
+  background-color: #80CBC4;
+}
+
+.back-btn:hover {
+  background-color: #4DB6AC;
+}
+
+/* زر Delete */
 .delete-button {
   background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .delete-button:hover {
   background-color: #d32f2f;
 }
+
 
 
 
