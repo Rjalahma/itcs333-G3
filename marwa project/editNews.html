@@ -49,35 +49,35 @@
   </div>
 
   <script>
-  const baseUrl = "https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev";
+  const baseUrl = "https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/news_api.php";
 
   const params = new URLSearchParams(window.location.search);
   const newsId = params.get("id");
 
   document.addEventListener("DOMContentLoaded", () => {
-    const cancelButton = document.getElementById("cancel-edit");
-    cancelButton.href = newsId ? `news-details.html?id=${newsId}` : "campusNews.html";
+  
 
-    fetch(`${baseUrl}/news_api.php`)
-      .then(res => res.json())
-      .then(data => {
-        const item = data.find(n => n.id == newsId);
-        if (item) {
-          document.getElementById("news-id").value = item.id;
-          document.getElementById("title").value = item.title;
-          document.getElementById("description").value = item.description;
-          document.getElementById("category").value = item.category;
-          document.getElementById("image").value = item.image;
-          document.getElementById("content").value = item.content;
-        } else {
-          alert("News not found.");
-        }
-      })
-      .catch(err => {
-        console.error("Error fetching news:", err);
-        alert("Failed to load news data.");
-      });
+    fetch(baseUrl)
+  .then(res => res.json())
+  .then(data => {
+    const item = data.find(n => n.id == newsId);
+    if (item) {
+      document.getElementById("news-id").value = item.id;
+      document.getElementById("title").value = item.title;
+      document.getElementById("description").value = item.description;
+      document.getElementById("category").value = item.category;
+      document.getElementById("image").value = item.image;
+      document.getElementById("content").value = item.content;
+    } else {
+      alert("News not found.");
+    }
+  })
+  .catch(err => {
+    console.error("Error fetching news:", err);
+    alert("Failed to load news data.");
+  });
 
+      
     document.getElementById("edit-form").addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -96,13 +96,14 @@
       formData.append("image", image);
       formData.append("content", content);
 
-      fetch(`${baseUrl}/news_api.php`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: formData
-      })
+      fetch(baseUrl, {
+  method: "PUT",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  body: formData
+})
+
         .then(res => res.json())
         .then(data => {
           if (data.message) {
@@ -119,7 +120,7 @@
     });
   });
 </script>
-   editNews.html?id=3
+  
 
 </body>
 </html>

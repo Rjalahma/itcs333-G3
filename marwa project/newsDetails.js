@@ -1,8 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const baseUrl = "https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev";
+  const baseUrl =  "https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/news_api.php";
 
   const params = new URLSearchParams(window.location.search);
   const newsId = params.get("id");
+
+  if (!newsId || isNaN(newsId)) {
+    alert("Invalid news ID.");
+    return;
+  }
 
   // Link Edit button with correct ID
   document.querySelector(".edit-btn-link").href = `editNews.html?id=${newsId}`;
@@ -15,11 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const commentsList = document.querySelector(".comments-list");
   const commentInput = document.querySelector(".comment-input");
   const addCommentForm = document.querySelector(".add-comment-form");
-  
-
 
   // ========== Load news details ==========
-  fetch(`${baseUrl}/news_api.php`)
+  fetch(baseUrl)
     .then(res => res.json())
     .then(data => {
       const newsItem = data.find((item) => item.id == newsId);
@@ -37,13 +40,18 @@ document.addEventListener("DOMContentLoaded", () => {
       newsContentElement.textContent = "Error loading news.";
     });
 
-  // ========== Delete news ==========
+  // ========== Delete news (with protection) ==========
   deleteButton.addEventListener("click", () => {
+    if (!newsId || isNaN(newsId)) {
+      alert(" Invalid news ID. Cannot delete.");
+      return;
+    }
+
     if (confirm("Are you sure you want to delete this news?")) {
       const formData = new URLSearchParams();
       formData.append("id", newsId);
 
-      fetch(`${baseUrl}/news_api.php`, {
+      fetch(baseUrl ,{
         method: "DELETE",
         body: formData
       })
@@ -77,22 +85,25 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderComments(comments) {
     commentsList.innerHTML = "";
 
-    comments.forEach((comment) => {
-      const commentElement = document.createElement("div");
-      commentElement.classList.add("comment");
+   comments.forEach((comment) => {
+  if (!comment.id || !comment.comment) return; 
 
-      commentElement.innerHTML = `
-        <p class="comment-text">${comment.comment}</p>
-        <small>${comment.created_at ? new Date(comment.created_at).toLocaleString() : ""}</small>
-        <textarea class="edit-input" style="display:none;">${comment.comment}</textarea>
-        <div style="margin-top: 10px;">
-          <button class="edit-comment-btn" data-id="${comment.id}">Edit</button>
-          <button class="save-comment-btn" data-id="${comment.id}" style="display:none;">Save</button>
-          <button class="delete-comment-btn" data-id="${comment.id}">Delete</button>
-        </div>
-      `;
-      commentsList.appendChild(commentElement);
-    });
+  const commentElement = document.createElement("div");
+  commentElement.classList.add("comment");
+
+  commentElement.innerHTML = `
+    <p class="comment-text">${comment.comment}</p>
+    <small>${comment.created_at ? new Date(comment.created_at).toLocaleString() : ""}</small>
+    <textarea class="edit-input" style="display:none;">${comment.comment}</textarea>
+    <div style="margin-top: 10px;">
+      <button class="edit-comment-btn" data-id="${comment.id}">Edit</button>
+      <button class="save-comment-btn" data-id="${comment.id}" style="display:none;">Save</button>
+      <button class="delete-comment-btn" data-id="${comment.id}">Delete</button>
+    </div>
+  `;
+  commentsList.appendChild(commentElement);
+});
+
 
     // ====== Edit Comment Logic ======
     document.querySelectorAll(".edit-comment-btn").forEach(button => {
@@ -109,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    // ====== Save Edited Comment Logic ======
     document.querySelectorAll(".save-comment-btn").forEach(button => {
       button.addEventListener("click", (e) => {
         const commentId = e.target.dataset.id;
@@ -132,25 +144,31 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           body: formData
         })
-        .then(res => res.json())
-        .then(data => {
-          if (data.message) {
-            fetchComments(); // Reload
-          } else {
-            alert("Failed to update comment.");
-          }
-        })
-        .catch(err => {
-          console.error("Error updating comment:", err);
-          alert("An error occurred while updating the comment.");
-        });
+          .then(res => res.json())
+          .then(data => {
+            if (data.message) {
+              fetchComments(); // Reload
+            } else {
+              alert("Failed to update comment.");
+            }
+          })
+          .catch(err => {
+            console.error("Error updating comment:", err);
+            alert("An error occurred while updating the comment.");
+          });
       });
     });
 
-    // ====== Delete Comment Logic ======
+    // ====== Delete Comment Logic (with protection) ======
     document.querySelectorAll(".delete-comment-btn").forEach(button => {
       button.addEventListener("click", (e) => {
         const commentId = e.target.dataset.id;
+
+       if (!commentId || commentId === "undefined" || isNaN(commentId)) {
+      alert("Invalid comment ID. Cannot delete.");
+      return;
+    }
+
         if (confirm("Are you sure you want to delete this comment?")) {
           fetch(`${baseUrl}/comments_api.php`, {
             method: "DELETE",
