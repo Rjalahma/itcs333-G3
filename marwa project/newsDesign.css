@@ -38,7 +38,6 @@ body {
 
 
 
-
 header h1 {
     font-size: 2.5rem;
     font-weight: 600;
@@ -47,7 +46,6 @@ header h1 {
 main {
     padding-top: 40px;
 }
-
 
 .add-item {
     background-color: #80CBC4;
@@ -158,7 +156,6 @@ main {
 
 /*addNews.html*/    
 
-
 .form-container {
     width: 50%;
     margin: 50px auto;
@@ -173,7 +170,6 @@ main {
    border-style: dotted;
     
 }
-
 
 
 .item-form {
@@ -227,13 +223,11 @@ textarea {
 
 /*newsInfo-html*/
 
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 
 
 .container {
@@ -244,7 +238,6 @@ textarea {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-
 
 
 .news-details .news-title {
@@ -286,10 +279,6 @@ textarea {
     border-radius: 5px;
 }
 
-.action-buttons {
-    margin-top: 40px;
-    text-align: center;
-}
 
 button {
     background-color: #80CBC4;
@@ -323,12 +312,98 @@ button:hover {
     background-color: #80CBC4;
 }
 
+
+
+/*news-comment*/
+.comments-section {
+  margin-top: 20px;
+  padding: 15px;
+  border-top: 1px solid #ccc;
+}
+
+.comments-list {
+  margin-bottom: 15px;
+}
+
+.comment {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.add-comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-input {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-comment-form button {
+  background-color: #80cbc4;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-comment-form button:hover {
+  background-color: #4cae9c;
+}
+
+.news-actions {
+  margin-top: 20px;
+}
+
+
+
+
+/* تنسيق زر الرجوع وزر الحذف */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.back-btn,
+.delete-button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* زر Back */
 .back-btn {
-    background-color: #80CBC4;
+  background-color: #80CBC4;
 }
 
 .back-btn:hover {
-    background-color: #80CBC4;
+  background-color: #4DB6AC;
+}
+
+/* زر Delete */
+.delete-button {
+  background-color: #f44336;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
 }
 
 
+.edit-btn:hover {
+  background-color: #2e9b8e;
+}
