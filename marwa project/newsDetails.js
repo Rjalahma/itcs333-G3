@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const newsId = params.get("id");
 
+  // Link Edit button with correct ID
+  document.querySelector(".edit-btn-link").href = `editNews.html?id=${newsId}`;
+
   const newsTitleElement = document.querySelector(".news-title");
   const newsContentElement = document.querySelector(".news-text");
   const newsImageElement = document.querySelector(".news-image");
@@ -12,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const commentsList = document.querySelector(".comments-list");
   const commentInput = document.querySelector(".comment-input");
   const addCommentForm = document.querySelector(".add-comment-form");
+  
+
 
   // ========== Load news details ==========
   fetch(`${baseUrl}/news_api.php`)
@@ -70,53 +75,106 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderComments(comments) {
-  commentsList.innerHTML = "";
+    commentsList.innerHTML = "";
 
-  if (!comments || comments.length === 0) {
-    commentsList.innerHTML = "<p>No comments yet.</p>";
-    return;
-  }
+    comments.forEach((comment) => {
+      const commentElement = document.createElement("div");
+      commentElement.classList.add("comment");
 
-  comments.forEach((comment) => {
-    const commentElement = document.createElement("div");
-    commentElement.classList.add("comment");
-    commentElement.innerHTML = `
-      <p>${comment.comment}</p>
-      <small>${comment.created_at ? new Date(comment.created_at).toLocaleString() : ""}</small>
-      <button class="delete-comment-btn" data-id="${comment.id}">Delete</button>
-    `;
-    commentsList.appendChild(commentElement);
-  });
+      commentElement.innerHTML = `
+        <p class="comment-text">${comment.comment}</p>
+        <small>${comment.created_at ? new Date(comment.created_at).toLocaleString() : ""}</small>
+        <textarea class="edit-input" style="display:none;">${comment.comment}</textarea>
+        <div style="margin-top: 10px;">
+          <button class="edit-comment-btn" data-id="${comment.id}">Edit</button>
+          <button class="save-comment-btn" data-id="${comment.id}" style="display:none;">Save</button>
+          <button class="delete-comment-btn" data-id="${comment.id}">Delete</button>
+        </div>
+      `;
+      commentsList.appendChild(commentElement);
+    });
 
-  // Add event listeners for delete buttons
-  document.querySelectorAll(".delete-comment-btn").forEach(button => {
-    button.addEventListener("click", (e) => {
-      const commentId = e.target.dataset.id;
-      if (confirm("Are you sure you want to delete this comment?")) {
+    // ====== Edit Comment Logic ======
+    document.querySelectorAll(".edit-comment-btn").forEach(button => {
+      button.addEventListener("click", (e) => {
+        const commentDiv = e.target.closest(".comment");
+        const textarea = commentDiv.querySelector(".edit-input");
+        const textP = commentDiv.querySelector(".comment-text");
+        const saveBtn = commentDiv.querySelector(".save-comment-btn");
+
+        textarea.style.display = "block";
+        textP.style.display = "none";
+        e.target.style.display = "none";
+        saveBtn.style.display = "inline-block";
+      });
+    });
+
+    document.querySelectorAll(".save-comment-btn").forEach(button => {
+      button.addEventListener("click", (e) => {
+        const commentId = e.target.dataset.id;
+        const commentDiv = e.target.closest(".comment");
+        const textarea = commentDiv.querySelector(".edit-input");
+        const newComment = textarea.value.trim();
+
+        if (!newComment) {
+          alert("Comment cannot be empty.");
+          return;
+        }
+
+        const formData = new URLSearchParams();
+        formData.append("id", commentId);
+        formData.append("comment", newComment);
+
         fetch(`${baseUrl}/comments_api.php`, {
-          method: "DELETE",
+          method: "PUT",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
           },
-          body: `id=${commentId}`
+          body: formData
         })
-          .then(res => res.json())
-          .then(data => {
-            if (data.message) {
-              fetchComments(); // Reload after delete
-            } else {
-              alert("Failed to delete comment.");
-            }
-          })
-          .catch(err => {
-            console.error("Error deleting comment:", err);
-            alert("Error deleting comment.");
-          });
-      }
+        .then(res => res.json())
+        .then(data => {
+          if (data.message) {
+            fetchComments(); // Reload
+          } else {
+            alert("Failed to update comment.");
+          }
+        })
+        .catch(err => {
+          console.error("Error updating comment:", err);
+          alert("An error occurred while updating the comment.");
+        });
+      });
     });
-  });
-}
 
+    // ====== Delete Comment Logic ======
+    document.querySelectorAll(".delete-comment-btn").forEach(button => {
+      button.addEventListener("click", (e) => {
+        const commentId = e.target.dataset.id;
+        if (confirm("Are you sure you want to delete this comment?")) {
+          fetch(`${baseUrl}/comments_api.php`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `id=${commentId}`
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.message) {
+                fetchComments(); // Reload after delete
+              } else {
+                alert("Failed to delete comment.");
+              }
+            })
+            .catch(err => {
+              console.error("Error deleting comment:", err);
+              alert("Error deleting comment.");
+            });
+        }
+      });
+    });
+  }
 
   // ========== Submit new comment ==========
   addCommentForm.addEventListener("submit", (e) => {

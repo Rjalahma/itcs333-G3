@@ -81,6 +81,30 @@ page="${i}">${i}</button>
         setupPagination(allNews); 
       } 
     }); 
+    document.querySelector(".search-bar").addEventListener("input", (e) => {
+  const searchTerm = e.target.value.toLowerCase();
+  const filtered = allNews.filter(item => 
+    item.title.toLowerCase().includes(searchTerm) || 
+    item.description.toLowerCase().includes(searchTerm)
+  );
+  currentPage = 1;
+  renderNews(filtered);
+  setupPagination(filtered);
+});
+
+document.querySelector(".sort").addEventListener("change", (e) => {
+  const selected = e.target.value;
+  if (selected === "Filter by category") {
+    renderNews(allNews);
+    setupPagination(allNews);
+    return;
+  }
+  const filtered = allNews.filter(item => item.category === selected);
+  currentPage = 1;
+  renderNews(filtered);
+  setupPagination(filtered);
+});
+
  
     document.querySelectorAll(".page-number").forEach((button) => { 
       button.addEventListener("click", () => { 

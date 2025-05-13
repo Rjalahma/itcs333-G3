@@ -74,16 +74,34 @@
 </body>
 <script>
     document.querySelector(".item-form").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const title = document.getElementById("title").value.trim();
-      const description = document.getElementById("description").value.trim();
-  
-      if (title === "" || description === "") {
-        alert("Please fill out all required fields.");
-      } else {
-        alert("Article submitted successfully (not really submitted - just validated).");
-      }
-    });
+  e.preventDefault();
+
+  const title = document.getElementById("title").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const category = "General News"; // أو خل المستخدم يختار التصنيف
+  const content = "Dummy content"; // ضيف مدخل له إذا تبي
+
+  if (title === "" || description === "") {
+    alert("Please fill in all required fields." );
+    return;
+  }
+
+  fetch("https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/news_api.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title, description, category, content })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert("News article added successfully.");
+    window.location.href = "campusNews.html";
+  })
+  .catch(err => {
+    alert("Failed to sent");
+    console.error(err);
+  });
+});
+
   </script>
   
 </html>
