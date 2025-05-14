@@ -1,7 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   
-    const apiUrl = 'https://85a9004b-6f70-4270-987e-d532d17c45e5-00-jmf0e13pp2ab.pike.replit.dev/club-cars.php';
+    const apiUrl = 'https://85a9004b-6f70-4270-987e-d532d17c45e5-00-jmf0e13pp2ab.pike.replit.dev/main-clubs.php';
     let allActivities = [];
     let currentPage = 1;
     const itemsPerPage = 6;
