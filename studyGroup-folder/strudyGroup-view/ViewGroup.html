@@ -134,7 +134,7 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="pro.js"></script>
+    <script src="../studyGroup-finder/pro.js"></script>
     <script>
         // Get group data from sessionStorage
         const groupData = JSON.parse(sessionStorage.getItem('selectedGroup'));
@@ -159,11 +159,13 @@
 
             // Render comments
             const commentsContainer = document.getElementById('commentsContainer');
+            
+            console.log('group',groupData.comments);
             commentsContainer.innerHTML = groupData.comments.map(comment => `
                 <p class="comment-card p">
-                    <strong>${comment.userName}:</strong> ${comment.message}
+                    <strong>${comment.user_name}:</strong> ${comment.message}
                     <small class="text-muted d-block">
-                        ${new Date(comment.postedAt).toLocaleString()}
+                        ${new Date(comment.posted_at).toLocaleString()}
                     </small>
                 </p>
             `).join('');
@@ -218,35 +220,51 @@
             }
         }
 
-        const urlparams=new URLSearchParams(Window.location.search)   ;
+        const urlparams=new URLSearchParams(window.location.search)   ;
         const GID= urlparams.get('id')    ;
+        console.log('thissssss',GID);
         // Delete group function
         async function deleteGroup() {
+
             if (!confirm('Are you sure you want to delete this group? This action cannot be undone.')) {
                 return;
+            }      
             
-            }
-            fetch('https://fe7f78c8-bce5-4b71-9f56-2ddec2b47708-00-336krq9l1nzci.sisko.replit.dev/deleteGroup.php'), {
+               
+        const response = await fetch('https://add62c0c-c8b3-495c-a225-79ebd85c094b-00-2h8t6ky89z6bv.pike.replit.dev/deleteGroup.php', {
             method: 'DELETE',
             headers: {
-                // 'Content-Type': 'application/json'
+                'Content-Type': 'application/json' // Make sure this matches your PHP parser
             },
-            body: JSON.stringify({id:GID})
-            }
-            .then(res => res.json())
-            .then(data => console.log(data));
+            body: JSON.stringify({ id: GID })
+        });
+        console.log(response);
+        const data = await response.json();
 
-    
+        if (!response.ok) {
+            throw new Error(data.error || 'Failed to delete group');
+        }
+
+        console.log('Success:', data);
+        // You can also update the UI or notify the user here
+
+     
+        alert('item deleted succesfuly')
+
+        window.location.replace('../studyGroup-finder/pro.html'); 
+}
+
+          
+
 
                 // Redirect to the study group finder page after successful deletion
-                alert('item deleted succesfuly')
-                window.location.replace =('../studyGroup-finder/pro.html'); 
+              
             // } catch (error) {
             //     console.error('Error deleting group:', error);
             //     document.getElementById('errorMessage').textContent = 'Failed to delete group';
             //     document.getElementById('errorMessage').style.display = 'block';
             // }
-        }
+
         
     </script>
 </body>

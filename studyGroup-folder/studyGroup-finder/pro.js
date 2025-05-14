@@ -1,5 +1,5 @@
 // Constants
-const API_URL = 'https://fe7f78c8-bce5-4b71-9f56-2ddec2b47708-00-336krq9l1nzci.sisko.replit.dev/main.php';
+const API_URL = 'https://add62c0c-c8b3-495c-a225-79ebd85c094b-00-2h8t6ky89z6bv.pike.replit.dev/main.php';
 const ITEMS_PER_PAGE = 6;
 
 // State management
@@ -195,7 +195,7 @@ function renderStudyGroups() {
     if (paginationElement) {
         paginationElement.style.display = 'flex';
     }
-    
+    console.log('groippp id ',studyGroups);
     container.innerHTML = `
         <div class="container_group mt-4">
             <div class="row">
@@ -470,15 +470,32 @@ function clearFormErrors() {
 
 // View Details Function
 function viewGroupDetails(groupId) {
-    // Find the group by its unique ID (use 'id' instead of 'createdAt')
-    const group = studyGroups.find(g => g.id === groupId);
-    if (!group) return;
+    console.log('beforeeeeeeee',groupId)
 
+    let  group = studyGroups.find(g => g.id.stringify == groupId.stringify);
+    for(let i=0;i<studyGroups.length;i++){
+        if (studyGroups[i].id==parseInt(groupId)){
+                group=studyGroups[i];
+        }
+    }
+    console.log('stydy group ', studyGroups);
+    console.log('44444e',groupId);
+    console.log('group',group );
+    if (!group){return;}
+    try{if (group) console.log('group') }catch(error) {
+        showError('Failed to fetch study groups');
+        console.error('Error:', error);}
+    console.log('b55e',groupId)
     // Store group data in sessionStorage for the details page
+
     sessionStorage.setItem('selectedGroup', JSON.stringify(group));
+
+    console.log('6',groupId)
+
     
     // Redirect to view page
     window.location.href = `../strudyGroup-view/ViewGroup.html?id=${(groupId)}`;
+    console.log('1000e',groupId)
 }
 
 // Initialize on page load
