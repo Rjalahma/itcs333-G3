@@ -7,120 +7,119 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="newsDesign.css">
   <style>
-  .btn-success:hover {
-    background-color: #80CBC4 !important;
-    border-color: #80CBC4 !important;
-    color: white !important;
-  }
-
-  .btn-outline-secondary:hover {
-    background-color: #6c757d !important;
-    border-color: #6c757d !important;
-    color: white !important;
-  }
-</style>
-
+    .btn-success:hover {
+      background-color: #80CBC4 !important;
+      border-color: #80CBC4 !important;
+      color: white !important;
+    }
+    .btn-outline-secondary:hover {
+      background-color: #6c757d !important;
+      border-color: #6c757d !important;
+      color: white !important;
+    }
+  </style>
 </head>
 <body>
   <div class="container mt-5">
     <h2>Edit News Article</h2>
     <form id="edit-form">
       <input type="hidden" id="news-id">
+
       <label>Title:</label>
       <input type="text" id="title" class="form-control" required />
+
       <label>Description:</label>
       <textarea id="description" class="form-control" required></textarea>
+
       <label>Category:</label>
       <input type="text" id="category" class="form-control" required />
+
       <label>Image URL:</label>
       <input type="text" id="image" class="form-control" />
+
       <label>Content:</label>
       <textarea id="content" class="form-control"></textarea>
+
       <div class="form-buttons mt-3" style="display: flex; gap: 10px;">
-  <button type="submit" class="btn btn-success">Update</button>
-  <button type="button" class="btn btn-outline-secondary" onclick="window.location.href = newsId ? `news-details.html?id=${newsId}` : 'campusNews.html';">
-    Cancel
-  </button>
-</div>
-
-</div>
-
+        <button type="submit" class="btn btn-success">Update</button>
+        <button type="button" class="btn btn-outline-secondary" id="cancel-edit">Cancel</button>
+      </div>
     </form>
   </div>
 
   <script>
-  const baseUrl = "https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/news_api.php";
+    const baseUrl = "https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/news_api.php";
+    const params = new URLSearchParams(window.location.search);
+    const newsId = params.get("id");
 
-  const params = new URLSearchParams(window.location.search);
-  const newsId = params.get("id");
-
-  document.addEventListener("DOMContentLoaded", () => {
-  
-
-    fetch(baseUrl)
-  .then(res => res.json())
-  .then(data => {
-    const item = data.find(n => n.id == newsId);
-    if (item) {
-      document.getElementById("news-id").value = item.id;
-      document.getElementById("title").value = item.title;
-      document.getElementById("description").value = item.description;
-      document.getElementById("category").value = item.category;
-      document.getElementById("image").value = item.image;
-      document.getElementById("content").value = item.content;
-    } else {
-      alert("News not found.");
-    }
-  })
-  .catch(err => {
-    console.error("Error fetching news:", err);
-    alert("Failed to load news data.");
-  });
-
-      
-    document.getElementById("edit-form").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const id = document.getElementById("news-id").value;
-      const title = document.getElementById("title").value.trim();
-      const description = document.getElementById("description").value.trim();
-      const category = document.getElementById("category").value.trim();
-      const image = document.getElementById("image").value.trim();
-      const content = document.getElementById("content").value.trim();
-
-      const formData = new URLSearchParams();
-      formData.append("id", id);
-      formData.append("title", title);
-      formData.append("category", category);
-      formData.append("description", description);
-      formData.append("image", image);
-      formData.append("content", content);
-
-      fetch(baseUrl, {
-  method: "PUT",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded"
-  },
-  body: formData
-})
-
+    document.addEventListener("DOMContentLoaded", () => {
+      // Fetch news item data and fill the form
+      fetch(baseUrl)
         .then(res => res.json())
         .then(data => {
-          if (data.message) {
-            alert("News updated successfully.");
-            window.location.href = "campusNews.html";
+          const item = data.find(n => n.id == newsId);
+          if (item) {
+            document.getElementById("news-id").value = item.id;
+            document.getElementById("title").value = item.title;
+            document.getElementById("description").value = item.description;
+            document.getElementById("category").value = item.category;
+            document.getElementById("image").value = item.image;
+            document.getElementById("content").value = item.content;
           } else {
-            alert("Update failed.");
+            alert("News not found.");
           }
         })
         .catch(err => {
-          console.error("Error updating news:", err);
-          alert("An error occurred while updating.");
+          console.error("Error fetching news:", err);
+          alert("Failed to load news data.");
         });
-    });
-  });
-</script>
-  
 
+      // Handle form submission to update news
+      document.getElementById("edit-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const id = document.getElementById("news-id").value;
+        const title = document.getElementById("title").value.trim();
+        const description = document.getElementById("description").value.trim();
+        const category = document.getElementById("category").value.trim();
+        const image = document.getElementById("image").value.trim();
+        const content = document.getElementById("content").value.trim();
+
+        const formData = new URLSearchParams();
+        formData.append("id", id);
+        formData.append("title", title);
+        formData.append("category", category);
+        formData.append("description", description);
+        formData.append("image", image);
+        formData.append("content", content);
+
+        fetch(baseUrl, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: formData
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.message) {
+              alert("News updated successfully.");
+              window.location.href = "campusNews.html";
+            } else {
+              alert("Update failed.");
+            }
+          })
+          .catch(err => {
+            console.error("Error updating news:", err);
+            alert("An error occurred while updating.");
+          });
+      });
+
+      // Handle cancel button
+      document.getElementById("cancel-edit").addEventListener("click", () => {
+        window.location.href = newsId ? `news-details.html?id=${newsId}` : "campusNews.html";
+      });
+    });
+  </script>
 </body>
 </html>

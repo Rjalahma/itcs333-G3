@@ -20,6 +20,7 @@ console.log("contact", contact);
 const email = document.getElementById('userEmail').value;
 
 const photo_url = document.getElementById('Club Photo url').value;
+console.log("photo", photo_url);
 const photo_alt = document.getElementById('Club Photo alt').value;
 console.log("photo", photo_url);
 console.log("email", email);
@@ -30,11 +31,7 @@ console.log("briefdescription", briefdescription);
 const day = document.getElementById('day_club').value;
 console.log("day", day);
     async function validateForm() {
-        // Check if the photo URL is valid
-        // function isValidImageUrl(url) {
-        //     const pattern = /^https?:\/\/.+\.(jpg|jpeg|png|gif|bmp|webp)$/i;
-        //     return pattern.test(url);
-        // }
+        
         // chack if any field is empty
     if (!name || !type || !day || !time || !locationn || !contact || !email || !briefdescription  || !photo_url || !photo_alt) {
         alert('Please fill in all the  fields.');
@@ -68,10 +65,10 @@ console.log("day", day);
         return false;
     }
     // chack if the photo is uploaded or not
-    // if (!photo_url || !isValidImageUrl(photo_url)) {
-    //     alert('Please enter a valid image URL.');
-    //     return false;
-    // }
+   if (!photo_url.match(/^https:\/\/.+/) ) {
+    alert('Please enter a valid image URL.');
+    return false;
+}
     if (!photo_alt.match(/^[a-zA-Z\s]+$/)) {
         alert('Photo alt can only contain letters and spaces.');
         return false;
@@ -109,10 +106,15 @@ console.log("day", day);
           })
           .then(res => res.json())
           .then(data => alert( "Club added successfully!"))
-          .catch(err => console.error("Error adding comment:", err));}
+          .catch(err => console.error("Error adding comment:", err));
+          
+
+        }
             catch (error) {
                 console.error('Error:', error);
             }
+        alert("Club added successfully!");
+        window.location.replace("../Club_Activities/Club_Activities.html");
     }
 }
 // Call the validateForm function 

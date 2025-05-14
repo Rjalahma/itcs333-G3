@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const baseUrl =  "https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/news_api.php";
+  const baseUrl = "https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/comments_api.php";
+  const newsApiUrl = "https://3c7369f4-95ff-4637-90ec-7df90d80a290-00-1dizmtza3ollh.pike.replit.dev/news_api.php";
 
   const params = new URLSearchParams(window.location.search);
   const newsId = params.get("id");
@@ -9,23 +10,22 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Link Edit button with correct ID
+  // Link Edit button to edit page
   document.querySelector(".edit-btn-link").href = `editNews.html?id=${newsId}`;
 
   const newsTitleElement = document.querySelector(".news-title");
   const newsContentElement = document.querySelector(".news-text");
   const newsImageElement = document.querySelector(".news-image");
   const deleteButton = document.getElementById("delete-news");
-
   const commentsList = document.querySelector(".comments-list");
   const commentInput = document.querySelector(".comment-input");
   const addCommentForm = document.querySelector(".add-comment-form");
 
-  // ========== Load news details ==========
-  fetch(baseUrl)
+  // Load news details
+  fetch(newsApiUrl)
     .then(res => res.json())
     .then(data => {
-      const newsItem = data.find((item) => item.id == newsId);
+      const newsItem = data.find(item => item.id == newsId);
       if (newsItem) {
         newsTitleElement.textContent = newsItem.title;
         newsContentElement.innerHTML = `<p>${newsItem.content}</p>`;
@@ -40,10 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
       newsContentElement.textContent = "Error loading news.";
     });
 
-  // ========== Delete news (with protection) ==========
+  // Delete news 
   deleteButton.addEventListener("click", () => {
     if (!newsId || isNaN(newsId)) {
-      alert(" Invalid news ID. Cannot delete.");
+      alert("Invalid news ID. Cannot delete.");
       return;
     }
 
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const formData = new URLSearchParams();
       formData.append("id", newsId);
 
-      fetch(baseUrl ,{
+      fetch(newsApiUrl, {
         method: "DELETE",
         body: formData
       })
@@ -71,9 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ========== Load comments ==========
+  // Load comments 
   function fetchComments() {
-    fetch(`${baseUrl}/comments_api.php?news_id=${newsId}`)
+    fetch(`${baseUrl}?news_id=${newsId}`)
       .then(res => res.json())
       .then(data => renderComments(data))
       .catch(err => {
@@ -82,31 +82,31 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
+  //  Render comments 
   function renderComments(comments) {
     commentsList.innerHTML = "";
 
-   comments.forEach((comment) => {
-  if (!comment.id || !comment.comment) return; 
+    comments.forEach(comment => {
+      if (!comment.id || !comment.comment) return;
 
-  const commentElement = document.createElement("div");
-  commentElement.classList.add("comment");
+      const commentElement = document.createElement("div");
+      commentElement.classList.add("comment");
+      commentElement.innerHTML = `
+        <p class="comment-text">${comment.comment}</p>
+        <small>${comment.created_at ? new Date(comment.created_at).toLocaleString() : ""}</small>
+        <textarea class="edit-input" style="display:none;">${comment.comment}</textarea>
+        <div style="margin-top: 10px;">
+          <button class="edit-comment-btn" data-id="${comment.id}">Edit</button>
+          <button class="save-comment-btn" data-id="${comment.id}" style="display:none;">Save</button>
+          <button class="delete-comment-btn" data-id="${comment.id}">Delete</button>
+        </div>
+      `;
+      commentsList.appendChild(commentElement);
+    });
 
-  commentElement.innerHTML = `
-    <p class="comment-text">${comment.comment}</p>
-    <small>${comment.created_at ? new Date(comment.created_at).toLocaleString() : ""}</small>
-    <textarea class="edit-input" style="display:none;">${comment.comment}</textarea>
-    <div style="margin-top: 10px;">
-      <button class="edit-comment-btn" data-id="${comment.id}">Edit</button>
-      <button class="save-comment-btn" data-id="${comment.id}" style="display:none;">Save</button>
-      <button class="delete-comment-btn" data-id="${comment.id}">Delete</button>
-    </div>
-  `;
-  commentsList.appendChild(commentElement);
-});
-
-    // ====== Edit Comment Logic ======
+    // Edit comment
     document.querySelectorAll(".edit-comment-btn").forEach(button => {
-      button.addEventListener("click", (e) => {
+      button.addEventListener("click", e => {
         const commentDiv = e.target.closest(".comment");
         const textarea = commentDiv.querySelector(".edit-input");
         const textP = commentDiv.querySelector(".comment-text");
@@ -119,9 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // ====== Save Edited Comment Logic ======
+    // Save edited comment
     document.querySelectorAll(".save-comment-btn").forEach(button => {
-      button.addEventListener("click", (e) => {
+      button.addEventListener("click", e => {
         const commentId = e.target.dataset.id;
         const commentDiv = e.target.closest(".comment");
         const textarea = commentDiv.querySelector(".edit-input");
@@ -137,17 +137,16 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("comment", newComment);
 
         fetch(baseUrl, {
-  method: "PUT",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded"
-  },
-  body: formData
-})
-
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: formData
+        })
           .then(res => res.json())
           .then(data => {
             if (data.message) {
-              fetchComments(); // Reload
+              fetchComments();
             } else {
               alert("Failed to update comment.");
             }
@@ -159,29 +158,28 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // ====== Delete Comment Logic (with protection) ======
+    // Delete comment
     document.querySelectorAll(".delete-comment-btn").forEach(button => {
-      button.addEventListener("click", (e) => {
+      button.addEventListener("click", e => {
         const commentId = e.target.dataset.id;
 
-       if (!commentId || commentId === "undefined" || isNaN(commentId)) {
-      alert("Invalid comment ID. Cannot delete.");
-      return;
-    }
+        if (!commentId || commentId === "undefined" || isNaN(commentId)) {
+          alert("Invalid comment ID. Cannot delete.");
+          return;
+        }
 
         if (confirm("Are you sure you want to delete this comment?")) {
-         fetch(baseUrl, {
-  method: "DELETE",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded"
-  },
-  body: `id=${commentId}`
-})
-
+          fetch(baseUrl, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `id=${commentId}`
+          })
             .then(res => res.json())
             .then(data => {
               if (data.message) {
-                fetchComments(); // Reload after delete
+                fetchComments();
               } else {
                 alert("Failed to delete comment.");
               }
@@ -195,38 +193,38 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ========== Submit new comment ==========
-  addCommentForm.addEventListener("submit", (e) => {
+  // Submit new comment 
+  addCommentForm.addEventListener("submit", e => {
     e.preventDefault();
     const newComment = commentInput.value.trim();
 
     if (newComment) {
-     fetch(baseUrl, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    news_id: newsId,
-    comment: newComment,
-  }),
-})
-
+      fetch(baseUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          news_id: newsId,
+          comment: newComment
+        })
+      })
         .then(res => res.json())
-        .then((data) => {
+        .then(data => {
           if (data.message) {
             commentInput.value = "";
-            fetchComments(); // Reload comments after adding
+            fetchComments();
           } else {
             alert("Failed to add comment: " + (data.error || "Unknown error"));
           }
         })
-        .catch((err) => {
+        .catch(err => {
           console.error("Error adding comment:", err);
           alert("Submission failed.");
         });
     }
   });
 
-  fetchComments(); // Initial comment load
+  // Initial load
+  fetchComments();
 });

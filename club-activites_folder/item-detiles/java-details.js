@@ -133,6 +133,8 @@ async function itemDetailes() {
                 })
                 .then(data => console.log("Delete successful:", data))
                 .catch(error => console.error("Delete failed:", error));
+                alert("Item deleted successfully!");
+                window.location.replace("../Club_Activities/Club_Activities.html");
             }
 
         });
@@ -152,16 +154,28 @@ async function itemDetailes() {
 
             const commentText = document.getElementsByTagName('textarea')[0].value;
             const rating = document.getElementById('com-rating').value;
-            // cheack if comment is not empty and if it contains only letters and spaces
-            if (!commentText.match(/^[a-zA-Z\s]+$/) || commentText.length==0) {
+            if (!commentText || !rating){
+                alert('Please enter a comment and a rating out of 5.');
+                return false;
+            }
+            if(!commentText.match(/^[a-zA-Z\s]+$/)){
                 alert('Comment can only contain letters and spaces.');
-                return;
+                return false;
             }
-            // cheack if rating is not empty 
-            if (!rating) {
-                alert('Please enter a rating out of 5.');
-                return;
+            if (!rating.match(/^[1-5]$/)){
+                alert('Rating can only contain numbers from 1 to 5.');
+                return false;
             }
+            // // cheack if comment is not empty and if it contains only letters and spaces
+            // if (!commentText.match(/^[a-zA-Z\s]+$/) || commentText.length==0) {
+            //     alert('Comment can only contain letters and spaces.');
+            //     return;
+            // }
+            // // cheack if rating is not empty 
+            // if (!rating) {
+            //     alert('Please enter a rating out of 5.');
+            //     return;
+            // }
             
             // fetch api to add the comment by sending the comment and rating along with the id of the item to the server
             fetch('https://85a9004b-6f70-4270-987e-d532d17c45e5-00-jmf0e13pp2ab.pike.replit.dev/add-com.php', {
@@ -191,8 +205,8 @@ async function itemDetailes() {
             
             .then(data => console.log("Delete successful:", data))
             .catch(error => console.error("Delete failed:", error));
-            
-            
+            alert("Comment added successfully!");
+            window.location.replace("../Club_Activities/Club_Activities.html");
            
            
         });
