@@ -133,7 +133,7 @@ async function itemDetailes() {
                 })
                 .then(data => console.log("Delete successful:", data))
                 .catch(error => console.error("Delete failed:", error));
-                 alert("Club added successfully!");
+                alert("Item deleted successfully!");
                 window.location.replace("../Club_Activities/Club_Activities.html");
             }
 
