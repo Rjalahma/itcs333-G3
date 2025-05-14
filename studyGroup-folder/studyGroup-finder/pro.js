@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loader.style.display = "block";
 
-    fetch("get_groups.php")
+    fetch("https://fe7f78c8-bce5-4b71-9f56-2ddec2b47708-00-336krq9l1nzci.sisko.replit.dev/groups.php")
         .then(response => response.json())
         .then(groups => {
             loader.style.display = "none";
