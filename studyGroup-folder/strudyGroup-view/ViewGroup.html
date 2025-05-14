@@ -141,6 +141,7 @@
         
         if (groupData) {
             // Populate group details
+    
             document.getElementById('groupName').textContent = groupData.groupName;
             document.getElementById('description').textContent = groupData.description;
             document.getElementById('subjectCode').textContent = groupData.subjectCode;
@@ -217,29 +218,36 @@
             }
         }
 
+        const urlparams=new URLSearchParams(Window.location.search)   ;
+        const GID= urlparams.get('id')    ;
         // Delete group function
         async function deleteGroup() {
             if (!confirm('Are you sure you want to delete this group? This action cannot be undone.')) {
                 return;
+            
             }
+            fetch('https://fe7f78c8-bce5-4b71-9f56-2ddec2b47708-00-336krq9l1nzci.sisko.replit.dev/deleteGroup.php'), {
+            method: 'DELETE',
+            headers: {
+                // 'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id:GID})
+            }
+            .then(res => res.json())
+            .then(data => console.log(data));
 
-            try {
-                const response = await fetch(`https://680bd98c2ea307e081d28408.mockapi.io/studyGroups/${groupData.id}`, {
-                    method: 'DELETE',
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to delete group');
-                }
+    
 
                 // Redirect to the study group finder page after successful deletion
-                window.location.href = '../studyGroup-finder/pro.html';
-            } catch (error) {
-                console.error('Error deleting group:', error);
-                document.getElementById('errorMessage').textContent = 'Failed to delete group';
-                document.getElementById('errorMessage').style.display = 'block';
-            }
+                alert('item deleted succesfuly')
+                window.location.replace =('../studyGroup-finder/pro.html'); 
+            // } catch (error) {
+            //     console.error('Error deleting group:', error);
+            //     document.getElementById('errorMessage').textContent = 'Failed to delete group';
+            //     document.getElementById('errorMessage').style.display = 'block';
+            // }
         }
+        
     </script>
 </body>
 <!-- //TEST -->
