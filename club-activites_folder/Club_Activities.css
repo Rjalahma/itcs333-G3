@@ -161,8 +161,7 @@ main {
     
 }
 /* Form Input Styling */
-.form-select,
-.form-control {
+.form-select {
     width: 100%;
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -344,6 +343,10 @@ search-container{
     grid-template-columns: auto auto;
     align-self: center;
     justify-content: space-evenly;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: none;
+    transition: border-color 0.3s ease;
 }
 .previous{
     background-color: #80CBC4;
