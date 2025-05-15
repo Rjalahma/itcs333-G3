@@ -1,5 +1,7 @@
 // Constants
 const API_URL = 'https://add62c0c-c8b3-495c-a225-79ebd85c094b-00-2h8t6ky89z6bv.pike.replit.dev/main.php';
+const POST_API_URL = 'https://add62c0c-c8b3-495c-a225-79ebd85c094b-00-2h8t6ky89z6bv.pike.replit.dev/createGroup.php';   
+
 const ITEMS_PER_PAGE = 6;
 
 // State management
@@ -298,6 +300,7 @@ async function joinGroup(groupId) {
 // Form Validation
 function handleFormSubmit(event) {
     event.preventDefault();
+    
     const form = event.target;
     const formData = new FormData(form);
     
@@ -373,16 +376,17 @@ async function createStudyGroup(formData) {
             creatorEmail: 'current.user@example.com', // In a real app, this would come from user session
             members: [],
             comments: [],
-            createdAt: new Date().toISOString()
+            // createdAt: new Date().toISOString()
         };
 
-        const response = await fetch(API_URL, {
+        const response = await fetch(POST_API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(newGroup)
         });
+        console.log(response);
 
         if (!response.ok) {
             throw new Error('Failed to create study group');
@@ -478,9 +482,6 @@ function viewGroupDetails(groupId) {
                 group=studyGroups[i];
         }
     }
-    console.log('stydy group ', studyGroups);
-    console.log('44444e',groupId);
-    console.log('group',group );
     if (!group){return;}
     try{if (group) console.log('group') }catch(error) {
         showError('Failed to fetch study groups');
