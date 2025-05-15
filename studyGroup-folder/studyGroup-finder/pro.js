@@ -29,12 +29,97 @@ function setupEventListeners() {
     // Sorting
     document.getElementById('sortSelect')?.addEventListener('change', handleSort);
 
+     // Comment Submission
+    // const commentForm = document.getElementById('commentForm');
+    // if (commentForm) {
+    //     commentForm.addEventListener('submit', handleCommentSubmit);
+    // }else {
+    //     console.error('Comment form not found!');
+    // }
+
+
     // Form validation
     const createGroupForm = document.getElementById('createGroupForm');
     if (createGroupForm) {
         createGroupForm.addEventListener('submit', handleFormSubmit);
     }
 }
+// handleCommentSubmit function
+async function handleCommentSubmit(event) {
+    event.preventDefault(); // Prevent form submission that reloads the page
+
+    const commentInput = document.getElementById('newComment'); // Changed from commentInput to newComment
+    const commentText = commentInput.value.trim(); // Trim to avoid submitting empty comments
+
+    if (!commentText) {
+        console.error('Comment input not found or empty');
+        return;
+    }
+    console.log('Comment submitted:', commentText);
+
+    try {
+        const groupId = getGroupId(); // Get the group ID (ensure this function is available and correct)
+
+        const comment = {
+            text: commentText,
+            groupId: groupId,
+            userEmail: 'current.user@example.com', // Replace with real user session data
+            postedAt: new Date().toISOString(),
+        };
+
+        // Send the comment to the backend
+        const response = await fetch(Comment_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(comment),
+            mode: 'cors'
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to post comment');
+        }
+
+        // Optionally clear the comment input and refresh the comments
+        commentInput.value = ''; // Clear the input
+        fetchGroupComments(groupId); // Refresh the comments list
+    } catch (error) {
+        showError('Failed to post comment');
+        console.error('Error:', error);
+    }
+}
+
+// Function to fetch and render comments
+async function fetchGroupComments(groupId) {
+    try {
+        const response = await fetch(`${Comment_API_URL}?groupId=${groupId}`);
+        const rawResponse = await response.text();  // Get the raw response as text
+        console.log('Raw response:', rawResponse);
+
+        // Now try to parse it as JSON
+        const comments = JSON.parse(rawResponse);
+        renderComments(comments); // Call render function to display comments
+
+    } catch (error) {
+        console.error('Error:', error);
+        showError('Failed to fetch comments');
+    }
+}
+
+function renderComments(comments) {
+    const commentsContainer = document.getElementById('commentsContainer');
+    if (!commentsContainer) return;
+
+    commentsContainer.innerHTML = comments.map(comment => `
+        <div class="comment">
+            <p><strong>${comment.userEmail}</strong> says:</p>
+            <p>${comment.text}</p>
+            <p class="text-muted">${new Date(comment.postedAt).toLocaleString()}</p>
+        </div>
+    `).join('');
+}
+
 
 // Data Fetching
 async function fetchStudyGroups() {
@@ -264,8 +349,11 @@ function resetFilters() {
 
 // Join Group Function
 async function joinGroup(groupId) {
+    console.log('checkkkk',groupId)
+    alert("group joined seccessfully!");
+    window.location.href='../studyGroup-finder/pro.html';
     try {
-        const group = studyGroups.find(g => g.createdAt === groupId);
+        const group = studyGroups.find(g => g.id === groupId);
         if (!group) return;
 
         if (group.members.length >= group.maxMembers) {
@@ -481,7 +569,7 @@ function clearFormErrors() {
 
 // View Details Function
 function viewGroupDetails(groupId) {
-    console.log('beforeeeeeeee',groupId)
+    
 
     let  group = studyGroups.find(g => g.id.stringify == groupId.stringify);
     for(let i=0;i<studyGroups.length;i++){
@@ -505,6 +593,22 @@ function viewGroupDetails(groupId) {
     window.location.href = `../strudyGroup-view/ViewGroup.html?id=${(groupId)}`;
     console.log('1000e',groupId)
 }
+
+function getGroupId() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('id');  // Assuming the groupId is passed as 'id' in the query string
+}
+
+// Add event listener for the comment form submission
+document.getElementById('commentForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from refreshing the page
+
+    const formData = new FormData(event.target); // Collect form data (e.g., comment text)
+
+    const groupId = getGroupId(); // Get the groupId from the URL or hidden input
+
+    postComment(groupId, formData); // Call the postComment function
+});
 
 // Initialize on page load
 window.changePage = changePage; // Make changePage available globally

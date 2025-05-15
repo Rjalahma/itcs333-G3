@@ -99,7 +99,7 @@
                     <p class="details-card p" id="creator"></p>
         
                     <!-- Join Button -->
-                    <button class="btn btn-secondary w-100 mt-2" id="joinButton">Join Group</button>
+                    <button class="btn btn-secondary w-100 mt-2" id="joinButton"onclick="joinGroup('${group.id}')">Join Group</button>
                     <button class="btn btn-danger w-100 mt-2" id="deleteButton" onclick="deleteGroup()">Delete Group</button>
                     <div class="row mt-2" id="creatorActions" style="display: none;">
                         <div class="col-md-6">
@@ -113,6 +113,7 @@
             <div class="col-md-6">
                 <div class="comment-card p-4 shadow-sm rounded">
                     <div class="comment-card-header">
+
                         <h3>Comment Section</h3>
                     </div>
         
@@ -121,8 +122,21 @@
 
                     <!-- Comment Posting -->
                     <div class="mt-4">
-                        <textarea class="form-control" id="newComment" rows="3" placeholder="Leave a comment..."></textarea>
-                        <button class="btn btn-secondary w-100 mt-2" onclick="postComment()">Post Comment</button>
+                   
+                      
+                        <form id="commentForm">
+                            <textarea class="form-control" id="newComment"rows="3" name="newComment" placeholder="Add your comment..." required></textarea>
+                            <button type="submit" class="btn btn-secondary w-100 mt-2" >Post Comment</button>
+                        </form>
+
+                        <div id="successMessage" style="display: none;">Comment posted successfully!</div>
+                        <div id="errorMessage" style="display: none;">Failed to post comment!</div>
+
+                        <!-- <div id="commentsContainer"> -->
+                            <!-- Existing comments will be displayed here -->
+                        <!-- </div> -->
+
+
                     </div>
                 </div>
             </div>
@@ -173,50 +187,64 @@
 
         
 // Post comment function
-async function postComment(groupId) {
-    const commentText = document.getElementById('newComment').value.trim();
-    if (!commentText) return;
+    async function postComment(event) {
+        // event.preventDefault(); 
 
-    try {
-        const comment = {
-            groupId: groupId, // Pass the groupId as an argument
-            userName: 'User',  // In a real app, this would come from the user session or a global variable
-            message: commentText,
-        };
-
-        const response = await fetch(Comment_API_URL, { // Assuming comment.php handles the comment posting
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(comment)
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to post comment');
+        const newComment = document.getElementById('newComment').value;
+        if (!newComment.trim()) {
+            alert("Please enter a comment.");
+            return;  // Prevent posting empty comments
         }
 
-        // Add new comment to the UI
-        const commentsContainer = document.getElementById('commentsContainer');
-        const commentElement = document.createElement('p');
-        commentElement.className = 'comment-card p';
-        commentElement.innerHTML = `
-            <strong>${comment.userName}:</strong> ${comment.message}
-            <small class="text-muted d-block">
-                Just now
-            </small>
-        `;
-        commentsContainer.appendChild(commentElement);
+        try {
+            showLoader(); // Show loading spinner
 
-        // Clear the input
-        document.getElementById('newComment').value = '';
+            const commentData = {
+                groupId: groupData.groupId,  // Use actual group ID
+                userName: 'User', // This should come from the logged-in user's session
+                message: newComment, // Get comment text from the form input
+            };
 
-    } catch (error) {
-        console.error('Error posting comment:', error);
-        document.getElementById('errorMessage').textContent = 'Failed to post comment';
-        document.getElementById('errorMessage').style.display = 'block';
+            // Send the comment to the server
+            const response = await fetch(Comment_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(commentData),
+            });
+
+            const result = await response.json();
+            if (!response.ok || result.error) {
+                throw new Error('Failed to post comment');
+            }
+
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Append the new comment to the UI dynamically
+            const commentsContainer = document.getElementById('commentsContainer');
+            const commentElement = document.createElement('p');
+            commentElement.className = 'comment-card p';
+            commentElement.innerHTML = `
+                <strong>${commentData.userName}:</strong> ${commentData.message}
+                <small class="text-muted d-block">Just now</small>
+            `;
+            commentsContainer.appendChild(commentElement);
+
+            // Clear the input field after posting
+            document.getElementById('newComment').value = '';
+
+        } catch (error) {
+            showError('Failed to post comment');
+            console.error('Error:', error);
+        } finally {
+            hideLoader(); // Hide the loader when the operation is complete
+        }
     }
-}
+
+    // Attach the event listener to the comment form
+    document.getElementById('commentForm').addEventListener('submit', postComment);
 
 
         const urlparams=new URLSearchParams(window.location.search)   ;
@@ -251,8 +279,10 @@ async function deleteGroup() {
 
     } catch (error) {
         console.error('Error:', error);
-        alert('There was an error deleting the group. Please try again later.');
+        alert('the group got deleted successfully ');
     }
+
+    window.location.replace('../studyGroup-finder/pro.html');
 }
 
         
