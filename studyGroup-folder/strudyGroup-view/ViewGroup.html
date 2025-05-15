@@ -237,14 +237,7 @@ async function deleteGroup() {
 
         console.log(response);  // Log the response object to see its status
         const textResponse = await response.text();  // Attempt to read the response as text (for debugging)
-
         console.log('Raw response:', textResponse);  // Log the raw response to see what is returned from PHP
-
-        try {
-            const data = JSON.parse(textResponse);  // Try parsing it manually if it's not automatically JSON
-            if (!response.ok) {
-                throw new Error(data.error || 'Failed to delete group');
-            }
 
             // If delete was successful, log the response
             console.log('Success:', data);
@@ -252,10 +245,7 @@ async function deleteGroup() {
             // Notify the user and reload the page
             alert('Item deleted successfully!');
             window.location.replace('../studyGroup-finder/pro.html');  // Redirect to another page
-        } catch (parseError) {
-            console.error('Failed to parse JSON:', parseError);
-            alert('Failed to delete the group. Response was not valid JSON.');
-        }
+      
 
     } catch (error) {
         console.error('Error:', error);
@@ -263,22 +253,9 @@ async function deleteGroup() {
     }
 }
 
-
-          
-
-
-                // Redirect to the study group finder page after successful deletion
-              
-            // } catch (error) {
-            //     console.error('Error deleting group:', error);
-            //     document.getElementById('errorMessage').textContent = 'Failed to delete group';
-            //     document.getElementById('errorMessage').style.display = 'block';
-            // }
-
         
     </script>
 </body>
-<!-- //TEST -->
 </html>
 
     
