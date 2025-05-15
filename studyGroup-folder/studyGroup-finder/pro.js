@@ -387,14 +387,14 @@ async function createStudyGroup(formData) {
         });
 
          //  TESTING to see the backend response
-      const rawResponse = await response.text();  // Get the response as plain text first
-        console.log('Raw response:', rawResponse);
-        const result = JSON.parse(rawResponse); // Use JSON.parse directly
-        console.log('Backend response:', result);
+    //   const rawResponse = await response.text();  // Get the response as plain text first
+    //     console.log('Raw response:', rawResponse);
+    //     const result = JSON.parse(rawResponse); // Use JSON.parse directly
+    //     console.log('Backend response:', result);
 
-        if (!response.ok|| result.error) {
-            throw new Error('Failed to create study group');
-        }
+    //     if (!response.ok|| result.error) {
+    //         throw new Error('Failed to create study group');
+    //     }
 
         // Show success message
         document.getElementById('successMessage').style.display = 'block';
