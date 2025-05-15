@@ -171,51 +171,53 @@
             document.getElementById('errorMessage').style.display = 'block';
         }
 
-        // Post comment function
-        async function postComment() {
-            const commentText = document.getElementById('newComment').value.trim();
-            if (!commentText) return;
+        
+// Post comment function
+async function postComment(groupId) {
+    const commentText = document.getElementById('newComment').value.trim();
+    if (!commentText) return;
 
-            try {
-                const comment = {
-                    userName: 'Current User', // In a real app, this would come from user session
-                    message: commentText,
-                    postedAt: new Date().toISOString()
-                };
+    try {
+        const comment = {
+            groupId: groupId, // Pass the groupId as an argument
+            userName: 'User',  // In a real app, this would come from the user session or a global variable
+            message: commentText,
+        };
 
-                const response = await fetch(`https://680bd98c2ea307e081d28408.mockapi.io/studyGroups/${groupData.id}/comments`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(comment)
-                });
+        const response = await fetch(Comment_API_URL, { // Assuming comment.php handles the comment posting
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(comment)
+        });
 
-                if (!response.ok) {
-                    throw new Error('Failed to post comment');
-                }
-
-                // Add new comment to the UI
-                const commentsContainer = document.getElementById('commentsContainer');
-                const commentElement = document.createElement('p');
-                commentElement.className = 'comment-card p';
-                commentElement.innerHTML = `
-                    <strong>${comment.userName}:</strong> ${comment.message}
-                    <small class="text-muted d-block">
-                        ${new Date(comment.postedAt).toLocaleString()}
-                    </small>
-                `;
-                commentsContainer.appendChild(commentElement);
-
-                // Clear the input
-                document.getElementById('newComment').value = '';
-
-            } catch (error) {
-                console.error('Error posting comment:', error);
-                document.getElementById('errorMessage').textContent = 'Failed to post comment';
-                document.getElementById('errorMessage').style.display = 'block';
-            }
+        if (!response.ok) {
+            throw new Error('Failed to post comment');
         }
+
+        // Add new comment to the UI
+        const commentsContainer = document.getElementById('commentsContainer');
+        const commentElement = document.createElement('p');
+        commentElement.className = 'comment-card p';
+        commentElement.innerHTML = `
+            <strong>${comment.userName}:</strong> ${comment.message}
+            <small class="text-muted d-block">
+                Just now
+            </small>
+        `;
+        commentsContainer.appendChild(commentElement);
+
+        // Clear the input
+        document.getElementById('newComment').value = '';
+
+    } catch (error) {
+        console.error('Error posting comment:', error);
+        document.getElementById('errorMessage').textContent = 'Failed to post comment';
+        document.getElementById('errorMessage').style.display = 'block';
+    }
+}
+
 
         const urlparams=new URLSearchParams(window.location.search)   ;
         const GID= urlparams.get('id')    ;

@@ -1,6 +1,8 @@
 // Constants
 const API_URL = 'https://add62c0c-c8b3-495c-a225-79ebd85c094b-00-2h8t6ky89z6bv.pike.replit.dev/main.php';
 const POST_API_URL = 'https://add62c0c-c8b3-495c-a225-79ebd85c094b-00-2h8t6ky89z6bv.pike.replit.dev/createGroup.php';   
+const Join_API_URL ='https://add62c0c-c8b3-495c-a225-79ebd85c094b-00-2h8t6ky89z6bv.pike.replit.dev/joinGroup.php';
+const Comment_API_URL ='https://add62c0c-c8b3-495c-a225-79ebd85c094b-00-2h8t6ky89z6bv.pike.replit.dev/comment.php';
 
 const ITEMS_PER_PAGE = 6;
 
@@ -276,12 +278,13 @@ async function joinGroup(groupId) {
             joinedAt: new Date().toISOString()
         };
 
-        const response = await fetch(`${API_URL}/${group.id}/members`, {
+        const response = await fetch( Join_API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(newMember)
+              
         });
 
         if (!response.ok) {
