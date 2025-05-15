@@ -43,5 +43,5 @@ foreach ($reviews as $review) {
   ]);
 }
 
-echo "All reviews imported successfully!";
+echo "All reviews imported successfully !";
 ?>
