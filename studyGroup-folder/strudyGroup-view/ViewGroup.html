@@ -221,35 +221,48 @@
         const GID= urlparams.get('id')    ;
         console.log('thissssss',GID);
         // Delete group function
-        async function deleteGroup() {
+async function deleteGroup() {
+    if (!confirm('Are you sure you want to delete this group? This action cannot be undone.')) {
+        return;
+    }
 
-            if (!confirm('Are you sure you want to delete this group? This action cannot be undone.')) {
-                return;
-            }      
-            
-               
+    try {
         const response = await fetch('https://add62c0c-c8b3-495c-a225-79ebd85c094b-00-2h8t6ky89z6bv.pike.replit.dev/deleteGroup.php', {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json' // Make sure this matches your PHP parser
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({ id: GID })
         });
-        console.log(response);
-        const data = await response.json();
 
-        if (!response.ok) {
-            throw new Error(data.error || 'Failed to delete group');
+        console.log(response);  // Log the response object to see its status
+        const textResponse = await response.text();  // Attempt to read the response as text (for debugging)
+
+        console.log('Raw response:', textResponse);  // Log the raw response to see what is returned from PHP
+
+        try {
+            const data = JSON.parse(textResponse);  // Try parsing it manually if it's not automatically JSON
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to delete group');
+            }
+
+            // If delete was successful, log the response
+            console.log('Success:', data);
+
+            // Notify the user and reload the page
+            alert('Item deleted successfully!');
+            window.location.replace('../studyGroup-finder/pro.html');  // Redirect to another page
+        } catch (parseError) {
+            console.error('Failed to parse JSON:', parseError);
+            alert('Failed to delete the group. Response was not valid JSON.');
         }
 
-        console.log('Success:', data);
-        // You can also update the UI or notify the user here
-
-     
-        alert('item deleted succesfuly')
-
-        window.location.replace('../studyGroup-finder/pro.html'); 
+    } catch (error) {
+        console.error('Error:', error);
+        alert('There was an error deleting the group. Please try again later.');
+    }
 }
+
 
           
 
