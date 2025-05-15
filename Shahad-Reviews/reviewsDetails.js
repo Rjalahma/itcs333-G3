@@ -61,7 +61,7 @@
     viewMode.style.display = "block";
   });
 
-  editForm.addEventListener("submit", async (e) => {
+  editForm.addEventListener("submit ", async (e) => {
     e.preventDefault();
     const updatedReview = {
       id: review.id,
