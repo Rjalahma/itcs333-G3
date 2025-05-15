@@ -300,7 +300,7 @@ async function joinGroup(groupId) {
 // Form Validation
 function handleFormSubmit(event) {
     event.preventDefault();
-    
+
     const form = event.target;
     const formData = new FormData(form);
     
@@ -376,7 +376,6 @@ async function createStudyGroup(formData) {
             creatorEmail: 'current.user@example.com', // In a real app, this would come from user session
             members: [],
             comments: [],
-            // createdAt: new Date().toISOString()
         };
 
         const response = await fetch(POST_API_URL, {
@@ -386,9 +385,14 @@ async function createStudyGroup(formData) {
             },
             body: JSON.stringify(newGroup)
         });
-        console.log(response);
 
-        if (!response.ok) {
+         //  TESTING to see the backend response
+      const rawResponse = await response.text();  // Get the response as plain text first
+        console.log('Raw response:', rawResponse);
+        const result = JSON.parse(rawResponse); // Use JSON.parse directly
+        console.log('Backend response:', result);
+
+        if (!response.ok|| result.error) {
             throw new Error('Failed to create study group');
         }
 
