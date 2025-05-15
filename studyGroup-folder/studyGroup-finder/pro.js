@@ -197,7 +197,7 @@ function renderStudyGroups() {
     if (paginationElement) {
         paginationElement.style.display = 'flex';
     }
-    console.log('groippp id ',studyGroups);
+    // group cards 
     container.innerHTML = `
         <div class="container_group mt-4">
             <div class="row">
