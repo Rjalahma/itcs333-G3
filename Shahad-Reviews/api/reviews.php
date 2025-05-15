@@ -63,7 +63,7 @@ switch ($method) {
       echo json_encode(['success' => true]);
     } else {
       http_response_code(400);
-      echo json_encode(['error' => 'ID is required']);
+      echo json_encode(['error'  => 'ID is required']);
     }
     break;
 }
