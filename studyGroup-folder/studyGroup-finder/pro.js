@@ -1,5 +1,7 @@
 // Constants
-const API_URL = 'https://fe7f78c8-bce5-4b71-9f56-2ddec2b47708-00-336krq9l1nzci.sisko.replit.dev/main.php';
+const API_URL = 'https://add62c0c-c8b3-495c-a225-79ebd85c094b-00-2h8t6ky89z6bv.pike.replit.dev/main.php';
+const POST_API_URL = 'https://add62c0c-c8b3-495c-a225-79ebd85c094b-00-2h8t6ky89z6bv.pike.replit.dev/createGroup.php';   
+
 const ITEMS_PER_PAGE = 6;
 
 // State management
@@ -195,7 +197,7 @@ function renderStudyGroups() {
     if (paginationElement) {
         paginationElement.style.display = 'flex';
     }
-    
+    // group cards 
     container.innerHTML = `
         <div class="container_group mt-4">
             <div class="row">
@@ -298,6 +300,7 @@ async function joinGroup(groupId) {
 // Form Validation
 function handleFormSubmit(event) {
     event.preventDefault();
+
     const form = event.target;
     const formData = new FormData(form);
     
@@ -373,10 +376,9 @@ async function createStudyGroup(formData) {
             creatorEmail: 'current.user@example.com', // In a real app, this would come from user session
             members: [],
             comments: [],
-            createdAt: new Date().toISOString()
         };
 
-        const response = await fetch(API_URL, {
+        const response = await fetch(POST_API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -384,9 +386,15 @@ async function createStudyGroup(formData) {
             body: JSON.stringify(newGroup)
         });
 
-        if (!response.ok) {
-            throw new Error('Failed to create study group');
-        }
+         //  TESTING to see the backend response
+    //   const rawResponse = await response.text();  // Get the response as plain text first
+    //     console.log('Raw response:', rawResponse);
+    //     const result = JSON.parse(rawResponse); // Use JSON.parse directly
+    //     console.log('Backend response:', result);
+
+    //     if (!response.ok|| result.error) {
+    //         throw new Error('Failed to create study group');
+    //     }
 
         // Show success message
         document.getElementById('successMessage').style.display = 'block';
@@ -470,15 +478,29 @@ function clearFormErrors() {
 
 // View Details Function
 function viewGroupDetails(groupId) {
-    // Find the group by its unique ID (use 'id' instead of 'createdAt')
-    const group = studyGroups.find(g => g.id === groupId);
-    if (!group) return;
+    console.log('beforeeeeeeee',groupId)
 
+    let  group = studyGroups.find(g => g.id.stringify == groupId.stringify);
+    for(let i=0;i<studyGroups.length;i++){
+        if (studyGroups[i].id==parseInt(groupId)){
+                group=studyGroups[i];
+        }
+    }
+    if (!group){return;}
+    try{if (group) console.log('group') }catch(error) {
+        showError('Failed to fetch study groups');
+        console.error('Error:', error);}
+    console.log('b55e',groupId)
     // Store group data in sessionStorage for the details page
+
     sessionStorage.setItem('selectedGroup', JSON.stringify(group));
+
+    console.log('6',groupId)
+
     
     // Redirect to view page
     window.location.href = `../strudyGroup-view/ViewGroup.html?id=${(groupId)}`;
+    console.log('1000e',groupId)
 }
 
 // Initialize on page load
