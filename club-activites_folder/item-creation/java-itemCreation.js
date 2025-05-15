@@ -44,7 +44,7 @@ console.log("day", day);
     }
     // chack if the type contain only latteres and spasces
     if (!locationn.match(/^[a-zA-Z\s]+$/)) {
-        alert('Name can only contain letters and spaces.');
+        alert('location can only contain letters and spaces.');
         return false;
     }
     // chack if the type contain only numberes
